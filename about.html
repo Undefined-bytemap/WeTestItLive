@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - we test it LIVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/landing.css">
+</head>
+<body>
+    <div class="header">
+        <div class="title-container">
+            <div class="title">we test it <strong>LIVE</strong></div>
+        </div>
+        <a href="/" class="nav-btn">Home</a>
+    </div>
+    <div class="about-container">
+        <h1>About This Project</h1>
+        <div class="about-content">
+            <p>We all know how it feels to get that vague "doesn't work" sticky note on a device. While a non-powering device makes the problem obvious, most issues require systematic testing. That's why I created this website to make hardware testing quick and easy.</p>
+            
+            <h2>The Testing Challenge</h2>
+            <p>A typical hardware check involves testing multiple components:</p>
+            <ul>
+                <li>Display</li>
+                <li>Sound</li>
+                <li>Keyboard</li>
+                <li>Mouse</li>
+                <li>Internet</li>
+                <li>Cameras</li>
+                <li>Microphone</li>
+            </ul>
+
+            <p>Traditionally, this requires switching between multiple programs and tools. This website consolidates these tests into one convenient location, making it especially valuable for Chromebooks and systems without access to tools like Windows Device Manager.</p>
+
+            <div class="feedback-section">
+                <h2>Feedback</h2>
+                <p>Help us improve this tool by sharing your suggestions:</p>                <form id="feedback-form" onsubmit="sendFeedback(event)">
+                    <label for="suggestion">Your Suggestion:</label><br>
+                    <textarea id="suggestion" name="suggestion" rows="4" cols="50" required></textarea><br><br>
+                    <button type="submit" class="feedback-btn">Submit</button>
+                </form>
+                <p id="thankyou" style="display: none; color: green;">Thanks for your feedback!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendFeedback(event) {
+            event.preventDefault();
+            const suggestion = document.getElementById('suggestion').value;
+            
+            // Attempt to send
+            fetch('https://script.google.com/macros/s/AKfycbx-T3m88s2zMYh6SRfc9tkXORJFGz0M4nJSg6eqsqJ9hQA9GKLvm4Yqo6yFbP68qPxc/exec?suggestion=' + encodeURIComponent(suggestion))
+                .catch(() => {
+                    // Silent fail — GAS still got it, just CORS issue
+                })
+                .finally(() => {
+                    // Hide form and show thank you
+                    const form = document.getElementById('feedback-form');
+                    form.style.display = 'none';
+
+                    const thankyou = document.getElementById('thankyou');
+                    thankyou.style.display = 'block';
+                });
+        }
+    </script>
+</body>
+</html>
