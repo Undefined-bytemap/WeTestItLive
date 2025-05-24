@@ -6,23 +6,33 @@
     <title>we test it LIVE</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="CSS/landing.css">
     <script src="JS/analytics.js" defer></script>
-    <script src="JS/cameras.js" defer></script>
-    <script src="JS/keyboard.js" defer></script>
+    <script src="JS/cameras.js" defer></script>    <script src="JS/keyboard.js" defer></script>
+    <script src="JS/sound.js" defer></script>
+    <script src="JS/microphone.js" defer></script>
 </head>
 <body>    <div class="header">
         <div class="title-container">
             <div class="title">we test it <strong>LIVE</strong></div>
         </div>
-        <a href="/about.html" class="nav-btn">About</a>
+        <div class="nav-links">
+            <a href="/faq.html" class="nav-btn">FAQ</a>
+            <a href="/about.html" class="nav-btn">About</a>
+        </div>
     </div>
     <div class="camera-container">
         <button id="testCamerasBtn" class="camera-btn">Test Cameras</button>
         <div class="permission-note">Note: Refresh page after granting permissions if some cameras don't appear</div>
         <div id="cameraGrid" class="camera-grid"></div>
-    </div>
-    <div class="keyboard-container">
+    </div>    <div class="keyboard-container">
         <button id="testKeyboardBtn" class="keyboard-btn">Test Keyboard</button>
         <div id="keyboardGrid" class="keyboard-grid"></div>
+    </div>    <div class="sound-container">
+        <button id="testSoundBtn" class="sound-btn">Test Sound</button>
+        <div id="soundTestContainer" class="sound-grid"></div>
+    </div>
+    <div class="microphone-container">
+        <button id="testMicBtn" class="mic-btn">Test Microphone</button>
+        <div id="micTestContainer" class="mic-grid"></div>
     </div>
 </body>
 </html>

@@ -59,6 +59,12 @@ body {
     transform: translateY(-1px);
 }
 
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 16px;
+}
+
 /* Main Content */
 .camera-container {
     width: 90%;
@@ -177,6 +183,234 @@ body {
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+/* Sound Testing Section */
+.sound-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.sound-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.sound-btn:hover {
+    background: #1e3c72;
+}
+
+.sound-btn:active {
+    transform: scale(0.98);
+}
+
+.sound-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.visualization-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.waveform-canvas, .spectrogram-canvas {
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.visualization-label {
+    color: white;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-bottom: -8px;
+    opacity: 0.8;
+}
+
+.device-select {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.device-select label {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.device-select select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sound-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.device-select {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.device-select label {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.device-select select {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(42, 82, 152, 0.6);
+    color: white;
+    font-family: 'Montserrat', Arial, sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.device-select select:hover {
+    background: rgba(42, 82, 152, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.device-select select option {
+    background: #2a5298;
+    color: white;
+    padding: 8px;
+}
+
+.freq-control {
+    margin: 24px 0;
+    text-align: left;
+}
+
+.freq-control label {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.freq-control input[type="range"] {
+    width: 100%;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    height: 6px;
+    -webkit-appearance: none;
+}
+
+.freq-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.freq-control input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.freq-control input[type="range"]::-webkit-slider-thumb:hover,
+.freq-control input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}
+
+.freq-control input[type="range"]::-webkit-slider-thumb:active,
+.freq-control input[type="range"]::-moz-range-thumb:active {
+    transform: scale(0.95);
+}
+
+.speaker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.speaker-btn {
+    padding: 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.speaker-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.speaker-btn:active {
+    transform: translateY(0);
+}
+
+.speaker-btn.left {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(46, 204, 113, 0.2) 100%);
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+.speaker-btn.right {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.2) 100%);
+    border-color: rgba(52, 152, 219, 0.3);
+}
+
+.easter-egg-hint {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
 }
 
 .keyboard-row {
@@ -425,6 +659,161 @@ body {
     text-align: center;
 }
 
+/* FAQ Page Styles */
+.faq-container {
+    max-width: 800px;
+    margin: 48px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    width: 90%;
+}
+
+.faq-item {
+    margin-bottom: 40px;
+}
+
+.faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.faq-item h2 {
+    color: #1e3c72;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.faq-item p {
+    color: #2a5298;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.faq-item ul {
+    color: #2a5298;
+    margin: 16px 0;
+    padding-left: 20px;
+}
+
+.faq-item li {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.faq-container h1 {
+    color: #1e3c72;
+    margin-bottom: 32px;
+    font-size: 2.4rem;
+}
+
+/* Microphone Testing Section */
+.microphone-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.mic-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.mic-btn:hover {
+    background: #1e3c72;
+}
+
+.mic-btn:active {
+    transform: scale(0.98);
+}
+
+.mic-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.visualization-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.visualization-label {
+    color: white;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-bottom: -8px;
+    opacity: 0.8;
+}
+
+.waveform-canvas, .spectrogram-canvas {
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* Mic Controls */
+.mic-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.mic-device-select {
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+}
+
+.mic-device-select option {
+    background: #2a5298;
+    color: white;
+}
+
+.mic-visualization {
+    width: 100%;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+#micCanvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Responsive Styles */
 @media (max-width: 600px) {
     .title-container {
         padding: 16px 10px;
@@ -437,5 +826,14 @@ body {
     
     .title {
         font-size: 2rem;
+    }
+    
+    .nav-links {
+        gap: 8px;
+    }
+    
+    .nav-btn {
+        padding: 8px 16px;
+        font-size: 1rem;
     }
 }
