@@ -1,0 +1,240 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.title-container {
+    background: rgba(255,255,255,0.95);
+    padding: 24px 36px;
+    margin-top: 48px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(30,60,114,0.18);
+    text-align: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.camera-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.title {
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: #1e3c72;
+    letter-spacing: 1px;
+}
+
+.title .bold {
+    font-weight: 700;
+    color: #2a5298;
+}
+
+.camera-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.camera-btn:hover {
+    background: #1e3c72;
+}
+
+.camera-btn:active {
+    transform: scale(0.98);
+}
+
+.camera-grid {
+    margin-top: 32px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.camera-grid video {
+    width: 100%;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.1);
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+/* Add a wrapper for each camera to handle label positioning */
+.camera-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.camera-label {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    z-index: 1;
+}
+
+.camera-message {
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+    color: #666;
+    background: rgba(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+.permission-note {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(42, 82, 152, 0.3);
+    padding: 8px 16px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+    display: none;
+}
+
+.keyboard-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.keyboard-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.keyboard-btn:hover {
+    background: #1e3c72;
+}
+
+.keyboard-btn:active {
+    transform: scale(0.98);
+}
+
+.keyboard-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+    gap: 4px;
+}
+
+.key {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 6px;
+    padding: 12px;
+    min-width: 40px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #1e3c72;
+    text-align: center;
+    transition: transform 0.1s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.key.pressed {
+    transform: translateY(2px);
+    background: #1e3c72;  /* Dark blue when pressed */
+    color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.key.released {
+    background: #8ca5d1;  /* Light blue after release */
+    color: white;
+    transform: translateY(0);
+    transition: transform 0.1s ease, background-color 0.5s ease;
+}
+
+.key.spacebar {
+    min-width: 200px;
+}
+
+.key.wide {
+    min-width: 60px;
+}
+
+.key.extra-wide {
+    min-width: 80px;
+}
+
+.key.arrow-key {
+    min-width: 40px;
+    font-size: 1.2rem;
+}
+
+/* Apply the pressed and released states to arrow keys */
+.key.arrow-key.pressed {
+    transform: translateY(2px);
+    background: #1e3c72;
+    color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.key.arrow-key.released {
+    background: #8ca5d1;
+    color: white;
+    transform: translateY(0);
+    transition: transform 0.1s ease, background-color 0.5s ease;
+}
+
+.keyboard-row:nth-last-child(2),
+.keyboard-row:last-child {
+    margin-top: 12px;  /* Add some space before arrow keys */
+    justify-content: center;
+    gap: 4px;
+}
+
+@media (max-width: 600px) {
+    .title-container {
+        padding: 16px 10px;
+        margin-top: 24px;
+    }
+    
+    .camera-container {
+        margin: 24px auto;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+}
