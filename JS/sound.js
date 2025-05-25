@@ -150,23 +150,33 @@ class SoundTest {    constructor() {
             await navigator.mediaDevices.getUserMedia({ audio: true });
             
             const devices = await navigator.mediaDevices.enumerateDevices();
-            this.devices = devices.filter(device => device.kind === 'audiooutput');
+            const outputDevices = devices.filter(device => device.kind === 'audiooutput');
             
-            this.deviceSelect.innerHTML = '';
+            // Set up output device dropdown
+            const deviceSelect = document.createElement('div');
+            deviceSelect.className = 'device-select';
+            
+            const label = document.createElement('label');
+            label.htmlFor = 'audioDeviceSelect';
+            label.textContent = 'Audio Output Device:';
+            
+            this.deviceSelect = document.createElement('select');
+            this.deviceSelect.id = 'audioDeviceSelect';
+            this.deviceSelect.className = 'audio-device-select';
             
             // Add default device first
             const defaultOption = document.createElement('option');
             defaultOption.value = 'default';
-            defaultOption.text = 'Default - ' + (this.devices.find(d => d.deviceId === 'default')?.label || 'System Audio');
+            defaultOption.text = 'Default - ' + (outputDevices.find(d => d.deviceId === 'default')?.label || 'System Audio');
             this.deviceSelect.appendChild(defaultOption);
             
-            // Add other devices
-            this.devices
+            // Add other output devices
+            outputDevices
                 .filter(device => device.deviceId !== 'default')
                 .forEach(device => {
                     const option = document.createElement('option');
                     option.value = device.deviceId;
-                    option.text = device.label || `Audio Device ${this.devices.indexOf(device) + 1}`;
+                    option.text = device.label || `Audio Device ${outputDevices.indexOf(device) + 1}`;
                     this.deviceSelect.appendChild(option);
                 });
 
@@ -174,9 +184,26 @@ class SoundTest {    constructor() {
             this.deviceSelect.addEventListener('change', () => {
                 this.selectedDevice = this.deviceSelect.value;
                 if (this.audioContext) {
-                    this.audioContext.setSinkId?.(this.selectedDevice).catch(console.error);
+                    // Try to switch audio output if supported
+                    const audioElement = document.createElement('audio');
+                    if (audioElement.setSinkId) {
+                        this.audioContext.setSinkId?.(this.selectedDevice).catch(console.error);
+                    } else {
+                        console.warn('Audio output device selection not supported in this browser');
+                    }
                 }
             });
+            
+            deviceSelect.appendChild(label);
+            deviceSelect.appendChild(this.deviceSelect);
+            
+            // Insert the device select before the frequency control
+            const freqControl = this.soundGrid.querySelector('.freq-control');
+            if (freqControl) {
+                this.soundGrid.insertBefore(deviceSelect, freqControl);
+            } else {
+                this.soundGrid.appendChild(deviceSelect);
+            }
             
         } catch (error) {
             console.warn('Could not enumerate audio devices:', error);

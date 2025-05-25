@@ -1,0 +1,407 @@
+/* Home page specific styles */
+.camera-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.camera-btn, .keyboard-btn, .sound-btn, .mic-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.camera-btn:hover, .keyboard-btn:hover, .sound-btn:hover, .mic-btn:hover {
+    background: #1e3c72;
+}
+
+.camera-btn:active, .keyboard-btn:active, .sound-btn:active, .mic-btn:active {
+    transform: scale(0.98);
+}
+
+.permission-note {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(42, 82, 152, 0.3);
+    padding: 8px 16px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+    display: none;
+}
+
+/* Camera Grid */
+.camera-grid {
+    margin-top: 32px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.camera-grid video {
+    width: 100%;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.1);
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.camera-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.camera-label {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    z-index: 1;
+}
+
+.camera-message {
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+    color: #666;
+    background: rgba(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+/* Sound Testing Section */
+.sound-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.sound-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.freq-control {
+    margin: 24px 0;
+    text-align: left;
+}
+
+.freq-control label {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.freq-control input[type="range"] {
+    width: 100%;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    height: 6px;
+    -webkit-appearance: none;
+}
+
+.freq-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.freq-control input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.speaker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.speaker-btn {
+    padding: 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.speaker-btn.left {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(46, 204, 113, 0.2) 100%);
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+.speaker-btn.right {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.2) 100%);
+    border-color: rgba(52, 152, 219, 0.3);
+}
+
+/* Microphone Testing Section */
+.microphone-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.mic-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.mic-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.mic-device-select {
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: rgba(42, 82, 152, 0.6);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.mic-device-select:hover {
+    background: rgba(42, 82, 152, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.mic-device-select option {
+    background: #2a5298;
+    color: white;
+    padding: 8px;
+}
+
+.device-select {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.device-select label {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.audio-device-select {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(42, 82, 152, 0.6);
+    color: white;
+    font-family: 'Montserrat', Arial, sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.audio-device-select:hover {
+    background: rgba(42, 82, 152, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.audio-device-select option {
+    background: #2a5298;
+    color: white;
+    padding: 8px;
+}
+
+.visualization-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.visualization-label {
+    color: white;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-bottom: -8px;
+    opacity: 0.8;
+}
+
+.waveform-canvas, .spectrogram-canvas {
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* Keyboard Section */
+:root {
+    --key-base-width: min(3vw, 40px);
+    --key-base-padding: min(0.8vw, 12px);
+    --key-font-size: min(1.8vw, 0.9rem);
+    --key-gap: min(0.3vw, 4px);
+    --keyboard-padding: min(2vw, 24px);
+}
+
+.keyboard-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.keyboard-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--keyboard-padding);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--key-gap);
+    gap: var(--key-gap);
+}
+
+.key {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 6px;
+    padding: var(--key-base-padding);
+    min-width: var(--key-base-width);
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: var(--key-font-size);
+    color: #1e3c72;
+    text-align: center;
+    transition: transform 0.1s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.key.pressed {
+    transform: translateY(2px);
+    background: #1e3c72;
+    color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.key.released {
+    background: #8ca5d1;
+    color: white;
+    transform: translateY(0);
+    transition: transform 0.1s ease, background-color 0.5s ease;
+}
+
+.key.spacebar {
+    min-width: calc(var(--key-base-width) * 5);
+}
+
+.key.wide {
+    min-width: calc(var(--key-base-width) * 1.5);
+}
+
+.key.extra-wide {
+    min-width: calc(var(--key-base-width) * 2);
+}
+
+.key.arrow-key {
+    min-width: var(--key-base-width);
+    font-size: calc(var(--key-font-size) * 1.2);
+}
+
+@media (max-width: 1200px) {
+    :root {
+        --key-base-width: min(2.8vw, 35px);
+        --key-base-padding: min(0.7vw, 10px);
+        --key-font-size: min(1.6vw, 0.85rem);
+    }
+}
+
+@media (max-width: 900px) {
+    :root {
+        --key-base-width: min(2.5vw, 30px);
+        --key-base-padding: min(0.6vw, 8px);
+        --key-font-size: min(1.4vw, 0.8rem);
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --key-base-width: min(2.2vw, 25px);
+        --key-base-padding: min(0.5vw, 6px);
+        --key-font-size: min(1.2vw, 0.75rem);
+        --key-gap: min(0.2vw, 3px);
+    }
+
+    .keyboard-grid {
+        padding: calc(var(--keyboard-padding) * 0.5);
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --key-base-width: min(2vw, 22px);
+        --key-base-padding: min(0.4vw, 5px);
+        --key-font-size: min(1.1vw, 0.7rem);
+        --key-gap: min(0.15vw, 2px);
+    }
+
+    .keyboard-grid {
+        padding: calc(var(--keyboard-padding) * 0.33);
+    }
+}

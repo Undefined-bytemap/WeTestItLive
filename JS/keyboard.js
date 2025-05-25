@@ -38,7 +38,7 @@ class KeyboardManager {
             ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\'],
             ['Caps Lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'Enter'],
             ['Left Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'Right Shift'],
-            ['Left Ctrl', 'Left Win', 'Left Alt', 'Space', 'Right Alt', 'Right Win', 'Menu', 'Right Ctrl'],
+            ['Left Ctrl', 'Left Win', 'Left Alt', 'Space', 'Right Alt', 'Right Win', 'Right Ctrl'],
             ['', '', '↑', '', '', '', '', ''],  // Arrow keys row
             ['', '←', '↓', '→', '', '', '', '']  // Arrow keys row
         ];
