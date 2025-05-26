@@ -1,0 +1,254 @@
+.stress-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.stress-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.stress-btn:hover {
+    background: #1e3c72;
+}
+
+.stress-btn:active {
+    transform: scale(0.98);
+}
+
+.stress-grid {
+    display: none;
+    margin-top: 32px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+.stress-test-area {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stress-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.thread-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.thread-selector label {
+    font-weight: 500;
+    color: white;
+    font-size: 14px;
+}
+
+.thread-selector select {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.start-btn, .stop-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.start-btn {
+    background-color: rgba(76, 175, 80, 0.8);
+    color: white;
+}
+
+.start-btn:hover {
+    background-color: rgba(76, 175, 80, 1);
+}
+
+.stop-btn {
+    background-color: rgba(244, 67, 54, 0.8);
+    color: white;
+}
+
+.stop-btn:hover {
+    background-color: rgba(244, 67, 54, 1);
+}
+
+.stress-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 400px) {
+    .stress-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+
+.metric-card {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metric-title {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    font-weight: normal;
+}
+
+.metric-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin: 4px 0;
+    height: 22px; /* Fixed height to prevent resizing */
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+.metric-progress {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.metric-bar {
+    height: 100%;
+    background: linear-gradient(to right, #4caf50, #ffc107, #f44336);
+    transition: width 0.5s ease;
+}
+
+.stress-visualization {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* New: Styles for the container of the two graphs */
+.performance-graphs-container {
+    display: flex;
+    gap: 12px; /* Space between the two graphs */
+    width: 100%;
+}
+
+.performance-graph {
+    position: relative;
+    width: 100%; /* Each graph takes up available space in the flex container */
+    height: 250px; /* Larger height for desktop */
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    overflow: hidden; /* Prevent overflow */
+}
+
+.stress-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.threads-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    min-height: 30px; /* Minimum height to prevent resizing */
+    width: 100%; /* Full width */
+}
+
+.thread-info {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    min-width: 120px; /* Minimum width to prevent resizing */
+    text-align: left;
+}
+
+.info-panel {
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 800px) {
+    .performance-graphs-container {
+        flex-direction: column; /* Stack graphs vertically on smaller screens */
+    }
+    .performance-graph {
+        height: 200px; /* Smaller height for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .stress-grid {
+        padding: 16px;
+    }
+    
+    .stress-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .control-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .performance-graph {
+        height: 180px; /* Even smaller height for mobile */
+    }
+}

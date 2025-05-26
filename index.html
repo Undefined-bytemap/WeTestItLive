@@ -7,12 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/home.css">
     <link rel="stylesheet" href="CSS/touch.css">
+    <link rel="stylesheet" href="CSS/stress.css">
     <script src="JS/analytics.js" defer></script>
     <script src="JS/cameras.js" defer></script>    <script src="JS/keyboard.js" defer></script>
     <script src="JS/sound.js" defer></script>    <script src="JS/microphone.js" defer></script>
     <script src="JS/mouse.js" defer></script>
     <script src="JS/pixel.js" defer></script>
     <script src="JS/touch.js" defer></script>
+    <script src="JS/stress.js" defer></script>
 </head>
 <body>    <div class="header">
         <div class="title-container">
@@ -54,10 +56,13 @@
     <div class="pixel-container">
         <button id="testPixelBtn" class="pixel-btn">Test Dead Pixels</button>
         <div id="pixelTestContainer" class="pixel-grid"></div>
-    </div>
-    <div class="touch-container">
+    </div>    <div class="touch-container">
         <button id="testTouchBtn" class="touch-btn">Test Touch Screen</button>
         <div id="touchTestContainer" class="touch-grid"></div>
+    </div>
+    <div class="stress-container">
+        <button id="testStressBtn" class="stress-btn">Test Hardware</button>
+        <div id="stressTestContainer" class="stress-grid"></div>
     </div>
 </body>
 </html>
