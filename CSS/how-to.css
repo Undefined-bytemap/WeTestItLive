@@ -1,0 +1,39 @@
+/* Styles for the how-to page, consistent with other pages */
+
+.page-container {
+    width: 90%;
+    max-width: 900px; /* Adjusted for content readability */
+    margin: 48px auto;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.05); /* Subtle background for the content area */
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    color: #e0e0e0; /* Lighter text color for dark background */
+}
+
+section {
+    margin-bottom: 32px; /* Increased spacing between sections */
+    padding-bottom: 24px; /* Added padding to bottom of sections */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+}
+
+section:last-child {
+    border-bottom: none; /* Remove border for the last section */
+    margin-bottom: 0;
+}
+
+h2 {
+    color: #ffffff; /* White color for headings */
+    border-bottom: 2px solid #2a5298; /* Accent color border */
+    padding-bottom: 10px;
+    margin-top: 0; /* Remove default top margin for h2 */
+    font-size: 1.8rem; /* Slightly larger heading */
+}
+
+p {
+    line-height: 1.7; /* Improved line height for readability */
+    font-size: 1rem; /* Standard paragraph font size */
+    color: #cccccc; /* Slightly dimmer text for paragraphs */
+}
+
+/* Remove header and footer styles as they are covered by main.css or removed */

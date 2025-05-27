@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How-to Guide - we test it LIVE</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/how-to.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
+    <script src="JS/analytics.js" defer></script>
+</head>
+<body>
+    <div class="header">
+        <div class="title-container">
+            <div class="title">we test it <strong>LIVE</strong></div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="about.html" class="nav-btn">About</a>
+            <a href="faq.html" class="nav-btn">FAQ</a>
+            <a href="how-to.html" class="nav-btn active">How-to</a>
+        </div>
+    </div>
+    <div class="page-container">
+        <main>
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>Welcome to the "we test it <strong>LIVE</strong>" how-to guide. This page provides IT professionals and tech-savvy users with detailed information on how to utilize each hardware test on this website for effective device diagnosis. Understanding these tests can help pinpoint issues, differentiate between hardware and software problems, and ensure devices are functioning optimally.</p>
+            </section>
+            <section id="camera-test">
+                <h2>Camera Test</h2>
+                <p><strong>Functionality:</strong> This test initializes and displays video feeds from all connected camera(s) simultaneously. It attempts to access available video input devices and shows each one, in a side-by-side or grid layout.</p>
+                <p><strong>IT Diagnosis Use Cases:</strong></p>
+                <ul>
+                    <li><strong>No Camera Detected:</strong> If the browser cannot access any camera, it could indicate a driver issue, a hardware malfunction, or that cameras are disabled in the system settings or BIOS. Check privacy settings in the OS and browser.</li>
+                    <li><strong>Black/Frozen Image (on one or all feeds):</strong> A black or frozen image suggests a camera is detected but not capturing video. This could be a driver conflict, a faulty camera module, or a problem with that camera's connection to the motherboard.</li>
+                    <li><strong>Poor Image Quality (on one or all feeds):</strong> Issues like distorted colors, flickering, or excessive noise can point to a failing camera sensor, a loose connection, or sometimes driver incompatibilities. Compare with expected quality for the specific model(s).</li>
+                    <li><strong>Specific Camera Not Showing:</strong> If multiple cameras are expected but one or more are missing, it could indicate an issue with those specific cameras. In some cases such as on mobile phones the browser may only allow access to a front and rear camera.</li>
+                </ul>
+                <p><strong>Working Device:</strong> Clear, stable video feeds appear promptly from all connected cameras. Each camera feed is displayed, allowing for simultaneous inspection.</p>
+                <p><strong>Malfunctioning Device:</strong> No video feeds appear, error messages (e.g., "Camera not found," "Permission denied"), black screen(s), distorted/flickering video on one or more feeds, or some expected cameras not appearing.</p>
+            </section>
+            <section id="microphone-test">
+                <h2>Microphone Test</h2>
+                <p><strong>Functionality:</strong> The microphone test requests access to the device's microphone and provides a visual representation of the audio input, typically as a waveform and a spectrogram. This allows users to see if the microphone is picking up sound and to observe its frequency response.</p>
+                <p><strong>IT Diagnosis Use Cases:</strong></p>
+                <ul>
+                    <li><strong>No Audio Detected:</strong> If the visualizer doesn't respond to sound, verify microphone permissions in the browser and OS. Check if the correct microphone is selected (if multiple are present) and that it's not muted. This could also indicate a faulty microphone, driver issues, or a disconnected internal microphone cable.</li>
+                    <li><strong>Low/Distorted Audio:</strong> If the visualizer shows very low input despite loud sound, or if the sound (if played back) is distorted, it could be a problem with the microphone's sensitivity, a driver issue, or physical damage/obstruction to the microphone.</li>
+                    <li><strong>Constant Noise:</strong> If the visualizer shows activity even in a quiet environment, it might indicate electrical interference, a faulty microphone picking up internal noise, or a driver issue.</li>
+                </ul>
+                <p><strong>Working Device:</strong> The visualizer actively responds to sound input, clearly showing fluctuations in volume. The input should be clean (minimal background noise).</p>
+                <p><strong>Malfunctioning Device:</strong> No response from the visualizer, very low or erratic response, persistent noise even in silence, or error messages related to microphone access.</p>
+            </section>
+            <section id="sound-test">
+                <h2>Sound Test</h2>
+                <p><strong>Functionality:</strong> This test facilitates playing a tunable audio tone, and allows testing left and right audio channels independently. This helps verify that the device's audio output (speakers or headphones) is working correctly and that stereo separation is functional.</p>
+                <p><strong>IT Diagnosis Use Cases:</strong></p>
+                <ul>
+                    <li><strong>No Sound Output:</strong> Ensure volume is not muted and is turned up. Check OS audio output device selection. If still no sound, it could be a driver issue, faulty speakers/headphones, a problem with the audio jack, or a malfunctioning sound card/chip. Test with headphones to isolate speaker issues.</li>
+                    <li><strong>Distorted/Crackling Sound:</strong> This can indicate blown speakers, a poor connection (especially with external speakers/headphones), driver problems, or a failing audio chip.</li>
+                    <li><strong>Sound Only From One Channel (Stereo):</strong> This could be a balance setting issue in the OS, a faulty speaker/headphone, or a problem with the audio jack or internal wiring.</li>
+                </ul>
+                <p><strong>Working Device:</strong> Clear audio plays through the selected output device (speakers/headphones) at an appropriate volume.</p>
+                <p><strong>Malfunctioning Device:</strong> No sound, distorted sound, crackling, sound from only one speaker/earpiece, or very faint audio despite high volume settings.</p>
+            </section>
+            <section id="keyboard-test">
+                <h2>Keyboard Test</h2>
+                <p><strong>Functionality:</strong> This test visually indicates which keys are pressed. It highlights keys on a virtual keyboard representation as they are typed. This helps identify unresponsive or incorrectly mapped keys.</p>
+                <p><strong>IT Diagnosis Use Cases:</strong></p>
+                <ul>
+                    <li><strong>Unresponsive Keys:</strong> If pressing a key does not register on the virtual keyboard, that specific key might be physically damaged (e.g., debris underneath, worn-out switch) or there might be a localized issue on the keyboard's circuit board.</li>
+                    <li><strong>Sticky/Repeating Keys:</strong> If a key registers multiple times with a single press or feels physically stuck, it's usually a mechanical issue with that key.</li>
+                    <li><strong>Incorrect Key Mapping:</strong> If pressing one key registers as a different character (e.g., 'Q' registers as 'A'), it could be a language setting issue, a driver problem. Less commonly, it could be a hardware fault in the keyboard controller.</li>
+                    <li><strong>Entire Sections Unresponsive:</strong> If a whole row or section of keys isn't working, it might indicate a loose internal keyboard connector or a more severe hardware fault.</li>
+                </ul>
+                <p><strong>Working Device:</strong> Every key pressed is accurately and immediately reflected on the virtual keyboard display. No ghosting or incorrect characters.</p>
+                <p><strong>Malfunctioning Device:</strong> Some keys don't register, keys stick or repeat, wrong characters appear, or entire sections of the keyboard are dead.</p>
+            </section>
+            <section id="mouse-test">
+                <h2>Mouse Test</h2>
+                <p><strong>Functionality:</strong> This test tracks and visualizes mouse movements. It displays the change in position (delta), and a graph of movement over time. This helps in assessing pointer speed, acceleration, and smoothness.</p>
+                <p><strong>IT Diagnosis Use Cases:</strong></p>
+                <ul>
+                    <li><strong>No Cursor Movement/Jumpy Cursor:</strong> If using an external mouse, check the connection (USB/Bluetooth). For touchpads, ensure drivers are installed and the touchpad isn't disabled. Jumpy or erratic movement can be due to a dirty mouse sensor, a problematic surface, driver issues, or a failing mouse/touchpad. The visualizations can help identify inconsistent tracking.</li>
+                    <li><strong>Pointer Speed/Acceleration Issues:</strong> If the cursor moves too fast, too slow, or with inconsistent acceleration, the movement graph can help visualize these characteristics. This might point to OS settings, driver issues, or user preference adjustments needed.</li>
+                    <li><strong>Intermittent Freezing/Lag:</strong> If the pointer occasionally freezes or lags, the movement graph might show flat lines or sudden jumps, indicating periods of unresponsiveness.</li>
+                </ul>
+                <p><strong>Working Device:</strong> Cursor movement is smooth and precise. The on-screen visualizations (position, delta, graph) accurately reflect the physical mouse movements without noticeable lag or jitter.</p>
+                <p><strong>Malfunctioning Device:</strong> Cursor is jumpy, unresponsive, or drifts. The movement graph shows erratic patterns, flat lines during movement, or significant discrepancies between physical input and on-screen representation. Pointer speed or acceleration may feel "off" or inconsistent.</p>
+            </section>
+            <section id="touch-test">
+                <h2>Touch Test</h2>
+                <p><strong>Functionality:</strong> For touchscreen devices, this test is designed to register touch points on the screen. It should ideally visualize where the screen is being touched, and for multi-touch capable screens, it should be able to track multiple simultaneous touch points.</p>
+                <p><strong>IT Diagnosis Use Cases:</strong></p>
+                <ul>
+                    <li><strong>No Touch Response:</strong> Ensure touch drivers are installed and the touchscreen is enabled. A complete lack of response can indicate a disconnected digitizer cable, a faulty digitizer, or a severe driver/OS issue.</li>
+                    <li><strong>Dead Spots:</strong> If certain areas of the screen don't respond to touch, it indicates a localized fault in the touchscreen digitizer.</li>
+                    <li><strong>Ghost Touches/Erratic Input:</strong> The screen registering touches that aren't happening, or inaccurate touch location, can be caused by a faulty digitizer, pressure on the screen (e.g., from a tight bezel or case), electrical interference, or driver problems. Sometimes a screen protector can interfere.</li>
+                    <li><strong>Multi-touch Failure:</strong> If the screen supports multi-touch (e.g., pinch-to-zoom) but only registers single touches, it could be a driver issue or a limitation/fault in the digitizer's multi-touch capability.</li>
+                </ul>
+                <p><strong>Working Device:</strong> Touch input is accurately registered across the entire screen. For multi-touch screens, multiple simultaneous touches are correctly identified and tracked.</p>
+                <p><strong>Malfunctioning Device:</strong> No response to touch, dead spots on the screen, ghost touches, inaccurate touch registration, or failure of multi-touch functionality.</p>
+            </section>
+            <section id="pixel-test">
+                <h2>Pixel Test</h2>
+                <p><strong>Functionality:</strong> This test helps identify dead, stuck, or lit pixels by cycling through full-screen displays of solid colors (e.g., red, green, blue). This makes it easier to spot individual pixels that are not displaying the correct color.</p>
+                <p><strong>IT Diagnosis Use Cases:</strong></p>
+                <ul>
+                    <li><strong>Dead Pixels:</strong> A pixel that remains black (off) on all color screens. This is a permanent hardware defect in the LCD panel.</li>
+                    <li><strong>Stuck Pixels:</strong> A pixel that is stuck on one color (e.g., always red, green, or blue) regardless of what color is being displayed. Sometimes these can be "massaged" or fixed with software, but often they are permanent.</li>
+                    <li><strong>Lit/Hot Pixels:</strong> A pixel that is always white (all sub-pixels on). This is also a hardware defect.</li>
+                    <li><strong>Pixel Clusters:</strong> Multiple dead/stuck/lit pixels in close proximity, which can be more noticeable and disruptive.</li>
+                </ul>
+                <p><strong>Working Device:</strong> The screen displays each solid color uniformly, with no pixels showing a different color or remaining black/white.</p>
+                <p><strong>Malfunctioning Device:</strong> One or more pixels appear as tiny black dots (dead), colored dots (stuck), or white dots (lit) against the solid color backgrounds. These will be visible when cycling through the different color screens.</p>
+            </section>
+            <section id="stress-test">
+                <h2>Stress Test</h2>
+                <p><strong>Functionality:</strong> This test performs intensive CPU calculations using multiple threads to push the processor to high utilization levels. It also monitors and graphs the web page's memory (RAM) usage (specifically, the JavaScript heap size). This helps assess system stability, CPU thermal performance, and observe the page's memory behavior under heavy computational load.</p>
+                <p><strong>IT Diagnosis Use Cases:</strong></p>
+                <ul>
+                    <li><strong>System Crashes/Freezes:</strong> If the device crashes, freezes, or reboots during the stress test, it can indicate overheating issues, unstable overclocking, insufficient power supply, or failing hardware components (CPU, system RAM, motherboard).</li>
+                    <li><strong>Thermal Throttling (CPU):</strong> Monitoring CPU temperatures (using external tools if available) during the test is crucial. The test provides a CPU utilization graph. If temperatures get too high (indicated by external tools or system behavior), the CPU may throttle performance (reduce clock speeds) to prevent damage. The CPU graph might show a drop in utilization if throttling occurs. Excessive throttling indicates inadequate cooling.</li>
+                    <li><strong>Memory (RAM) Behavior:</strong> The test graphs the web page's JavaScript heap memory usage. While this doesn't show total system RAM, observing this graph can be insightful. A continuously increasing memory footprint on the graph that doesn't stabilize might suggest memory leaks within the page's scripts when placed under stress. Unexpectedly high or erratic page memory usage shown on the graph could also be noted.</li>
+                    <li><strong>Performance Bottlenecks:</strong> While the test itself might not pinpoint specific bottlenecks without further monitoring tools, a system that struggles significantly or shows errors can hint at underlying performance issues.</li>
+                    <li><strong>Fan Noise/Behavior:</strong> Listen to the device\'s fans. If they become excessively loud, fail to spin up, or make unusual noises, it could indicate cooling system problems.</li>
+                </ul>
+                <p><strong>Working Device:</strong> The device runs the stress test without crashing, freezing, or exhibiting excessive CPU thermal throttling. The CPU utilization graph shows sustained high load. The page's RAM usage graph should remain relatively stable or within expected bounds after an initial ramp-up. Fans may run at high speed, which is normal, but CPU temperatures (if monitored externally) should remain within safe operating limits.</p>
+                <p><strong>Malfunctioning Device:</strong></p>
+                <ul>
+                    <li><strong>System Freeze/Crash/Reboot:</strong> Indicates instability under load. This could be due to overheating, insufficient power, failing CPU/system RAM, or driver issues.</li>
+                    <li><strong>Significant Performance Drop (Thermal Throttling):</strong> The CPU usage graph might show an initial peak, then a sharp decline and sustained lower performance as the CPU heats up and slows itself down to prevent damage. This points to inadequate cooling.</li>
+                    <li><strong>Anomalous RAM Graph:</strong> The page's RAM usage graph shows uncontrolled growth (potential leak in the test page's context under stress) or extremely high consumption that might impact browser stability.</li>
+                    <li><strong>Excessive Heat:</strong> If the device becomes unusually hot to the touch, it\'s a sign of potential cooling problems, even if it doesn\'t throttle or crash immediately.</li>
+                    <li><strong>Errors in Console or Test Interface:</strong> May provide clues to specific issues.</li>
+                    <li><strong>Rapid Battery Drain:</strong> While expected under load, an extremely fast drain could indicate battery health issues, though this test primarily stresses the CPU.</li>
+                </ul>
+                <p><em>Note: Always ensure proper ventilation when running stress tests, especially on laptops or compact devices. This test is browser-based; its CPU load and page RAM usage measurements are approximations of the stress on the system. For precise hardware stress testing, total system RAM analysis, and comprehensive temperature monitoring, dedicated native applications are often used, but this provides a good, accessible baseline for CPU and page memory behavior under load.</em></p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

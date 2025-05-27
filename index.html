@@ -2,13 +2,31 @@
 <html lang="en">
 <head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
     <title>we test it LIVE</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/home.css">
     <link rel="stylesheet" href="CSS/touch.css">
     <link rel="stylesheet" href="CSS/stress.css">
+    <noscript>
+        <style>
+            p.explainer { display: block !important; }
+            /* Ensure the main content area is visible if JS is off and explainers are shown */
+            body > .camera-container,
+            body > .keyboard-container,
+            body > .sound-container,
+            body > .microphone-container,
+            body > .mouse-container,
+            body > .pixel-container,
+            body > .touch-container,
+            body > .stress-container {
+                padding-top: 10px; /* Add some space if needed */
+            }
+        </style>
+    </noscript>
     <script src="JS/analytics.js" defer></script>
+    <script src="JS/adsense.js" defer></script> <!-- Added new JS file for adsense logic -->
     <script src="JS/cameras.js" defer></script>    <script src="JS/keyboard.js" defer></script>
     <script src="JS/sound.js" defer></script>    <script src="JS/microphone.js" defer></script>
     <script src="JS/mouse.js" defer></script>
@@ -16,32 +34,44 @@
     <script src="JS/touch.js" defer></script>
     <script src="JS/stress.js" defer></script>
 </head>
-<body>    <div class="header">
+<body>    <noscript>
+        <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
+            JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
+        </div>
+    </noscript>
+    <div class="header">
         <div class="title-container">
             <div class="title">we test it <strong>LIVE</strong></div>
         </div>
         <div class="nav-links">
-            <a href="/faq.html" class="nav-btn">FAQ</a>
-            <a href="/about.html" class="nav-btn">About</a>
+            <a href="index.html" class="nav-btn active">Home</a>
+            <a href="about.html" class="nav-btn">About</a>
+            <a href="faq.html" class="nav-btn">FAQ</a>
+            <a href="how-to.html" class="nav-btn">How-to</a> <!-- Added How-to link -->
         </div>
     </div>
     <div class="camera-container">
         <button id="testCamerasBtn" class="camera-btn">Test Cameras</button>
-        <div class="permission-note">Note: Refresh page after granting permissions if some cameras don't appear</div>
+        <p class="explainer" style="display:none;">Check your device\\\'s camera(s). This test will attempt to access all available cameras and display their video feeds simultaneously. This is useful for verifying camera functionality, detecting driver issues, or identifying hardware malfunctions such as a black or frozen image.</p>
+        <div class="permission-note">Note: Refresh page after granting permissions if some cameras don\\\'t appear</div>
         <div id="cameraGrid" class="camera-grid"></div>
     </div>    <div class="keyboard-container">
         <button id="testKeyboardBtn" class="keyboard-btn">Test Keyboard</button>
+        <p class="explainer" style="display:none;">Verify all keys on your keyboard are functioning correctly. As you type, pressed keys will be highlighted on a virtual keyboard. This helps identify unresponsive keys, sticky keys, or incorrect key mappings.</p>
         <div id="keyboardGrid" class="keyboard-grid"></div>
     </div>    <div class="sound-container">
         <button id="testSoundBtn" class="sound-btn">Test Sound</button>
+        <p class="explainer" style="display:none;">Test your device\\\'s speakers or headphones by playing a sample sound. This test allows you to check for audio output, sound quality (e.g., distortion, crackling), and stereo channel separation if applicable.</p>
         <div id="soundTestContainer" class="sound-grid"></div>
     </div>
     <div class="microphone-container">
         <button id="testMicBtn" class="mic-btn">Test Microphone</button>
+        <p class="explainer" style="display:none;">Check if your microphone is picking up sound. You should see a visual representation (waveform and spectrogram) of your voice or any ambient sound. This helps diagnose issues like no audio input, low volume, or excessive background noise.</p>
         <div id="micTestContainer" class="mic-grid"></div>
     </div>
     <div class="mouse-container">
         <button id="testMouseBtn" class="mouse-btn">Test Mouse</button>
+        <p class="explainer" style="display:none;">Test mouse movement, and pointer tracking. This test visualizes mouse path, speed, and smoothness, helping to identify issues like erratic cursor behavior, lag, or problems with pointer precision.</p>
         <div id="mouseTestContainer" class="mouse-grid">
             <div class="mouse-visualization">
                 <div class="movement-graph">
@@ -55,13 +85,16 @@
     </div>
     <div class="pixel-container">
         <button id="testPixelBtn" class="pixel-btn">Test Dead Pixels</button>
+        <p class="explainer" style="display:none;">Identify dead, stuck, or lit pixels on your screen by displaying various solid colors full-screen. This makes it easier to spot individual pixels that are not displaying the correct color, which could indicate a permanent hardware defect.</p>
         <div id="pixelTestContainer" class="pixel-grid"></div>
     </div>    <div class="touch-container">
         <button id="testTouchBtn" class="touch-btn">Test Touch Screen</button>
+        <p class="explainer" style="display:none;">Verify touch screen accuracy and responsiveness. For multi-touch capable screens, it can track multiple simultaneous touch points. This helps detect dead spots, ghost touches, or issues with multi-touch functionality.</p>
         <div id="touchTestContainer" class="touch-grid"></div>
     </div>
     <div class="stress-container">
         <button id="testStressBtn" class="stress-btn">Test Hardware</button>
+        <p class="explainer" style="display:none;">Perform a stress test to check your system\\\'s stability and CPU performance under heavy load. This test runs intensive calculations and monitors CPU utilization and the page\\\'s memory usage, which can help identify thermal throttling or crashes under pressure.</p>
         <div id="stressTestContainer" class="stress-grid"></div>
     </div>
 </body>
