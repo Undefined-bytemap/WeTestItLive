@@ -17,13 +17,20 @@ class MouseManager {
         this.lastY = 0;
         this.deltaX = 0;
         this.deltaY = 0;
-        
-        // Movement history for graph
+          // Movement history for graph
         this.movementHistory = [];
         this.maxHistoryPoints = 100;
         
+        // Click counting
+        this.leftClickCount = 0;
+        this.rightClickCount = 0;
+        this.leftClickCounter = document.getElementById('leftClickCount');
+        this.rightClickCounter = document.getElementById('rightClickCount');
+        this.clickTestArea = document.getElementById('clickTestArea');
+        
         this.testButton.addEventListener('click', () => this.toggleMouse());
         this.setupMouseEvents();
+        this.setupClickEvents();
         this.boundAnimate = this.animate.bind(this);
         this.animationFrame = null;
     }
@@ -34,6 +41,35 @@ class MouseManager {
         } else {
             this.showMouse();
         }
+    }    setupClickEvents() {
+        // Add click event listeners to the click test area
+        this.clickTestArea.addEventListener('mousedown', (e) => {
+            if (!this.isShowingMouse) return;
+            
+            e.preventDefault(); // Prevent context menu on right click
+            
+            if (e.button === 0) { // Left click
+                this.leftClickCount++;
+                this.leftClickCounter.textContent = this.leftClickCount;
+            } else if (e.button === 2) { // Right click
+                this.rightClickCount++;
+                this.rightClickCounter.textContent = this.rightClickCount;
+            }
+        });
+        
+        // Prevent context menu on right click in the test area
+        this.clickTestArea.addEventListener('contextmenu', (e) => {
+            if (this.isShowingMouse) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    resetClickCounters() {
+        this.leftClickCount = 0;
+        this.rightClickCount = 0;
+        this.leftClickCounter.textContent = '0';
+        this.rightClickCounter.textContent = '0';
     }
 
     showMouse() {
@@ -41,6 +77,7 @@ class MouseManager {
         this.testButton.textContent = 'Stop Mouse Test';
         this.isShowingMouse = true;
         this.setupCanvasSize();
+        this.resetClickCounters(); // Reset counters when starting test
         this.animate();
     }
 

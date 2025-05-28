@@ -193,6 +193,57 @@
     margin-bottom: 24px;
 }
 
+.recording-controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    justify-content: center;
+}
+
+.record-btn, .play-btn, .reset-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.record-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.record-btn:hover {
+    background: #c0392b;
+}
+
+.play-btn {
+    background: #27ae60;
+    color: white;
+}
+
+.play-btn:hover:not(:disabled) {
+    background: #219a52;
+}
+
+.reset-btn {
+    background: #95a5a6;
+    color: white;
+}
+
+.reset-btn:hover:not(:disabled) {
+    background: #7f8c8d;
+}
+
+.record-btn:disabled, .play-btn:disabled, .reset-btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 .mic-device-select {
     padding: 8px 16px;
     font-size: 1rem;
@@ -273,9 +324,16 @@
     opacity: 0.8;
 }
 
-.waveform-canvas, .spectrogram-canvas {
+.waveform-canvas {
     width: 100%;
     height: 150px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.spectrogram-canvas {
+    width: 100%;
+    height: 200px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
@@ -417,10 +475,15 @@
 .mouse-grid {
     display: none;
     margin-top: 32px;
+    width: 100%;
+    max-width: 1000px; /* Increased from 800px for wider graphs */
+    margin-left: auto;
+    margin-right: auto;
     background: rgba(255, 255, 255, 0.1);
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    box-sizing: border-box;
 }
 
 .mouse-visualization {
@@ -428,19 +491,87 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     margin-top: 16px;
+    height: 500px; /* Increased from 300px for much larger graphs */
 }
 
 .movement-graph, .delta-display {
     position: relative;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    aspect-ratio: 1;
+    height: 100%; /* Use full height of container */
 }
 
 #mouseGraph, #mouseDelta {
     width: 100%;
     height: 100%;
     border-radius: 8px;
+}
+
+.click-test-section {
+    margin-top: 20px;
+}
+
+.click-counters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.click-counter {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.click-counter.left-click {
+    border: 2px solid rgba(52, 152, 219, 0.5);
+}
+
+.click-counter.right-click {
+    border: 2px solid rgba(231, 76, 60, 0.5);
+}
+
+.counter-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+}
+
+.counter-value {
+    display: block;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.click-test-area {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.click-test-area:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.click-test-area:active {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(0.98);
+}
+
+.click-instruction {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    pointer-events: none;
 }
 
 /* Pixel Testing Section */

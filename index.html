@@ -63,15 +63,13 @@
         <button id="testSoundBtn" class="sound-btn">Test Sound</button>
         <p class="explainer" style="display:none;">Test your device\\\'s speakers or headphones by playing a sample sound. This test allows you to check for audio output, sound quality (e.g., distortion, crackling), and stereo channel separation if applicable.</p>
         <div id="soundTestContainer" class="sound-grid"></div>
-    </div>
-    <div class="microphone-container">
+    </div>    <div class="microphone-container">
         <button id="testMicBtn" class="mic-btn">Test Microphone</button>
-        <p class="explainer" style="display:none;">Check if your microphone is picking up sound. You should see a visual representation (waveform and spectrogram) of your voice or any ambient sound. This helps diagnose issues like no audio input, low volume, or excessive background noise.</p>
+        <p class="explainer" style="display:none;">Check if your microphone is picking up sound. You should see a visual representation (waveform and spectrogram) of your voice or any ambient sound. Use the Record, Play, and Reset buttons to capture and playback audio for testing. During recording, a red line indicates the recording start, and during playback, the red line progresses through the recorded spectrogram. This helps diagnose issues like no audio input, low volume, or excessive background noise.</p>
         <div id="micTestContainer" class="mic-grid"></div>
-    </div>
-    <div class="mouse-container">
+    </div><div class="mouse-container">
         <button id="testMouseBtn" class="mouse-btn">Test Mouse</button>
-        <p class="explainer" style="display:none;">Test mouse movement, and pointer tracking. This test visualizes mouse path, speed, and smoothness, helping to identify issues like erratic cursor behavior, lag, or problems with pointer precision.</p>
+        <p class="explainer" style="display:none;">Test mouse movement, pointer tracking, and click functionality. This test visualizes mouse path, speed, smoothness, and tracks left/right click counts, helping to identify issues like erratic cursor behavior, lag, or problems with pointer precision and button responsiveness.</p>
         <div id="mouseTestContainer" class="mouse-grid">
             <div class="mouse-visualization">
                 <div class="movement-graph">
@@ -79,6 +77,21 @@
                 </div>
                 <div class="delta-display">
                     <canvas id="mouseDelta"></canvas>
+                </div>
+            </div>
+            <div class="click-test-section">
+                <div class="click-counters">
+                    <div class="click-counter left-click">
+                        <span class="counter-label">Left Clicks:</span>
+                        <span class="counter-value" id="leftClickCount">0</span>
+                    </div>
+                    <div class="click-counter right-click">
+                        <span class="counter-label">Right Clicks:</span>
+                        <span class="counter-value" id="rightClickCount">0</span>
+                    </div>
+                </div>
+                <div class="click-test-area" id="clickTestArea">
+                    <div class="click-instruction">Click here to test mouse buttons</div>
                 </div>
             </div>
         </div>
