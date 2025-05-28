@@ -24,10 +24,10 @@
                 padding-top: 10px; /* Add some space if needed */
             }
         </style>
-    </noscript>
-    <script src="JS/analytics.js" defer></script>
+    </noscript>    <script src="JS/analytics.js" defer></script>
     <script src="JS/adsense.js" defer></script> <!-- Added new JS file for adsense logic -->
-    <script src="JS/cameras.js" defer></script>    <script src="JS/keyboard.js" defer></script>
+    <script src="JS/navigation.js" defer></script>
+    <script src="JS/cameras.js" defer></script><script src="JS/keyboard.js" defer></script>
     <script src="JS/sound.js" defer></script>    <script src="JS/microphone.js" defer></script>
     <script src="JS/mouse.js" defer></script>
     <script src="JS/pixel.js" defer></script>
@@ -38,18 +38,35 @@
         <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
             JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
         </div>
-    </noscript>
-    <div class="header">
+    </noscript>    <div class="header">
         <div class="title-container">
             <div class="title">we test it <strong>LIVE</strong></div>
         </div>
-        <div class="nav-links">
-            <a href="index.html" class="nav-btn active">Home</a>
-            <a href="about.html" class="nav-btn">About</a>
-            <a href="faq.html" class="nav-btn">FAQ</a>
-            <a href="how-to.html" class="nav-btn">How-to</a> <!-- Added How-to link -->
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn active">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="faq.html" class="nav-btn">FAQ</a>
+                <a href="how-to.html" class="nav-btn">How-to</a>
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </button>
         </div>
     </div>
+    
+    <!-- Mobile navigation menu -->
+    <div class="nav-menu">
+        <a href="index.html" class="nav-btn active">Home</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="faq.html" class="nav-btn">FAQ</a>
+        <a href="how-to.html" class="nav-btn">How-to</a>
+    </div>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="nav-overlay"></div>
     <div class="camera-container">
         <button id="testCamerasBtn" class="camera-btn">Test Cameras</button>
         <p class="explainer" style="display:none;">Check your device\\\'s camera(s). This test will attempt to access all available cameras and display their video feeds simultaneously. This is useful for verifying camera functionality, detecting driver issues, or identifying hardware malfunctions such as a black or frozen image.</p>

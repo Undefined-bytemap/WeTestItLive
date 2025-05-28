@@ -8,21 +8,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/how-to.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
-    <script src="JS/analytics.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>    <script src="JS/analytics.js" defer></script>
+    <script src="JS/navigation.js" defer></script>
 </head>
-<body>
-    <div class="header">
+<body>    <div class="header">
         <div class="title-container">
             <div class="title">we test it <strong>LIVE</strong></div>
         </div>
-        <div class="nav-links">
-            <a href="index.html" class="nav-btn">Home</a>
-            <a href="about.html" class="nav-btn">About</a>
-            <a href="faq.html" class="nav-btn">FAQ</a>
-            <a href="how-to.html" class="nav-btn active">How-to</a>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="faq.html" class="nav-btn">FAQ</a>
+                <a href="how-to.html" class="nav-btn active">How-to</a>
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </button>
         </div>
     </div>
+    
+    <!-- Mobile navigation menu -->
+    <div class="nav-menu">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="faq.html" class="nav-btn">FAQ</a>
+        <a href="how-to.html" class="nav-btn active">How-to</a>
+    </div>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="nav-overlay"></div>
     <div class="page-container">
         <main>
             <section id="introduction">
