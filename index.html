@@ -40,8 +40,15 @@
     <script src="JS/touch.js" defer></script>
     <script src="JS/stress.js" defer></script>
     <script src="JS/network.js" defer></script>
+    <script src="JS/banner.js" defer></script>
 </head>
-<body>    <noscript>
+<body>
+    <div id="questionBanner" class="question-banner" style="display: none;">
+        <button id="closeBannerButton" class="close-banner-button">&times;</button> <!-- Added Close Button -->
+        <div id="questionText" class="question-text"></div>
+        <div id="answerOptions" class="answer-options"></div>
+    </div>
+    <noscript>
         <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
             JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
         </div>

@@ -70,18 +70,38 @@ class MouseManager {
         this.mouseGrid.style.display = 'block';
         this.setupCanvasSize();
         this.resetClickCounters(); // Reset counters when starting test
+        // Add resize listener
+        if (!this.boundSetupCanvasSize) { // Ensure it's bound only once
+            this.boundSetupCanvasSize = this.setupCanvasSize.bind(this);
+            window.addEventListener('resize', this.boundSetupCanvasSize);
+        }
         this.animate();
     }
 
     setupCanvasSize() {
-        const updateCanvasSize = (canvas) => {
-            const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width;
-            canvas.height = rect.height;
+        const updateSingleCanvas = (canvas) => {
+            const parentElement = canvas.parentElement;
+            if (!parentElement) {
+                console.error("Canvas parent element not found for", canvas.id);
+                return;
+            }
+
+            const parentRect = parentElement.getBoundingClientRect();
+            // Use parent's width as the basis for the square size.
+            // CSS on parentElement (.movement-graph / .delta-display) should enforce max-width: 300px
+            // and aspect-ratio: 1/1. parentRect.width should reflect this.
+            const size = parentRect.width;
+
+            // Set the drawing surface size
+            canvas.width = size;
+            canvas.height = size; // Enforce 1:1 aspect ratio for the drawing surface
+
+            // The CSS for the canvas element (width: 100%, height: 100%)
+            // will then scale this drawing surface to fit the parent container.
         };
 
-        updateCanvasSize(this.graphCanvas);
-        updateCanvasSize(this.deltaCanvas);
+        updateSingleCanvas(this.graphCanvas);
+        updateSingleCanvas(this.deltaCanvas);
 
         // Set up graph center points
         this.graphCenterX = this.graphCanvas.width / 2;
@@ -223,6 +243,9 @@ class MouseManager {
     }
 
     drawDeltaIndicator() {
+        // Ensure canvas dimensions are not zero to prevent division by zero
+        if (this.deltaCanvas.width === 0 || this.deltaCanvas.height === 0) return;
+
         const dotX = this.deltaCenterX + (this.deltaX / this.deltaScale) * (this.deltaCanvas.width / 2);
         const dotY = this.deltaCenterY + (this.deltaY / this.deltaScale) * (this.deltaCanvas.height / 2);
 

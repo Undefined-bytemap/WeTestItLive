@@ -27,15 +27,20 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     margin-top: 16px;
-    margin-bottom: 20px; /* Add space below to prevent overlap */
-    height: 500px;
+    margin-bottom: 0px; /* Reduced from 10px to 0px */
+    align-items: start; /* Align items to the start of the grid area */
+    justify-items: center; /* Center items within their grid cell */
 }
 
 .movement-graph, .delta-display {
     position: relative;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    height: 100%;
+    aspect-ratio: 1/1; /* Maintain 1/1 for a square aspect ratio */
+    width: 100%; /* Take full width of the parent grid cell */
+    max-width: 300px; /* Max size of the graph */
+    max-height: 300px; /* Explicitly match max-width for 1:1 aspect ratio */
+    overflow: hidden; /* Ensure canvas doesn't overflow its container if JS sizes it unexpectedly */
 }
 
 #mouseGraph, #mouseDelta {
@@ -45,14 +50,14 @@
 }
 
 .click-test-section {
-    margin-top: 20px;
+    margin-top: 0px; /* Reduced from 10px to 0px */
 }
 
 .click-counters {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 0px; /* Reduced from 12px to 0px */
 }
 
 .click-counter {
@@ -124,26 +129,28 @@
 }
 
 .mic-keyboard-wrapper .mouse-visualization {
-    height: 250px; /* Reduced height for stacked layout to prevent overlap */
+    /* height: 250px; */ /* Removed fixed height, now driven by content */
     gap: 12px; /* Reduced gap */
-    margin-bottom: 16px; /* Ensure space below visualization */
+    margin-bottom: 0px; /* Changed from 5px to 0px */
+    padding-bottom: 10px; /* Added 10px padding */
 }
 
 .mic-keyboard-wrapper .click-test-section {
-    margin-top: 12px; /* Reduced spacing */
-}
-
-.mic-keyboard-wrapper .click-test-area {
-    padding: 12px; /* Reduced padding */
+    margin-top: 0px; /* Changed from 5px back to 0px */
+    padding-top: 10px; /* Added 10px padding */
 }
 
 /* Responsive adjustments for the stacked layout */
 @media (max-width: 1200px) {
-    .mic-keyboard-wrapper .mouse-visualization {
-        height: 400px; /* Restore height when stacked vertically on small screens */
-    }
-    
     .mic-keyboard-wrapper .mouse-grid {
         padding: 20px; /* Restore padding on smaller screens */
+    }
+}
+
+/* Added media query for stacking graphs on smaller screens */
+@media (max-width: 767px) {
+    .mouse-visualization,
+    .mic-keyboard-wrapper .mouse-visualization {
+        grid-template-columns: 1fr; /* Stack graphs vertically */
     }
 }

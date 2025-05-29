@@ -665,3 +665,68 @@ p {
         padding: 70px 20px 20px;
     }
 }
+
+/* Question Banner Styles */
+.question-banner {
+    position: fixed; /* Changed to fixed for overlay behavior */
+    top: var(--spacing-md); /* Position at the top with a small margin */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Max width for the overlay window */
+    background-color: var(--secondary-blue); /* Changed to the darker blue */
+    color: var(--white); /* Text on this banner should be white */
+    padding: var(--spacing-lg);
+    text-align: center;
+    z-index: 1010; /* High z-index to be on top of other content */
+    box-shadow: var(--shadow-lg); /* Matches mic-grid */
+    border-radius: var(--radius-xl); /* Updated to match mic-grid (12px) */
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+/* Style for the close button on the banner */
+.close-banner-button {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-md);
+    background: transparent;
+    border: none;
+    color: var(--white); /* White to be visible on the new banner background */
+    font-size: var(--font-size-large); /* Make it easily clickable */
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0; /* Minimal padding */
+    line-height: 1; /* Ensure tight fit */
+}
+
+.close-banner-button:hover {
+    color: var(--light-gray); /* Lighter gray for hover */
+}
+
+.question-text {
+    background-color: var(--primary-blue); /* Changed to the page background's darker blue */
+    color: var(--white); /* White text for contrast */
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md); /* Rounded corners for the question box */
+    margin-bottom: var(--spacing-md); /* Space between question and answer options */
+    width: 90%; /* Make the question box take most of the banner width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.answer-options button {
+    background-color: var(--medium-overlay); /* Changed to medium-overlay for better contrast on secondary-blue */
+    color: var(--white);
+    border: 1px solid var(--light-gray); /* Light gray border for buttons */
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: 0 var(--spacing-xs);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-normal);
+}
+
+.answer-options button:hover {
+    background-color: var(--strong-overlay); /* Darker overlay for hover */
+}
