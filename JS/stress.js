@@ -5,8 +5,8 @@ class StressTest {
         this.isShowingStress = false;
         this.isRunning = false;
         this.workers = [];
-        this.maxThreads = navigator.hardwareConcurrency || 4;
-        this.selectedThreads = Math.max(1, Math.min(4, this.maxThreads));
+        this.maxThreads = 64;
+        this.selectedThreads = Math.max(1, Math.min(navigator.hardwareConcurrency || 4, this.maxThreads));
         this.metrics = {
             cpu: 0,
             memory: 0,
@@ -84,27 +84,33 @@ class StressTest {
         const threadLabel = document.createElement('label');
         threadLabel.textContent = 'Threads:';
         threadSelector.appendChild(threadLabel);
+          const threadInput = document.createElement('input');
+        threadInput.type = 'number';
+        threadInput.id = 'threadCount';
+        threadInput.min = '1';
+        threadInput.max = this.maxThreads.toString();
+        threadInput.value = this.selectedThreads.toString();
+        threadInput.placeholder = 'Enter thread count';
         
-        const threadSelect = document.createElement('select');
-        threadSelect.id = 'threadCount';
-        
-        // Add options for thread counts
-        for (let i = 1; i <= this.maxThreads; i++) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.textContent = i.toString();
-            if (i === this.selectedThreads) {
-                option.selected = true;
+        threadInput.addEventListener('input', () => {
+            let value = parseInt(threadInput.value);
+            
+            // Validate input
+            if (isNaN(value) || value < 1) {
+                value = 1;
+                threadInput.value = '1';
+            } else if (value > this.maxThreads) {
+                value = this.maxThreads;
+                threadInput.value = this.maxThreads.toString();
             }
-            threadSelect.appendChild(option);
-        }
-        
-        threadSelect.addEventListener('change', () => {
-            this.selectedThreads = parseInt(threadSelect.value);
+            
+            this.selectedThreads = value;
         });
-        
-        threadSelector.appendChild(threadSelect);
+          threadSelector.appendChild(threadInput);
         controls.appendChild(threadSelector);
+        
+        // Store threadInput reference immediately
+        this.threadInput = threadInput;
         
         // Control buttons
         const controlButtons = document.createElement('div');
@@ -113,12 +119,18 @@ class StressTest {
         const startBtn = document.createElement('button');
         startBtn.className = 'start-btn';
         startBtn.textContent = 'Start';
-        startBtn.addEventListener('click', () => this.startStressTest());
         
         const stopBtn = document.createElement('button');
         stopBtn.className = 'stop-btn';
         stopBtn.textContent = 'Stop';
         stopBtn.disabled = true;
+        
+        // Store button references immediately
+        this.startBtn = startBtn;
+        this.stopBtn = stopBtn;
+        
+        // Add event listeners after storing references
+        startBtn.addEventListener('click', () => this.startStressTest());
         stopBtn.addEventListener('click', () => this.stopStressTest());
         
         controlButtons.appendChild(startBtn);
@@ -274,14 +286,8 @@ class StressTest {
         visualization.appendChild(infoPanel);
         
         testArea.appendChild(visualization);
-        
-        // Add everything to the grid
+          // Add everything to the grid
         this.stressGrid.appendChild(testArea);
-        
-        // Store button references
-        this.startBtn = startBtn;
-        this.stopBtn = stopBtn;
-        this.threadSelect = threadSelect;
         
         // Set up context for canvases
         this.cpuCtx = this.cpuCanvas.getContext('2d');
@@ -344,10 +350,9 @@ class StressTest {
     startStressTest() {
         if (this.isRunning) return;
         
-        this.isRunning = true;
-        this.startBtn.disabled = true;
+        this.isRunning = true;        this.startBtn.disabled = true;
         this.stopBtn.disabled = false;
-        this.threadSelect.disabled = true;
+        this.threadInput.disabled = true;
         
         // Reset metrics
         this.metrics.startTime = Date.now();
@@ -366,7 +371,7 @@ class StressTest {
         this.isRunning = false;
         this.startBtn.disabled = false;
         this.stopBtn.disabled = true;
-        this.threadSelect.disabled = false;
+        this.threadInput.disabled = false;
         
         // Terminate all workers
         this.terminateWorkers();

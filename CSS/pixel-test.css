@@ -1,0 +1,46 @@
+/* Pixel Test CSS */
+/* Styles specific to pixel testing functionality */
+
+.pixel-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.pixel-grid {
+    display: none;
+    margin-top: 32px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+.pixel-test-area {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: red;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s linear;
+}
+
+.pixel-test-area:fullscreen {
+    border-radius: 0;
+}
+
+.pixel-test-area:fullscreen .fullscreen-btn {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.pixel-test-area:fullscreen:hover .fullscreen-btn {
+    opacity: 1;
+}

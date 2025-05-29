@@ -1,3 +1,13 @@
+/* Touch Test CSS */
+/* Styles specific to touch testing functionality */
+
+.touch-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
 .touch-grid {
     display: none;
     margin-top: 32px;
@@ -27,28 +37,6 @@
     width: 100%;
     height: 100%;
     touch-action: none;
-}
-
-.fullscreen-btn {
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.3s, background-color 0.2s;
-    z-index: 10;
-}
-
-.fullscreen-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
 }
 
 /* Apply styles when in fullscreen */

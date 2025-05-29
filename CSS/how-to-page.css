@@ -1,0 +1,38 @@
+/* How-To Page CSS */
+/* Styles specific to the how-to page */
+
+.page-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 48px auto;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    color: #e0e0e0;
+}
+
+section {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.page-container h2 {
+    color: #ffffff;
+    border-bottom: 2px solid #2a5298;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+.page-container p {
+    line-height: 1.7;
+    font-size: 1rem;
+    color: #cccccc;
+}

@@ -1,0 +1,54 @@
+/* Landing Page CSS */
+/* Styles specific to landing page (if different from home page) */
+
+.landing-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 40px auto;
+    border-radius: 12px;
+    max-width: 800px;
+}
+
+.landing-hero h1 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.landing-hero p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--secondary-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    background: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .landing-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .landing-hero p {
+        font-size: 1rem;
+    }
+}

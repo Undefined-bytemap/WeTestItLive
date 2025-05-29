@@ -1,0 +1,89 @@
+/* Network Test CSS */
+/* Styles specific to network testing functionality */
+
+.network-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.network-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.network-test-area {
+    position: relative;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+    box-sizing: border-box;
+}
+
+.connection-info {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    word-wrap: break-word;
+}
+
+.info-item span:first-child {
+    flex-shrink: 0;
+    margin-right: 16px;
+}
+
+.info-item span:last-child {
+    flex-grow: 1;
+    text-align: right;
+    word-break: break-all;
+}
+
+.network-test-area h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.network-notes {
+    width: 100%;
+    min-height: 80px;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    color: white;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 0.9rem;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.network-notes::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.network-notes:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.2);
+}

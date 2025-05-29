@@ -6,6 +6,8 @@ class SoundTest {    constructor() {
         this.lastClickTime = 0;
         this.hasPlayedLick = false;
         this.isShowingSound = false;
+        this.activeOscillator = null;
+        this.activeGainNode = null;
         this.soundGrid = document.getElementById('soundTestContainer');
         this.testButton = document.getElementById('testSoundBtn');
         this.testButton.addEventListener('click', () => this.toggleSound());
@@ -210,9 +212,17 @@ class SoundTest {    constructor() {
             this.deviceSelect.innerHTML = '<option value="default">System Default Audio</option>';
         }
     }    stopSound() {
-        if (this.activeOscillator) {
-            this.activeOscillator.stop();
+        if (this.activeOscillator && this.activeGainNode) {
+            // Quick fade-out to prevent click on stop
+            const currentTime = this.audioContext.currentTime;
+            this.activeGainNode.gain.cancelScheduledValues(currentTime);
+            this.activeGainNode.gain.setValueAtTime(this.activeGainNode.gain.value, currentTime);
+            this.activeGainNode.gain.linearRampToValueAtTime(0, currentTime + 0.01); // Very quick 10ms fade-out
+            
+            // Stop oscillator after fade-out completes
+            this.activeOscillator.stop(currentTime + 0.01);
             this.activeOscillator = null;
+            this.activeGainNode = null;
         }
     }
 
@@ -223,9 +233,7 @@ class SoundTest {    constructor() {
         if (this.audioContext.state === 'suspended') {
             await this.audioContext.resume();
         }
-    }
-
-    async playTest(channel) {
+    }    async playTest(channel) {
         await this.initAudio();
         
         const now = Date.now();
@@ -234,7 +242,9 @@ class SoundTest {    constructor() {
         }
         this.lastClickTime = now;
 
-        this.stopSound();        const oscillator = this.audioContext.createOscillator();
+        this.stopSound();
+
+        const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
         const stereoPanner = this.audioContext.createStereoPanner();
 
@@ -244,18 +254,31 @@ class SoundTest {    constructor() {
         
         stereoPanner.pan.value = channel === 'left' ? -1 : 1;
         
+        let frequency;
         if (!this.hasPlayedLick && this.lickProgress < this.lickNotes.length) {
-            oscillator.frequency.value = this.noteFrequencies[this.lickNotes[this.lickProgress].note];
+            frequency = this.noteFrequencies[this.lickNotes[this.lickProgress].note];
             this.lickProgress++;
             if (this.lickProgress >= this.lickNotes.length) {
                 this.hasPlayedLick = true;
             }
         } else {
-            oscillator.frequency.value = parseFloat(this.freqSlider.value);
+            frequency = parseFloat(this.freqSlider.value);
         }
-          oscillator.type = 'sine';
+
+        oscillator.frequency.value = frequency;        oscillator.type = 'sine';
+        
+        // Start at zero-crossing to prevent crackling
+        const currentTime = this.audioContext.currentTime;
+        
+        // Set gain immediately - no crackling since sine wave starts at zero-crossing
+        gainNode.gain.setValueAtTime(0.3, currentTime);
+        
+        // Store references for clean stop
         this.activeOscillator = oscillator;
-        oscillator.start();
+        this.activeGainNode = gainNode;
+        
+        // Start oscillator immediately - sine wave naturally starts at zero amplitude
+        oscillator.start(currentTime);
     }
 }
 

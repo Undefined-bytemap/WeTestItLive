@@ -1,0 +1,213 @@
+/* About Page CSS */
+/* Styles specific to the about page */
+
+.about-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 48px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.about-container h1 {
+    color: #1e3c72;
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+}
+
+.about-content {
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 1.6;
+    color: #2a5298;
+    font-size: 1.1rem;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+}
+
+.about-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.about-content li {
+    padding: 10px 0;
+    padding-left: 24px;
+    position: relative;
+}
+
+.about-content li:before {
+    content: "•";
+    color: #1e3c72;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.about-content h2 {
+    color: #1e3c72;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.about-content h3 {
+    color: #2a5298;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.feature-item {
+    background: rgba(30, 60, 114, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #1e3c72;
+}
+
+.feature-title {
+    font-weight: 600;
+    color: #1e3c72;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.feature-description {
+    color: #2a5298;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Feedback Section Styles */
+.feedback-section {
+    background: rgba(30, 60, 114, 0.05);
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 4px solid #1e3c72;
+    margin-top: 40px;
+}
+
+.feedback-section h2 {
+    color: #1e3c72;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.feedback-section p {
+    color: #2a5298;
+    margin-bottom: 20px;
+}
+
+#feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#feedback-form label {
+    color: #1e3c72;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#suggestion {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2a5298;
+    border: 2px solid rgba(30, 60, 114, 0.2);
+    border-radius: 8px;
+    resize: vertical;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+#suggestion:focus {
+    outline: none;
+    border-color: #1e3c72;
+    background: rgba(255, 255, 255, 1);
+}
+
+.feedback-btn {
+    align-self: flex-start;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feedback-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+}
+
+.feedback-btn:active {
+    transform: translateY(0);
+}
+
+#thankyou {
+    color: #28a745 !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 15px;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        margin: 24px auto;
+        padding: 24px;
+    }
+    
+    .about-container h1 {
+        font-size: 2rem;
+    }
+    
+    .about-content {
+        font-size: 1rem;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feedback-section {
+        padding: 20px;
+        margin-top: 30px;
+    }
+    
+    #suggestion {
+        min-height: 100px;
+        padding: 12px;
+    }
+    
+    .feedback-btn {
+        width: 100%;
+        align-self: stretch;
+    }
+}

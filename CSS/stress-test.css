@@ -1,29 +1,11 @@
+/* Stress Test CSS */
+/* Styles specific to stress testing functionality */
+
 .stress-container {
     width: 90%;
     max-width: 1200px;
     margin: 48px auto;
     text-align: center;
-}
-
-.stress-btn {
-    margin-top: 24px;
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    font-family: 'Montserrat', Arial, sans-serif;
-    background: #2a5298;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-.stress-btn:hover {
-    background: #1e3c72;
-}
-
-.stress-btn:active {
-    transform: scale(0.98);
 }
 
 .stress-grid {
@@ -56,6 +38,13 @@
     justify-content: space-between;
 }
 
+.stress-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
 .thread-selector {
     display: flex;
     align-items: center;
@@ -68,7 +57,8 @@
     font-size: 14px;
 }
 
-.thread-selector select {
+.thread-selector select,
+.thread-selector input[type="number"] {
     padding: 6px 10px;
     border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -76,6 +66,25 @@
     color: white;
     font-family: 'Montserrat', sans-serif;
     cursor: pointer;
+    width: 80px;
+    text-align: center;
+}
+
+.thread-selector input[type="number"]:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.thread-selector input[type="number"]::-webkit-outer-spin-button,
+.thread-selector input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.thread-selector input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .control-buttons {
@@ -111,50 +120,94 @@
     background-color: rgba(244, 67, 54, 1);
 }
 
-.stress-metrics {
+.charts-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.chart-wrapper {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.chart-title {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.chart-canvas {
+    width: 100%;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.performance-stats {
+    margin-top: 16px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 12px;
-    margin-bottom: 16px;
+    text-align: center;
 }
 
-@media (max-width: 400px) {
-    .stress-metrics {
-        grid-template-columns: 1fr;
-    }
+.stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 8px;
 }
 
+.stat-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Missing metric card styles */
 .metric-card {
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    text-align: center;
 }
 
 .metric-title {
+    color: rgba(255, 255, 255, 0.8);
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
-    font-weight: normal;
+    margin-bottom: 4px;
+    font-weight: 500;
 }
 
 .metric-value {
-    font-size: 18px;
-    font-weight: bold;
     color: white;
-    margin: 4px 0;
-    height: 22px; /* Fixed height to prevent resizing */
-    white-space: nowrap; /* Prevent line breaks */
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
 }
 
 .metric-progress {
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
     overflow: hidden;
-    margin-top: 4px;
 }
 
 .metric-bar {
@@ -170,20 +223,20 @@
     gap: 12px;
 }
 
-/* New: Styles for the container of the two graphs */
+/* Container for the two graphs side by side */
 .performance-graphs-container {
     display: flex;
-    gap: 12px; /* Space between the two graphs */
+    gap: 12px;
     width: 100%;
 }
 
 .performance-graph {
     position: relative;
-    width: 100%; /* Each graph takes up available space in the flex container */
-    height: 250px; /* Larger height for desktop */
+    width: 100%;
+    height: 250px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 6px;
-    overflow: hidden; /* Prevent overflow */
+    overflow: hidden;
 }
 
 .stress-canvas {
@@ -199,8 +252,8 @@
     flex-wrap: wrap;
     gap: 6px;
     margin-top: 12px;
-    min-height: 30px; /* Minimum height to prevent resizing */
-    width: 100%; /* Full width */
+    min-height: 30px;
+    width: 100%;
 }
 
 .thread-info {
@@ -209,7 +262,7 @@
     padding: 6px 10px;
     font-size: 12px;
     color: rgba(255, 255, 255, 0.75);
-    min-width: 120px; /* Minimum width to prevent resizing */
+    min-width: 120px;
     text-align: left;
 }
 
@@ -223,32 +276,30 @@
     line-height: 1.4;
 }
 
-/* Media queries for responsive design */
-@media (max-width: 800px) {
-    .performance-graphs-container {
-        flex-direction: column; /* Stack graphs vertically on smaller screens */
-    }
-    .performance-graph {
-        height: 200px; /* Smaller height for tablets */
-    }
-}
-
-@media (max-width: 480px) {
-    .stress-grid {
-        padding: 16px;
+@media (max-width: 768px) {
+    .charts-container {
+        grid-template-columns: 1fr;
     }
     
     .stress-controls {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
     }
     
-    .control-buttons {
-        width: 100%;
-        justify-content: space-between;
+    .stress-metrics {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .performance-graphs-container {
+        flex-direction: column;
     }
     
     .performance-graph {
-        height: 180px; /* Even smaller height for mobile */
+        height: 180px;
     }
 }

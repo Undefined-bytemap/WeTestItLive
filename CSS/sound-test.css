@@ -1,0 +1,125 @@
+/* Sound Test CSS */
+/* Styles specific to sound testing functionality */
+
+.sound-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.sound-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.freq-control {
+    margin: 24px 0;
+    text-align: left;
+}
+
+.freq-control label {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.freq-control input[type="range"] {
+    width: 100%;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    height: 6px;
+    -webkit-appearance: none;
+}
+
+.freq-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.freq-control input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.speaker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.speaker-btn {
+    padding: 24px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.speaker-btn.left {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(46, 204, 113, 0.2) 100%);
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+.speaker-btn.right {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.2) 100%);
+    border-color: rgba(52, 152, 219, 0.3);
+}
+
+/* Device Selection */
+.device-select {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.device-select label {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.audio-device-select {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(42, 82, 152, 0.6);
+    color: white;
+    font-family: 'Montserrat', Arial, sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.audio-device-select:hover {
+    background: rgba(42, 82, 152, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.audio-device-select option {
+    background: #2a5298;
+    color: white;
+    padding: 8px;
+}

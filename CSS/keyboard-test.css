@@ -1,0 +1,129 @@
+/* Keyboard Test CSS */
+/* Styles specific to keyboard testing functionality */
+
+:root {
+    /* Keyboard-specific CSS variables */
+    --key-base-width: min(3vw, 40px);
+    --key-base-padding: min(0.8vw, 12px);
+    --key-font-size: min(1.8vw, 0.9rem);
+    --key-gap: min(0.3vw, 4px);
+    --keyboard-padding: min(2vw, 24px);
+}
+
+.keyboard-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 48px auto;
+    text-align: center;
+}
+
+.keyboard-grid {
+    display: none;
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--keyboard-padding);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--key-gap);
+    gap: var(--key-gap);
+}
+
+.key {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 6px;
+    padding: var(--key-base-padding);
+    min-width: var(--key-base-width);
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: var(--key-font-size);
+    color: #1e3c72;
+    text-align: center;
+    transition: transform 0.1s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.key.pressed {
+    transform: translateY(2px);
+    background: #1e3c72;
+    color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.key.released {
+    background: #8ca5d1;
+    color: white;
+    transform: translateY(0);
+    transition: transform 0.1s ease, background-color 0.5s ease;
+}
+
+.key.spacebar {
+    min-width: calc(var(--key-base-width) * 5);
+}
+
+.key.wide {
+    min-width: calc(var(--key-base-width) * 1.5);
+}
+
+.key.extra-wide {
+    min-width: calc(var(--key-base-width) * 2);
+}
+
+.key.arrow-key {
+    min-width: var(--key-base-width);
+    font-size: calc(var(--key-font-size) * 1.2);
+}
+
+/* Keyboard responsive design */
+@media (max-width: 1200px) {
+    :root {
+        --key-base-width: min(2.8vw, 35px);
+        --key-base-padding: min(0.7vw, 10px);
+        --key-font-size: min(1.6vw, 0.85rem);
+    }
+}
+
+@media (max-width: 900px) {
+    :root {
+        --key-base-width: min(2.5vw, 30px);
+        --key-base-padding: min(0.6vw, 8px);
+        --key-font-size: min(1.4vw, 0.8rem);
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --key-base-width: min(2.2vw, 25px);
+        --key-base-padding: min(0.5vw, 6px);
+        --key-font-size: min(1.2vw, 0.75rem);
+        --key-gap: min(0.2vw, 3px);
+    }
+
+    .keyboard-grid {
+        padding: calc(var(--keyboard-padding) * 0.5);
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --key-base-width: min(2vw, 22px);
+        --key-base-padding: min(0.4vw, 5px);
+        --key-font-size: min(1.1vw, 0.7rem);
+        --key-gap: min(0.15vw, 2px);
+    }
+
+    .keyboard-grid {
+        padding: calc(var(--keyboard-padding) * 0.33);
+    }
+}

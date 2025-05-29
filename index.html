@@ -4,11 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/png" href="/favicon.png">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
-    <title>we test it LIVE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="CSS/main.css">
+    <title>we test it LIVE</title>    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/home.css">
-    <link rel="stylesheet" href="CSS/touch.css">
-    <link rel="stylesheet" href="CSS/stress.css">
+    <link rel="stylesheet" href="CSS/camera-test.css">
+    <link rel="stylesheet" href="CSS/keyboard-test.css">
+    <link rel="stylesheet" href="CSS/sound-test.css">
+    <link rel="stylesheet" href="CSS/microphone-test.css">
+    <link rel="stylesheet" href="CSS/mouse-test.css">
+    <link rel="stylesheet" href="CSS/pixel-test.css">
+    <link rel="stylesheet" href="CSS/touch-test.css">
+    <link rel="stylesheet" href="CSS/stress-test.css">
+    <link rel="stylesheet" href="CSS/network-test.css">
     <noscript>
         <style>
             p.explainer { display: block !important; }
@@ -33,6 +39,7 @@
     <script src="JS/pixel.js" defer></script>
     <script src="JS/touch.js" defer></script>
     <script src="JS/stress.js" defer></script>
+    <script src="JS/network.js" defer></script>
 </head>
 <body>    <noscript>
         <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
@@ -48,11 +55,7 @@
                 <a href="about.html" class="nav-btn">About</a>
                 <a href="faq.html" class="nav-btn">FAQ</a>
                 <a href="how-to.html" class="nav-btn">How-to</a>
-            </div>
-            <button class="hamburger-btn" aria-label="Toggle navigation menu">
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
+            </div>            <button class="hamburger-btn" aria-label="Toggle navigation menu">
             </button>
         </div>
     </div>
@@ -126,6 +129,10 @@
         <button id="testStressBtn" class="stress-btn">Test Hardware</button>
         <p class="explainer" style="display:none;">Perform a stress test to check your system\\\'s stability and CPU performance under heavy load. This test runs intensive calculations and monitors CPU utilization and the page\\\'s memory usage, which can help identify thermal throttling or crashes under pressure.</p>
         <div id="stressTestContainer" class="stress-grid"></div>
+    </div>    <div class="network-container">
+        <button id="testNetworkBtn" class="network-btn">Test Network & WiFi</button>
+        <p class="explainer" style="display:none;">Check your network connection information including connection type, effective network speed, round-trip time, and online/offline status. This test displays real-time network information from your browser's Network Information API.</p>
+        <div id="networkTestContainer" class="network-grid"></div>
     </div>
 </body>
 </html>
