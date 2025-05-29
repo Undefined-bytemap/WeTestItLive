@@ -4,12 +4,12 @@
 .microphone-container {
     width: 90%;
     max-width: 1200px;
-    margin: 48px auto;
+    margin: 3px auto; /* Reduced from 6px to 3px (half again) */
     text-align: center;
 }
 
 .mic-grid {
-    display: none;
+    display: block;
     margin-top: 32px;
     background: rgba(255, 255, 255, 0.1);
     padding: 24px;
@@ -88,4 +88,26 @@
     height: 200px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+}
+
+/* Override for side-by-side layout */
+.mic-keyboard-wrapper .microphone-container {
+    max-width: none;
+}
+
+.mic-keyboard-wrapper .mic-grid {
+    margin-top: 16px;
+}
+
+/* Make visualization larger in side-by-side layout */
+.mic-keyboard-wrapper .visualization-container {
+    max-width: none; /* Allow it to use full width */
+}
+
+.mic-keyboard-wrapper .waveform-canvas {
+    height: 135px; /* Reduced by 25% from 180px */
+}
+
+.mic-keyboard-wrapper .spectrogram-canvas {
+    height: 180px; /* Reduced by 25% from 240px */
 }

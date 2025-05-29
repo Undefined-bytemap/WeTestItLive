@@ -4,12 +4,12 @@
 .mouse-container {
     width: 90%;
     max-width: 1200px;
-    margin: 48px auto;
+    margin: 3px auto; /* Reduced from 6px to 3px (half again) */
     text-align: center;
 }
 
 .mouse-grid {
-    display: none;
+    display: block; /* Always visible - changed from none */
     margin-top: 32px;
     width: 100%;
     max-width: 1000px;
@@ -27,6 +27,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     margin-top: 16px;
+    margin-bottom: 20px; /* Add space below to prevent overlap */
     height: 500px;
 }
 
@@ -108,4 +109,41 @@
     color: rgba(255, 255, 255, 0.8);
     font-size: 1rem;
     pointer-events: none;
+}
+
+/* Specific styles for mouse test inside the mic-keyboard-wrapper */
+.mic-keyboard-wrapper .mouse-container {
+    width: 100%;
+    margin: 0;
+}
+
+.mic-keyboard-wrapper .mouse-grid {
+    margin-top: 16px; /* Reduced from 32px for tighter stacking */
+    max-width: none; /* Remove max-width constraint in stacked layout */
+    padding: 16px; /* Reduced padding for more compact display */
+}
+
+.mic-keyboard-wrapper .mouse-visualization {
+    height: 250px; /* Reduced height for stacked layout to prevent overlap */
+    gap: 12px; /* Reduced gap */
+    margin-bottom: 16px; /* Ensure space below visualization */
+}
+
+.mic-keyboard-wrapper .click-test-section {
+    margin-top: 12px; /* Reduced spacing */
+}
+
+.mic-keyboard-wrapper .click-test-area {
+    padding: 12px; /* Reduced padding */
+}
+
+/* Responsive adjustments for the stacked layout */
+@media (max-width: 1200px) {
+    .mic-keyboard-wrapper .mouse-visualization {
+        height: 400px; /* Restore height when stacked vertically on small screens */
+    }
+    
+    .mic-keyboard-wrapper .mouse-grid {
+        padding: 20px; /* Restore padding on smaller screens */
+    }
 }

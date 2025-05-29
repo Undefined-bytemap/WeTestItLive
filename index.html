@@ -67,60 +67,62 @@
         <a href="faq.html" class="nav-btn">FAQ</a>
         <a href="how-to.html" class="nav-btn">How-to</a>
     </div>
-    
-    <!-- Overlay for mobile menu -->
-    <div class="nav-overlay"></div>
-    <div class="camera-container">
-        <button id="testCamerasBtn" class="camera-btn">Test Cameras</button>
-        <p class="explainer" style="display:none;">Check your device\\\'s camera(s). This test will attempt to access all available cameras and display their video feeds simultaneously. This is useful for verifying camera functionality, detecting driver issues, or identifying hardware malfunctions such as a black or frozen image.</p>
+      <!-- Overlay for mobile menu -->
+    <div class="nav-overlay"></div>    <div class="camera-container">
+        <p class="explainer" style="display:none;">Check your device's camera(s). This test will attempt to access all available cameras and display their video feeds simultaneously. This is useful for verifying camera functionality, detecting driver issues, or identifying hardware malfunctions such as a black or frozen image.</p>
         <div class="permission-note">Note: Refresh page after granting permissions if some cameras don't appear</div>
         <div id="cameraGrid" class="camera-grid"></div>
-    </div>    <div class="keyboard-container">
-        <button id="testKeyboardBtn" class="keyboard-btn">Test Keyboard</button>
-        <p class="explainer" style="display:none;">Verify all keys on your keyboard are functioning correctly. As you type, pressed keys will be highlighted on a virtual keyboard. This helps identify unresponsive keys, sticky keys, or incorrect key mappings.</p>
-        <div id="keyboardGrid" class="keyboard-grid"></div>
-    </div>    <div class="sound-container">
-        <button id="testSoundBtn" class="sound-btn">Test Sound</button>
-        <p class="explainer" style="display:none;">Test your device\\\'s speakers or headphones by playing a sample sound. This test allows you to check for audio output, sound quality (e.g., distortion, crackling), and stereo channel separation if applicable.</p>
-        <div id="soundTestContainer" class="sound-grid"></div>
-    </div>    <div class="microphone-container">
-        <button id="testMicBtn" class="mic-btn">Test Microphone</button>
-        <p class="explainer" style="display:none;">Check if your microphone is picking up sound. You should see a visual representation (waveform and spectrogram) of your voice or any ambient sound. Use the Record, Play, and Reset buttons to capture and playback audio for testing. During recording, a red line indicates the recording start, and during playback, the red line progresses through the recorded spectrogram. This helps diagnose issues like no audio input, low volume, or excessive background noise.</p>
-        <div id="micTestContainer" class="mic-grid"></div>
-    </div><div class="mouse-container">
-        <button id="testMouseBtn" class="mouse-btn">Test Mouse</button>
-        <p class="explainer" style="display:none;">Test mouse movement, pointer tracking, and click functionality. This test visualizes mouse path, speed, smoothness, and tracks left/right click counts, helping to identify issues like erratic cursor behavior, lag, or problems with pointer precision and button responsiveness.</p>
-        <div id="mouseTestContainer" class="mouse-grid">
-            <div class="mouse-visualization">
-                <div class="movement-graph">
-                    <canvas id="mouseGraph"></canvas>
-                </div>
-                <div class="delta-display">
-                    <canvas id="mouseDelta"></canvas>
-                </div>
+    </div>    <div class="mic-keyboard-wrapper">
+        <div class="microphone-container">
+            <p class="explainer" style="display:none;">Check if your microphone is picking up sound. You should see a visual representation (waveform and spectrogram) of your voice or any ambient sound. Use the Record, Play, and Reset buttons to capture and playback audio for testing. During recording, a red line indicates the recording start, and during playback, the red line progresses through the recorded spectrogram. This helps diagnose issues like no audio input, low volume, or excessive background noise.</p>
+            <div id="micTestContainer" class="mic-grid"></div>
+        </div>
+        
+        <div class="keyboard-mouse-stack">
+            <div class="keyboard-container">
+                <p class="explainer" style="display:none;">Verify all keys on your keyboard are functioning correctly. As you type, pressed keys will be highlighted on a virtual keyboard. This helps identify unresponsive keys, sticky keys, or incorrect key mappings.</p>
+                <div id="keyboardGrid" class="keyboard-grid"></div>
             </div>
-            <div class="click-test-section">
-                <div class="click-counters">
-                    <div class="click-counter left-click">
-                        <span class="counter-label">Left Clicks:</span>
-                        <span class="counter-value" id="leftClickCount">0</span>
+            
+            <div class="mouse-container">
+                <p class="explainer" style="display:none;">Test mouse movement, pointer tracking, and click functionality. This test visualizes mouse path, speed, smoothness, and tracks left/right click counts, helping to identify issues like erratic cursor behavior, lag, or problems with pointer precision and button responsiveness.</p>
+                <div id="mouseTestContainer" class="mouse-grid">
+                    <div class="mouse-visualization">
+                        <div class="movement-graph">
+                            <canvas id="mouseGraph"></canvas>
+                        </div>
+                        <div class="delta-display">
+                            <canvas id="mouseDelta"></canvas>
+                        </div>
                     </div>
-                    <div class="click-counter right-click">
-                        <span class="counter-label">Right Clicks:</span>
-                        <span class="counter-value" id="rightClickCount">0</span>
+                    <div class="click-test-section">
+                        <div class="click-counters">
+                            <div class="click-counter left-click">
+                                <span class="counter-label">Left Clicks:</span>
+                                <span class="counter-value" id="leftClickCount">0</span>
+                            </div>
+                            <div class="click-counter right-click">
+                                <span class="counter-label">Right Clicks:</span>
+                                <span class="counter-value" id="rightClickCount">0</span>
+                            </div>
+                        </div>
+                        <div class="click-test-area" id="clickTestArea">
+                            <div class="click-instruction">Click here to test mouse buttons</div>
+                        </div>
                     </div>
-                </div>
-                <div class="click-test-area" id="clickTestArea">
-                    <div class="click-instruction">Click here to test mouse buttons</div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="pixel-container">
+
+<div class="sound-container">
+        <button id="testSoundBtn" class="sound-btn">Test Sound</button>
+        <p class="explainer" style="display:none;">Test your device\\\'s speakers or headphones by playing a sample sound. This test allows you to check for audio output, sound quality (e.g., distortion, crackling), and stereo channel separation if applicable.</p>
+        <div id="soundTestContainer" class="sound-grid"></div>    </div><div class="pixel-container">
         <button id="testPixelBtn" class="pixel-btn">Test Dead Pixels</button>
         <p class="explainer" style="display:none;">Identify dead, stuck, or lit pixels on your screen by displaying various solid colors full-screen. This makes it easier to spot individual pixels that are not displaying the correct color, which could indicate a permanent hardware defect.</p>
         <div id="pixelTestContainer" class="pixel-grid"></div>
-    </div>    <div class="touch-container">
+    </div><div class="touch-container">
         <button id="testTouchBtn" class="touch-btn">Test Touch Screen</button>
         <p class="explainer" style="display:none;">Verify touch screen accuracy and responsiveness. For multi-touch capable screens, it can track multiple simultaneous touch points. This helps detect dead spots, ghost touches, or issues with multi-touch functionality.</p>
         <div id="touchTestContainer" class="touch-grid"></div>
@@ -128,8 +130,9 @@
     <div class="stress-container">
         <button id="testStressBtn" class="stress-btn">Test Hardware</button>
         <p class="explainer" style="display:none;">Perform a stress test to check your system\\\'s stability and CPU performance under heavy load. This test runs intensive calculations and monitors CPU utilization and the page\\\'s memory usage, which can help identify thermal throttling or crashes under pressure.</p>
-        <div id="stressTestContainer" class="stress-grid"></div>
-    </div>    <div class="network-container">
+        <div id="stressTestContainer" class="stress-grid"></div>    </div>
+
+    <div class="network-container">
         <button id="testNetworkBtn" class="network-btn">Test Network & WiFi</button>
         <p class="explainer" style="display:none;">Check your network connection information including connection type, effective network speed, round-trip time, and online/offline status. This test displays real-time network information from your browser's Network Information API.</p>
         <div id="networkTestContainer" class="network-grid"></div>

@@ -4,6 +4,12 @@
 /* ===============================================
    CSS VARIABLES AND ROOT STYLES
    =============================================== */
+
+/* Hide explainer text by default when JavaScript is enabled */
+p.explainer {
+    display: none;
+}
+
 :root {
     /* Color palette */
     --primary-blue: #1e3c72;
@@ -100,7 +106,7 @@ p {
     right: 0;
     z-index: var(--z-header);
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-    padding: var(--spacing-md) var(--spacing-xl);
+    padding: var(--spacing-sm) var(--spacing-xl); /* Reduced from --spacing-md to --spacing-sm (16px to 8px) */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -139,7 +145,7 @@ p {
 
 /* Navigation buttons */
 .nav-btn {
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg); /* Reduced vertical padding from --spacing-md to --spacing-sm */
     font-size: var(--font-size-medium);
     font-family: var(--font-family);
     background: var(--medium-overlay);

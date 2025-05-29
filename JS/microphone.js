@@ -5,10 +5,7 @@ class MicrophoneTest {
         this.analyser = null;
         this.devices = [];
         this.selectedDevice = null;
-        this.isShowingMic = false;
         this.micGrid = document.getElementById('micTestContainer');
-        this.testButton = document.getElementById('testMicBtn');
-        this.testButton.addEventListener('click', () => this.toggleMic());
         this.animationFrame = null;
         this.resizeObserver = null;
         
@@ -22,15 +19,18 @@ class MicrophoneTest {
         this.spectrogramHistory = [];
         this.recordingDuration = 0;
         this.hasRecording = false;
-        this.lastAnimationTime = 0;
-        this.animationInterval = 33; // Optimized to 30 FPS for better performance
+        this.lastAnimationTime = 0;        this.animationInterval = 33; // Optimized to 30 FPS for better performance
         
         // Performance optimization - consolidated variables
         this.staticSpectrogramImageData = null;
         this.lastProgressX = -1;
         this.frequencyData = null; // Reused array for frequency data
         this.timeData = null; // Reused array for time domain data
-    }createMicInterface() {
+          // Auto-start microphone on page load
+        setTimeout(() => this.showMic(), 100);
+    }
+
+    createMicInterface() {
         this.micGrid.innerHTML = '';
 
         // Create controls container
@@ -132,34 +132,11 @@ class MicrophoneTest {
         this.resizeObserver.observe(this.spectrogramCanvas);
         
         // Initial size setup
-        updateCanvasSize();
-    }
-
-    toggleMic() {
-        if (this.isShowingMic) {
-            this.hideMic();
-        } else {
-            this.showMic();
-        }
-    }
+        updateCanvasSize();    }
 
     showMic() {
         this.createMicInterface();
         this.micGrid.style.display = 'block';
-        this.testButton.style.background = '#1e3c72';
-        this.isShowingMic = true;
-    }
-
-    hideMic() {
-        this.stopVisualization();
-        if (this.resizeObserver) {
-            this.resizeObserver.disconnect();
-            this.resizeObserver = null;
-        }
-        this.micGrid.innerHTML = '';
-        this.micGrid.style.display = 'none';
-        this.testButton.style.background = '#2a5298';
-        this.isShowingMic = false;
     }
 
     async setupMicDevices() {
@@ -458,14 +435,11 @@ class MicrophoneTest {
         this.recordButton.disabled = false;
         this.recordButton.textContent = 'Record';
         this.recordButton.style.background = '#e74c3c';
+          this.clearCanvases();
         
-        this.clearCanvases();
-        
-        // Restart live visualization if mic is active
-        if (this.isShowingMic) {
-            this.startVisualization();
-        }
-    }    clearCanvases() {
+        // Restart live visualization since mic is always active
+        this.startVisualization();
+    }clearCanvases() {
         // Clear waveform
         const waveformWidth = this.waveformCanvas.width;
         const waveformHeight = this.waveformCanvas.height;

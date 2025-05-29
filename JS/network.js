@@ -39,7 +39,7 @@ class NetworkTest {
         
         // Stop monitoring
         this.stopNetworkMonitoring();
-    }    createNetworkInterface() {
+    }createNetworkInterface() {
         this.networkGrid.innerHTML = '';
 
         // Info Note Section
@@ -96,9 +96,7 @@ class NetworkTest {
             clearInterval(this.updateInterval);
             this.updateInterval = null;
         }
-    }
-
-    updateConnectionInfo() {
+    }    updateConnectionInfo() {
         if (!this.isShowingNetwork) return;
 
         const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;

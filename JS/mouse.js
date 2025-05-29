@@ -1,8 +1,6 @@
 class MouseManager {
     constructor() {
         this.mouseGrid = document.getElementById('mouseTestContainer');
-        this.testButton = document.getElementById('testMouseBtn');
-        this.isShowingMouse = false;
         
         // Canvas setup
         this.graphCanvas = document.getElementById('mouseGraph');
@@ -28,11 +26,13 @@ class MouseManager {
         this.rightClickCounter = document.getElementById('rightClickCount');
         this.clickTestArea = document.getElementById('clickTestArea');
         
-        this.testButton.addEventListener('click', () => this.toggleMouse());
         this.setupMouseEvents();
         this.setupClickEvents();
         this.boundAnimate = this.animate.bind(this);
         this.animationFrame = null;
+        
+        // Auto-start the mouse test
+        this.startMouse();
     }
 
     toggleMouse() {
@@ -44,8 +44,6 @@ class MouseManager {
     }    setupClickEvents() {
         // Add click event listeners to the click test area
         this.clickTestArea.addEventListener('mousedown', (e) => {
-            if (!this.isShowingMouse) return;
-            
             e.preventDefault(); // Prevent context menu on right click
             
             if (e.button === 0) { // Left click
@@ -59,36 +57,20 @@ class MouseManager {
         
         // Prevent context menu on right click in the test area
         this.clickTestArea.addEventListener('contextmenu', (e) => {
-            if (this.isShowingMouse) {
-                e.preventDefault();
-            }
+            e.preventDefault();
         });
-    }
-
-    resetClickCounters() {
+    }    resetClickCounters() {
         this.leftClickCount = 0;
         this.rightClickCount = 0;
         this.leftClickCounter.textContent = '0';
         this.rightClickCounter.textContent = '0';
     }
 
-    showMouse() {
+    startMouse() {
         this.mouseGrid.style.display = 'block';
-        this.testButton.textContent = 'Stop Mouse Test';
-        this.isShowingMouse = true;
         this.setupCanvasSize();
         this.resetClickCounters(); // Reset counters when starting test
         this.animate();
-    }
-
-    hideMouse() {
-        this.mouseGrid.style.display = 'none';
-        this.testButton.textContent = 'Test Mouse';
-        this.isShowingMouse = false;
-        if (this.animationFrame) {
-            cancelAnimationFrame(this.animationFrame);
-            this.animationFrame = null;
-        }
     }
 
     setupCanvasSize() {
@@ -109,12 +91,8 @@ class MouseManager {
 
         // Set up delta display scale
         this.deltaScale = Math.min(this.deltaCanvas.width, this.deltaCanvas.height) * 0.4;
-    }
-
-    setupMouseEvents() {
+    }    setupMouseEvents() {
         document.addEventListener('mousemove', (e) => {
-            if (!this.isShowingMouse) return;
-            
             this.mouseX = e.clientX;
             this.mouseY = e.clientY;
             
@@ -138,11 +116,7 @@ class MouseManager {
             this.lastX = e.clientX;
             this.lastY = e.clientY;
         });
-    }
-
-    animate() {
-        if (!this.isShowingMouse) return;
-
+    }    animate() {
         // Clear both canvases
         this.graphCtx.clearRect(0, 0, this.graphCanvas.width, this.graphCanvas.height);
         this.deltaCtx.clearRect(0, 0, this.deltaCanvas.width, this.deltaCanvas.height);

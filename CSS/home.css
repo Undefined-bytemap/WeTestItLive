@@ -1,7 +1,7 @@
 /* Home page specific styles */
 .camera-container {
-    width: 90%;
-    max-width: 1400px;
+    width: 23%; /* Reduced from 46% to half size (23% of original) */
+    max-width: 50%; /* Set to 50% max-width */
     margin: 48px auto;
     text-align: center;
 }
@@ -145,6 +145,50 @@
 .speaker-btn.right {
     background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.2) 100%);
     border-color: rgba(52, 152, 219, 0.3);
+}
+
+/* Microphone and Keyboard Side-by-Side Layout */
+.mic-keyboard-wrapper {
+    width: 90%;
+    max-width: 1400px;
+    margin: 12px auto; /* Reduced from 24px to 12px (half again) */
+    display: grid;
+    grid-template-columns: 1.3fr 1fr; /* Microphone on left, keyboard-mouse stack on right */
+    gap: 24px;
+    align-items: start;
+}
+
+/* New container for stacking keyboard and mouse vertically */
+.keyboard-mouse-stack {
+    display: grid;
+    grid-template-rows: auto auto; /* Stack keyboard and mouse vertically */
+    gap: 16px;
+}
+
+/* Adjust individual container styles for the new layout */
+.mic-keyboard-wrapper .microphone-container,
+.mic-keyboard-wrapper .keyboard-container,
+.mic-keyboard-wrapper .mouse-container {
+    width: 100%;
+    margin: 0;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1200px) {
+    .mic-keyboard-wrapper {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .keyboard-mouse-stack {
+        gap: 12px;
+    }
+    
+    .mic-keyboard-wrapper .microphone-container,
+    .mic-keyboard-wrapper .keyboard-container,
+    .mic-keyboard-wrapper .mouse-container {
+        margin: 24px 0;
+    }
 }
 
 /* Microphone Testing Section */

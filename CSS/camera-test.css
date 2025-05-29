@@ -2,18 +2,17 @@
 /* Styles specific to camera testing functionality */
 
 .camera-container {
-    width: 90%;
-    max-width: 1400px;
-    margin: 48px auto;
+    width: 35%; /* Set to 35% */
+    max-width: 50%; /* Set to 50% max-width */
+    margin: 3px auto; /* Reduced from 6px to 3px (half again) */
     text-align: center;
 }
 
 /* Camera Grid */
 .camera-grid {
-    display: none;
+    display: grid;
     margin-top: 32px;
     width: 100%;
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
 }
@@ -22,7 +21,7 @@
     width: 100%;
     border-radius: 8px;
     background: rgba(0,0,0,0.1);
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/6.75; /* Reduced height by 25% (from 16/9 to 16/6.75) */
     object-fit: cover;
 }
 

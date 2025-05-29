@@ -1,34 +1,17 @@
 class KeyboardManager {
     constructor() {
         this.keyboardGrid = document.getElementById('keyboardGrid');
-        this.testButton = document.getElementById('testKeyboardBtn');
-        this.isShowingKeyboard = false;
         this.keyElements = new Map();
         
-        this.testButton.addEventListener('click', () => this.toggleKeyboard());
         this.setupKeyboardEvents();
-    }
-
-    toggleKeyboard() {
-        if (this.isShowingKeyboard) {
-            this.hideKeyboard();
-        } else {
-            this.showKeyboard();
-        }
+        
+        // Auto-start keyboard on page load
+        setTimeout(() => this.showKeyboard(), 200);
     }
 
     showKeyboard() {
         this.createKeyboardLayout();
         this.keyboardGrid.style.display = 'block';
-        this.testButton.textContent = 'Stop Keyboard Test';
-        this.isShowingKeyboard = true;
-    }
-
-    hideKeyboard() {
-        this.keyboardGrid.style.display = 'none';
-        this.testButton.textContent = 'Test Keyboard';
-        this.isShowingKeyboard = false;
-        this.keyElements.clear();
     }
 
     createKeyboardLayout() {
@@ -78,12 +61,8 @@ class KeyboardManager {
 
             this.keyboardGrid.appendChild(rowDiv);
         });
-    }
-
-    setupKeyboardEvents() {
+    }    setupKeyboardEvents() {
         document.addEventListener('keydown', (e) => {
-            if (!this.isShowingKeyboard) return;
-            
             const keyName = this.normalizeKeyName(e.code);
             const element = this.keyElements.get(keyName);
             
@@ -97,8 +76,6 @@ class KeyboardManager {
         });
 
         document.addEventListener('keyup', (e) => {
-            if (!this.isShowingKeyboard) return;
-            
             const keyName = this.normalizeKeyName(e.code);
             const element = this.keyElements.get(keyName);
             

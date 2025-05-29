@@ -13,12 +13,12 @@
 .keyboard-container {
     width: 90%;
     max-width: 1200px;
-    margin: 48px auto;
+    margin: 3px auto; /* Reduced from 6px to 3px (half again) */
     text-align: center;
 }
 
 .keyboard-grid {
-    display: none;
+    display: block;
     margin-top: 32px;
     background: rgba(255, 255, 255, 0.1);
     padding: var(--keyboard-padding);
@@ -125,5 +125,24 @@
 
     .keyboard-grid {
         padding: calc(var(--keyboard-padding) * 0.33);
+    }
+}
+
+/* Override for side-by-side layout */
+.mic-keyboard-wrapper .keyboard-container {
+    max-width: none;
+}
+
+.mic-keyboard-wrapper .keyboard-grid {
+    margin-top: 16px;
+}
+
+/* Adjust keyboard size for side-by-side layout */
+@media (min-width: 1200px) {
+    .mic-keyboard-wrapper .keyboard-grid {
+        --key-base-width: min(2.2vw, 28px); /* Slightly smaller than before */
+        --key-base-padding: min(0.5vw, 7px);
+        --key-font-size: min(1.2vw, 0.7rem);
+        --keyboard-padding: min(1.2vw, 16px);
     }
 }
