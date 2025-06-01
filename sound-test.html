@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Free online sound testing tool. Test your device's audio output, verify speaker functionality, and diagnose sound-related issues with various audio samples.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
+    <title>we test it LIVE - Sound Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/master.css">
+    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/sound-test.css">
+    <noscript>
+        <style>
+            p.explainer { display: block !important; }
+            body > .sound-container {
+                padding-top: 10px; 
+            }
+        </style>
+    </noscript>
+    <script src="JS/analytics.js" defer></script>
+    <script src="JS/adsense.js" defer></script>
+    <script src="JS/navigation.js" defer></script>
+    <script src="JS/banner.js" defer></script>
+    <script src="JS/sound.js" defer></script>
+</head>
+<body onload="document.getElementById('testSoundBtn').click()">
+    <div id="questionBanner" class="question-banner" style="display: none;">
+        <button id="closeBannerButton" class="close-banner-button">&times;</button>
+        <div id="questionText" class="question-text"></div>
+        <div id="answerOptions" class="answer-options"></div>
+    </div>
+    <noscript>
+        <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
+            JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
+        </div>
+    </noscript>
+    <div class="header">
+        <div class="title-container">
+            <div class="title">we test it <strong>LIVE</strong></div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="faq.html" class="nav-btn">FAQ</a>
+                <a href="how-to.html" class="nav-btn">How-to</a>
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+            </button>
+        </div>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="faq.html" class="nav-btn">FAQ</a>
+        <a href="how-to.html" class="nav-btn">How-to</a>
+    </div>
+    <div class="nav-overlay"></div>
+
+
+    <div class="sound-container test-container">
+        <button id="testSoundBtn" class="sound-btn">Test Sound</button>
+        <div id="soundTestContainer" class="sound-grid"></div>
+    </div>
+    <div class="explainer-container">
+        <p class="explainer" style="display: block !important;">Use this free online Sound Test to check if your speakers or headphones are working correctly. This tool plays a sample sound, allowing you to verify audio output, assess sound quality (checking for issues like distortion or crackling), and test stereo channel separation (left and right channels). It's ideal for troubleshooting before watching movies, listening to music, or gaming.<br><br><strong>Common Speaker/Headphone Issues & Fixes:</strong><ul><li><strong>No Sound:</strong><ul><li><strong>Volume Levels:</strong> Check the volume on your device (OS volume, application volume) and on the speakers/headphones themselves if they have physical controls.</li><li><strong>Mute:</strong> Ensure your system or application isn't muted.</li><li><strong>Connections:</strong> Verify that speakers/headphones are properly plugged in (audio jack, USB, Bluetooth pairing). Try re-plugging or re-pairing.</li><li><strong>Correct Playback Device:</strong> Make sure the correct audio output device is selected in your operating system's sound settings.</li><li><strong>Drivers:</strong> Outdated or corrupted audio drivers are a common culprit. Update them from your computer or sound card manufacturer's website.</li></ul></li><li><strong>Distorted or Crackling Sound:</strong><ul><li><strong>Connections:</strong> Loose or damaged cables can cause poor sound quality. Check and try different cables if possible.</li><li><strong>Volume Too High:</strong> Excessively high volume levels can cause distortion, especially with lower-quality speakers.</li><li><strong>Driver Issues:</strong> Again, drivers can impact sound quality.</li><li><strong>Interference (Wireless):</strong> For Bluetooth headphones/speakers, interference from other devices can cause crackling.</li><li><strong>Hardware Damage:</strong> The speakers/headphones themselves might be damaged.</li></ul></li><li><strong>Sound Only From One Side (Stereo Issues):</strong><ul><li><strong>Balance Settings:</strong> Check the audio balance settings in your operating system.</li><li><strong>Cable/Connection:</strong> A partially inserted jack or a damaged cable can cause one channel to drop out.</li><li><strong>Headphone/Speaker Fault:</strong> Could indicate a fault in one of the earpieces or speakers.</li></ul></li></ul>This sound test helps you quickly identify if the problem lies with your audio hardware, connections, or software settings.</p>
+    </div>
+
+</body>
+</html>

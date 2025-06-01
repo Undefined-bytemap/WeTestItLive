@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Free online mouse testing tool. Test mouse movement, tracking, click functionality, and visualize cursor path to identify issues with precision or responsiveness.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
+    <title>we test it LIVE - Mouse Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/master.css">
+    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/mouse-test.css">
+    <noscript>
+        <style>
+            p.explainer { display: block !important; }
+            body > .mouse-container {
+                padding-top: 10px; 
+            }
+        </style>
+    </noscript>
+    <script src="JS/analytics.js" defer></script>
+    <script src="JS/adsense.js" defer></script>
+    <script src="JS/navigation.js" defer></script>
+    <script src="JS/banner.js" defer></script>
+    <script src="JS/mouse.js" defer></script>
+</head>
+<body>
+    <div id="questionBanner" class="question-banner" style="display: none;">
+        <button id="closeBannerButton" class="close-banner-button">&times;</button>
+        <div id="questionText" class="question-text"></div>
+        <div id="answerOptions" class="answer-options"></div>
+    </div>
+    <noscript>
+        <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
+            JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
+        </div>
+    </noscript>
+    <div class="header">
+        <div class="title-container">
+            <div class="title">we test it <strong>LIVE</strong></div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="faq.html" class="nav-btn">FAQ</a>
+                <a href="how-to.html" class="nav-btn">How-to</a>
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+            </button>
+        </div>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="faq.html" class="nav-btn">FAQ</a>
+        <a href="how-to.html" class="nav-btn">How-to</a>
+    </div>
+    <div class="nav-overlay"></div>
+
+
+    <div class="mouse-container test-container">
+        <div id="mouseTestContainer" class="mouse-grid">
+            <div class="mouse-visualization">
+                <div class="movement-graph">
+                    <canvas id="mouseGraph"></canvas>
+                </div>
+                <div class="delta-display">
+                    <canvas id="mouseDelta"></canvas>
+                </div>
+            </div>
+            <div class="click-test-section">
+                <div class="click-counters">
+                    <div class="click-counter left-click">
+                        <span class="counter-label">Left Clicks:</span>
+                        <span class="counter-value" id="leftClickCount">0</span>
+                    </div>
+                    <div class="click-counter right-click">
+                        <span class="counter-label">Right Clicks:</span>
+                        <span class="counter-value" id="rightClickCount">0</span>
+                    </div>
+                </div>
+                <div class="click-test-area" id="clickTestArea">
+                    <div class="click-instruction">Click here to test mouse buttons</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="explainer-container">
+        <p class="explainer" style="display: block !important;">This comprehensive online Mouse Test allows you to check all aspects of your mouse's functionality. Test mouse movement for smoothness and accuracy, verify pointer tracking, and ensure both left and right clicks (and other buttons if applicable) are registering correctly. The test visualizes your mouse path and speed, and counts clicks, helping you diagnose issues like erratic cursor behavior, pointer lag, double-clicking problems, or unresponsive buttons.<br><br><strong>Common Mouse Problems & Solutions:</strong><ul><li><strong>Erratic Cursor Movement or Lag:</strong><ul><li><strong>Surface:</strong> Try a different mouse pad or surface. Optical mice can struggle on very reflective or uneven surfaces.</li><li><strong>Sensor Obstruction:</strong> Clean the mouse sensor (optical or laser) with a dry cotton swab or compressed air.</li><li><strong>Wireless Interference/Battery:</strong> For wireless mice, check battery levels and ensure the receiver has a clear line of sight, free from interference from other wireless devices.</li><li><strong>System Load:</strong> High CPU usage can sometimes affect mouse responsiveness. Close unnecessary applications.</li><li><strong>Drivers:</strong> Update or reinstall your mouse drivers.</li></ul></li><li><strong>Mouse Buttons Not Working or Double-Clicking:</strong><ul><li><strong>Physical Wear:</strong> Mouse buttons can wear out over time. This is a common cause of unintentional double-clicks or non-responsive clicks.</li><li><strong>Software Settings:</strong> Check your operating system's mouse settings for click speed adjustments.</li><li><strong>Debris:</strong> Dirt can get into the button mechanism. Try cleaning with compressed air.</li><li><strong>Driver/Software Conflict:</strong> Rarely, other software might interfere.</li></ul></li><li><strong>Scroll Wheel Issues (Not Scrolling, Jerky Scrolling):</strong><ul><li><strong>Debris:</strong> Clean the scroll wheel mechanism with compressed air.</li><li><strong>Drivers:</strong> Ensure mouse drivers are up to date.</li><li><strong>Application Specific:</strong> Some applications might have their own scroll settings or behaviors.</li></ul></li><li><strong>Mouse Not Detected:</strong><ul><li><strong>Connection:</strong> Re-plug USB mice or re-pair wireless mice. Try a different USB port.</li><li><strong>Batteries (Wireless):</strong> Replace batteries in wireless mice.</li><li><strong>Drivers:</strong> Check Device Manager.</li></ul></li></ul>This mouse tester is a great first step in troubleshooting any pointer or click-related problems.</p>
+    </div>
+
+</body>
+</html>

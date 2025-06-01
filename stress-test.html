@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Free online system stress testing tool. Test your device's performance and stability under load by running CPU-intensive tasks and monitoring system response.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
+    <title>we test it LIVE - Stress Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/master.css">
+    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/stress-test.css">
+    <noscript>
+        <style>
+            p.explainer { display: block !important; }
+            body > .stress-container {
+                padding-top: 10px; 
+            }
+        </style>
+    </noscript>
+    <script src="JS/analytics.js" defer></script>
+    <script src="JS/adsense.js" defer></script>
+    <script src="JS/navigation.js" defer></script>
+    <script src="JS/banner.js" defer></script>
+    <script src="JS/stress.js" defer></script>
+</head>
+<body onload="document.getElementById('testStressBtn').click()">
+    <div id="questionBanner" class="question-banner" style="display: none;">
+        <button id="closeBannerButton" class="close-banner-button">&times;</button>
+        <div id="questionText" class="question-text"></div>
+        <div id="answerOptions" class="answer-options"></div>
+    </div>
+    <noscript>
+        <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
+            JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
+        </div>
+    </noscript>
+    <div class="header">
+        <div class="title-container">
+            <div class="title">we test it <strong>LIVE</strong></div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="faq.html" class="nav-btn">FAQ</a>
+                <a href="how-to.html" class="nav-btn">How-to</a>
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+            </button>
+        </div>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="faq.html" class="nav-btn">FAQ</a>
+        <a href="how-to.html" class="nav-btn">How-to</a>
+    </div>
+    <div class="nav-overlay"></div>
+
+
+    <div class="stress-container test-container">
+        <button id="testStressBtn" class="stress-btn">Test Hardware</button>
+        <div id="stressTestContainer" class="stress-grid"></div>
+    </div>
+    <div class="explainer-container">
+        <p class="explainer" style="display: block !important;">
+            This browser-based CPU Stress Test helps you assess your computer's stability and CPU performance under a sustained heavy load. This tool runs intensive calculations directly in your browser, pushing your processor to work hard. It can help identify issues like thermal throttling (where the CPU slows down to prevent overheating), system instability, or crashes that only occur under pressure. It also provides a general indication of your CPU's processing power within the browser environment.
+            <br><br>
+            <strong>Why Run a CPU Stress Test?</strong>
+            <ul>
+                <li><strong>Stability Check:</strong> Especially useful for new computer builds, after hardware changes (like a new CPU cooler), or when overclocking to ensure the system remains stable under load.</li>
+                <li><strong>Thermal Performance:</strong> Helps determine if your CPU cooling solution (heatsink, fan, liquid cooler) is adequate. Overheating can lead to performance degradation and shorten component lifespan.</li>
+                <li><strong>Troubleshooting Crashes:</strong> If your system crashes randomly, a stress test can help determine if it's related to CPU load or overheating.</li>
+                <li><strong>Performance Benchmarking (Basic):</strong> While not a dedicated benchmarking suite, it can give a relative idea of CPU performance.</li>
+            </ul>
+            <br>
+            <strong>Interpreting Results & Potential Issues:</strong>
+            <ul>
+                <li><strong>High CPU Temperatures:</strong> If your CPU temperature (monitored with separate software, as browsers can't directly access this) gets excessively high (e.g., above 85-90°C for extended periods, though safe limits vary by CPU model), it indicates a cooling problem.
+                    <ul>
+                        <li><strong>Solutions:</strong> Improve case airflow, clean dust from heatsinks and fans, reapply thermal paste, or upgrade your CPU cooler.</li>
+                    </ul>
+                </li>
+                <li><strong>Thermal Throttling:</strong> If CPU performance drops significantly during the test while temperatures are high, your CPU is likely throttling.
+                    <ul>
+                        <li><strong>Solutions:</strong> Same as for high temperatures; improve cooling.</li>
+                    </ul>
+                </li>
+                <li><strong>System Crashes or Freezes:</strong> If the system crashes, freezes, or shows a Blue Screen of Death (BSOD) during the test, it points to instability.
+                    <ul>
+                        <li><strong>Solutions:</strong> If overclocked, reduce overclock settings. Check hardware components (RAM, power supply). Ensure drivers are stable. Overheating can also cause crashes.</li>
+                    </ul>
+                </li>
+                <li><strong>Page Becomes Unresponsive:</strong> Browser-based stress tests are demanding. If the page itself becomes very slow or unresponsive, it's expected to some degree, but a complete freeze might indicate the limits of browser-based testing or severe system strain.</li>
+            </ul>
+            <br>
+            <strong>Important Notes:</strong>
+            <ul>
+                <li>Run this test when you don't have critical unsaved work.</li>
+                <li>Monitor your CPU temperatures using dedicated hardware monitoring software for accurate readings.</li>
+                <li>This test primarily stresses the CPU. For GPU or full system stress, dedicated software is recommended.</li>
+            </ul>
+            Use this tool as a quick and convenient way to put your CPU through its paces.
+        </p>
+    </div>
+
+</body>
+</html>

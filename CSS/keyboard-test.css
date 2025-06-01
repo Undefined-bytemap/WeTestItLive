@@ -13,12 +13,13 @@
 .keyboard-container {
     width: 90%;
     max-width: 1200px;
-    margin: 3px auto; /* Reduced from 6px to 3px (half again) */
+    margin: 3px auto;
     text-align: center;
+    min-height: 400px;
 }
 
 .keyboard-grid {
-    display: block;
+    display: none; /* Initially hidden until JS loads */
     margin-top: 32px;
     background: rgba(255, 255, 255, 0.1);
     padding: var(--keyboard-padding);
@@ -28,8 +29,16 @@
     margin-right: auto;
     overflow: hidden;
     width: fit-content;
+    min-width: 750px; /* Minimum width to prevent initial collapse */
     max-width: 100%;
+    min-height: 350px; /* Minimum height to prevent collapse */
     box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.keyboard-grid[style*="display: block"] {
+    opacity: 1;
 }
 
 .keyboard-row {

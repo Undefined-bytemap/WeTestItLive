@@ -26,8 +26,7 @@ class MicrophoneTest {
         this.lastProgressX = -1;
         this.frequencyData = null; // Reused array for frequency data
         this.timeData = null; // Reused array for time domain data
-          // Auto-start microphone on page load
-        setTimeout(() => this.showMic(), 100);
+        // Do not auto-start mic here; let DOMContentLoaded handler do it
     }
 
     createMicInterface() {
@@ -154,13 +153,13 @@ class MicrophoneTest {
             this.devices = devices.filter(device => device.kind === 'audioinput');
             
             this.deviceSelect.innerHTML = '';
-            
+
             // Add default device first
             const defaultOption = document.createElement('option');
             defaultOption.value = 'default';
             defaultOption.text = 'Default - ' + (this.devices.find(d => d.deviceId === 'default')?.label || 'System Microphone');
             this.deviceSelect.appendChild(defaultOption);
-            
+
             // Add other devices
             this.devices
                 .filter(device => device.deviceId !== 'default')
@@ -171,13 +170,16 @@ class MicrophoneTest {
                     this.deviceSelect.appendChild(option);
                 });
 
+            // Set selectedDevice to the current value of the select (default on first load)
+            this.selectedDevice = this.deviceSelect.value;
+
             // Add device selection handler
             this.deviceSelect.addEventListener('change', () => {
                 this.selectedDevice = this.deviceSelect.value;
                 this.startVisualization();
             });
 
-            // Start visualization with default device
+            // Start visualization with selected device
             this.startVisualization();
             
         } catch (error) {
@@ -222,11 +224,11 @@ class MicrophoneTest {
             this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
             this.timeData = new Uint8Array(this.analyser.frequencyBinCount);
 
-            // Only start live visualization if no recording exists
-            if (!this.hasRecording) {
-                this.visualize();
-            } else {
-                // Show static recording and clear waveform
+            // Always start visualization loop for live mic
+            this.visualize();
+
+            // If a recording exists, show static spectrogram and clear waveform as overlay
+            if (this.hasRecording) {
                 this.drawStaticSpectrogram();
                 this.clearWaveform();
             }
@@ -411,12 +413,12 @@ class MicrophoneTest {
         }
     }    resetRecording() {
         this.stopPlayback();
-        
+
         // Clean up resources
         if (this.recordedAudio) {
             URL.revokeObjectURL(this.recordedAudio);
         }
-        
+
         this.recordedChunks = [];
         this.spectrogramHistory = [];
         this.recordedAudio = null;
@@ -426,17 +428,17 @@ class MicrophoneTest {
         this.resetButton.disabled = true;
         this.playButton.textContent = 'Play';
         this.playButton.style.background = '';
-        
+
         // Clear performance optimization caches
         this.staticSpectrogramImageData = null;
         this.lastProgressX = -1;
-        
+
         // Re-enable record button
         this.recordButton.disabled = false;
         this.recordButton.textContent = 'Record';
         this.recordButton.style.background = '#e74c3c';
-          this.clearCanvases();
-        
+        this.clearCanvases();
+
         // Restart live visualization since mic is always active
         this.startVisualization();
     }clearCanvases() {
@@ -692,6 +694,21 @@ class MicrophoneTest {
 }
 
 // Initialize when the document is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new MicrophoneTest();
-});
+// Wait for #micTestContainer to exist before initializing
+function initMicTestWhenReady() {
+    const container = document.getElementById('micTestContainer');
+    if (container) {
+        try {
+            console.log('[MicTest] Initializing microphone test...');
+            const micTest = new MicrophoneTest();
+            micTest.showMic();
+            console.log('[MicTest] Microphone test initialized.');
+        } catch (e) {
+            console.error('[MicTest] Error initializing microphone test:', e);
+        }
+    } else {
+        console.log('[MicTest] Waiting for micTestContainer...');
+        setTimeout(initMicTestWhenReady, 50);
+    }
+}
+initMicTestWhenReady();

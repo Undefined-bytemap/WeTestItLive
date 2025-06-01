@@ -1,3 +1,21 @@
+/* --- MICROPHONE TEST PAGE CANVAS VISIBILITY FIX --- */
+.mic-grid {
+    display: block !important;
+}
+
+.visualization-container {
+    display: flex !important;
+}
+
+.waveform-canvas,
+.spectrogram-canvas {
+    width: 100%;
+    min-width: 200px;
+    min-height: 80px;
+    display: block;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
 /* Master CSS File - Universal styles for all pages */
 /* Navigation, buttons, layout components, and common elements */
 
@@ -516,6 +534,35 @@ p {
     margin: var(--spacing-xl) auto;
     width: 90%;
     max-width: 1200px;
+}
+
+/* Explainer container for test pages (white background, matches FAQ/mic test) */
+.explainer-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 32px 32px 24px 32px;
+    margin: 32px auto 0 auto;
+    max-width: 800px;
+    color: #2a5298;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    box-sizing: border-box;
+}
+
+.explainer-container ul {
+    color: #2a5298;
+    margin: 16px 0 0 20px;
+    padding-left: 20px;
+}
+
+.explainer-container li {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.explainer-container strong {
+    color: #1e3c72;
 }
 
 .card--compact {

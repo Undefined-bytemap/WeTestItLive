@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Free online pixel testing tool. Test your display for dead pixels, screen uniformity issues, and color accuracy with various test patterns and colors.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
+    <title>we test it LIVE - Pixel Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/master.css">
+    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/pixel-test.css">
+    <noscript>
+        <style>
+            p.explainer { display: block !important; }
+            body > .pixel-container {
+                padding-top: 10px; 
+            }
+        </style>
+    </noscript>
+    <script src="JS/analytics.js" defer></script>
+    <script src="JS/adsense.js" defer></script>
+    <script src="JS/navigation.js" defer></script>
+    <script src="JS/banner.js" defer></script>
+    <script src="JS/pixel.js" defer></script>
+</head>
+<body onload="document.getElementById('testPixelBtn').click()">
+    <div id="questionBanner" class="question-banner" style="display: none;">
+        <button id="closeBannerButton" class="close-banner-button">&times;</button>
+        <div id="questionText" class="question-text"></div>
+        <div id="answerOptions" class="answer-options"></div>
+    </div>
+    <noscript>
+        <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
+            JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
+        </div>
+    </noscript>
+    <div class="header">
+        <div class="title-container">
+            <div class="title">we test it <strong>LIVE</strong></div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="faq.html" class="nav-btn">FAQ</a>
+                <a href="how-to.html" class="nav-btn">How-to</a>
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+            </button>
+        </div>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="faq.html" class="nav-btn">FAQ</a>
+        <a href="how-to.html" class="nav-btn">How-to</a>
+    </div>
+    <div class="nav-overlay"></div>
+
+
+    <div class="pixel-container test-container">
+        <button id="testPixelBtn" class="pixel-btn">Test Dead Pixels</button>
+        <div id="pixelTestContainer" class="pixel-grid"></div>
+    </div>
+    <div class="explainer-container">
+        <p class="explainer" style="display: block !important;">This online Dead Pixel Test helps you identify dead, stuck, or lit pixels on your LCD/LED screen (monitor, laptop, phone, or tablet). By displaying a series of full-screen solid colors (and often black and white), this tool makes it easier to spot individual pixels that are not displaying the correct color. Finding these issues early can be important, especially for new devices under warranty.<br><br><strong>Understanding Pixel Issues:</strong><ul><li><strong>Dead Pixel:</strong> A pixel that remains unlit (appears black) on a bright background. This is usually a permanent hardware defect where the pixel's transistors are non-functional.</li><li><strong>Stuck Pixel:</strong> A pixel that is stuck on one color (e.g., always red, green, or blue) regardless of what is being displayed. Sometimes these can be fixed.</li><li><strong>Lit Pixel (Hot Pixel):</strong> A pixel that is always lit (appears white) on a dark background. This is also typically a hardware defect.</li></ul><br><strong>What To Do About Pixel Issues:</strong><ul><li><strong>Dead/Lit Pixels:</strong> These are generally permanent hardware defects.<ul><li><strong>Warranty:</strong> If your device is new and under warranty, check the manufacturer's dead pixel policy. Many manufacturers have a threshold for the number/location of dead pixels required for a replacement.</li><li><strong>Acceptance:</strong> Unfortunately, if out of warranty or below the manufacturer's threshold, you may have to live with them.</li></ul></li><li><strong>Stuck Pixels:</strong> There's a small chance these can be resolved, though success is not guaranteed.<ul><li><strong>Pixel Fixer Software/Videos:</strong> Some software or videos rapidly flash different colors on the screen, which can sometimes 'unstick' a pixel. Use with caution and for limited durations.</li><li><strong>Gentle Pressure (Risky):</strong> Some users report success by gently massaging the area of the stuck pixel with a soft cloth (e.g., on a stylus tip). This is risky and can potentially damage the screen further if done improperly. Proceed at your own risk.</li></ul></li></ul>Use this test to carefully inspect your screen. It's a valuable tool for checking new displays or diagnosing screen anomalies.</p>
+    </div>
+
+</body>
+</html>

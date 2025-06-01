@@ -11,8 +11,15 @@ class CameraManager {
 
     async startCameras() {
         try {
-            this.cameraGrid.style.display = 'grid';
-            document.querySelector('.permission-note').style.display = 'block';
+            // Only attempt to modify DOM elements if they exist
+            if (this.cameraGrid) {
+                this.cameraGrid.style.display = 'grid';
+            }
+            
+            const permissionNote = document.querySelector('.permission-note');
+            if (permissionNote) {
+                permissionNote.style.display = 'block';
+            }
             
             await this.detectAndAddCameras();
             
@@ -22,7 +29,10 @@ class CameraManager {
             }, 1000);
         } catch (error) {
             console.error('Error accessing cameras:', error);
-            this.showMessage('Error accessing cameras. Please ensure you have granted camera permissions.');
+            // Only show message if we can
+            if (this.cameraGrid) {
+                this.showMessage('Error accessing cameras. Please ensure you have granted camera permissions.');
+            }
         }
     }
 
@@ -65,29 +75,40 @@ class CameraManager {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({
                 video: { deviceId: device.deviceId }
-            });            const wrapper = document.createElement('div');
-            wrapper.className = 'camera-wrapper';
-            wrapper.setAttribute('data-device-id', device.deviceId);
+            });
 
-            const video = document.createElement('video');
-            video.autoplay = true;
-            video.playsInline = true;
-            video.srcObject = stream;
-            
-            const label = document.createElement('div');
-            label.className = 'camera-label';
-            label.textContent = device.label || `Camera ${this.activeStreams.size + 1}`;
+            // Only add to DOM if we have a container
+            if (this.cameraGrid) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'camera-wrapper';
+                wrapper.setAttribute('data-device-id', device.deviceId);
 
-            wrapper.appendChild(video);
-            wrapper.appendChild(label);
-            this.cameraGrid.appendChild(wrapper);
+                const video = document.createElement('video');
+                video.autoplay = true;
+                video.playsInline = true;
+                video.srcObject = stream;
+                
+                const label = document.createElement('div');
+                label.className = 'camera-label';
+                label.textContent = device.label || `Camera ${this.activeStreams.size + 1}`;
+
+                wrapper.appendChild(video);
+                wrapper.appendChild(label);
+                this.cameraGrid.appendChild(wrapper);
+            }
             
-            this.activeStreams.set(device.deviceId, stream);        } catch (error) {
+            this.activeStreams.set(device.deviceId, stream);
+        } catch (error) {
             console.error(`Error setting up camera ${device.deviceId}:`, error);
         }
     }
 
     showMessage(message) {
+        // Only attempt to show message if we have a container
+        if (!this.cameraGrid) {
+            console.log('Message (no UI):', message);
+            return;
+        }
         const messageElement = document.createElement('div');
         messageElement.className = 'camera-message';
         messageElement.textContent = message;

@@ -16,7 +16,7 @@
     margin-left: auto;
     margin-right: auto;
     background: rgba(255, 255, 255, 0.1);
-    padding: 24px;
+    padding: 24px 24px 16px 24px; /* Reduced bottom padding */
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     box-sizing: border-box;
@@ -27,7 +27,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     margin-top: 16px;
-    margin-bottom: 0px; /* Reduced from 10px to 0px */
+    margin-bottom: -20px; /* Reduced to pull up click section */
     align-items: start; /* Align items to the start of the grid area */
     justify-items: center; /* Center items within their grid cell */
 }
@@ -50,7 +50,7 @@
 }
 
 .click-test-section {
-    margin-top: 0px; /* Reduced from 10px to 0px */
+    margin-top: -150px; /* Reduced by 50px to tighten the spacing */
 }
 
 .click-counters {
@@ -129,15 +129,15 @@
 }
 
 .mic-keyboard-wrapper .mouse-visualization {
-    /* height: 250px; */ /* Removed fixed height, now driven by content */
-    gap: 12px; /* Reduced gap */
-    margin-bottom: 0px; /* Changed from 5px to 0px */
-    padding-bottom: 10px; /* Added 10px padding */
+    height: 300px;
+    gap: 12px;
+    margin-bottom: -30px;
+    padding-bottom: 0px;
 }
 
 .mic-keyboard-wrapper .click-test-section {
-    margin-top: 0px; /* Changed from 5px back to 0px */
-    padding-top: 10px; /* Added 10px padding */
+    margin-top: -50px;
+    padding-top: 0px;
 }
 
 /* Responsive adjustments for the stacked layout */

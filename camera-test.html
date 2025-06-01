@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Free online camera testing tool. Test all your device's cameras simultaneously, verify video feeds, and check for camera-related hardware or driver issues.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
+    <title>we test it LIVE - Camera Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/master.css">
+    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/camera-test.css">
+    <noscript>
+        <style>
+            p.explainer { display: block !important; }
+            body > .camera-container {
+                padding-top: 10px; 
+            }
+        </style>
+    </noscript>
+    <script src="JS/analytics.js" defer></script>
+    <script src="JS/adsense.js" defer></script>
+    <script src="JS/navigation.js" defer></script>
+    <script src="JS/banner.js" defer></script>
+    <script src="JS/cameras.js" defer></script>
+</head>
+<body>
+    <div id="questionBanner" class="question-banner" style="display: none;">
+        <button id="closeBannerButton" class="close-banner-button">&times;</button>
+        <div id="questionText" class="question-text"></div>
+        <div id="answerOptions" class="answer-options"></div>
+    </div>
+    <noscript>
+        <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
+            JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
+        </div>
+    </noscript>
+    <div class="header">
+        <div class="title-container">
+            <div class="title">we test it <strong>LIVE</strong></div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="faq.html" class="nav-btn">FAQ</a>
+                <a href="how-to.html" class="nav-btn">How-to</a>
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+            </button>
+        </div>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="faq.html" class="nav-btn">FAQ</a>
+        <a href="how-to.html" class="nav-btn">How-to</a>
+    </div>
+    <div class="nav-overlay"></div>
+    <div class="camera-container test-container">
+        <div class="permission-note">Note: Refresh page after granting permissions if some cameras don't appear</div>
+        <div id="cameraGrid" class="camera-grid" style="display: none;">
+            <!-- Camera feeds will be added here by JavaScript -->
+        </div>
+        <p class="permission-note" style="display: none;">Please grant camera permissions to see the feeds. If no cameras appear, ensure they are connected and not in use by another application. You might need to refresh the page after granting permissions.</p>
+    </div>
+    <div class="explainer-container">
+        <p class="explainer" style="display: block !important;">
+            This free online Camera Test tool helps you quickly check if your webcam or other cameras are working correctly. This test accesses your available cameras and displays the live video feed, allowing you to instantly verify functionality. It's perfect for troubleshooting before important video calls, online meetings, or streaming sessions.
+            <br><br>
+            <strong>Common Camera Issues & How to Fix Them:</strong>
+            <ul>
+                <li><strong>No Camera Detected / Black Screen:</strong>
+                    <ul>
+                        <li><strong>Permissions:</strong> Ensure you've granted camera access permissions to your browser for this site. You'll usually see a prompt; if not, check browser settings (often a camera icon in the address bar).</li>
+                        <li><strong>Other Apps:</strong> Make sure no other application (e.g., Zoom, <s>Skype</s>, Teams, Discord) is currently using the camera. Close them and try again.</li>
+                        <li><strong>Connections (External Cameras):</strong> If using an external USB camera, check the cable connection. Try a different USB port.</li>
+                        <li><strong>Drivers:</strong> Your camera drivers might be outdated or corrupted. Visit your computer or camera manufacturer's website to download and install the latest drivers.</li>
+                        <li><strong>Hardware Switch/Cover:</strong> Some laptops have a physical switch or shutter for the webcam. Ensure it's enabled/open.</li>
+                        <li><strong>Refresh/Restart:</strong> Try refreshing the page. If issues persist, restart your browser or computer.</li>
+                    </ul>
+                </li>
+                <li><strong>Frozen or Lagging Video:</strong>
+                    <ul>
+                        <li><strong>Resources:</strong> Close other applications that might be using a lot of system resources (CPU/memory).</li>
+                        <li><strong>Drivers:</strong> Outdated drivers can also cause performance issues.</li>
+                    </ul>
+                </li>
+                <li><strong>Poor Image Quality (Blurry, Grainy, Wrong Colors):</strong>
+                    <ul>
+                        <li><strong>Lens:</strong> Clean your camera lens gently with a soft, dry cloth.</li>
+                        <li><strong>Lighting:</strong> Ensure you have adequate lighting in your room.</li>
+                        <li><strong>Software Settings:</strong> Some camera software allows adjustments to focus, brightness, contrast, etc. Check those settings.</li>
+                        <li><strong>Camera Age/Quality:</strong> Older or lower-quality cameras may inherently have limitations.</li>
+                    </ul>
+                </li>
+            </ul>
+            Use this test to identify if the issue is with the camera hardware, drivers, or software settings, helping you get back to clear video quickly.
+        </p>
+    </div>
+
+</body>
+</html>
