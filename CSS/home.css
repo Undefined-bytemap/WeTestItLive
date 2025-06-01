@@ -1,9 +1,10 @@
 /* Home page specific styles */
 .camera-container {
-    width: 23%; /* Reduced from 46% to half size (23% of original) */
-    max-width: 50%; /* Set to 50% max-width */
+    width: 90%; /* Changed from 23% to be more responsive */
+    max-width: 1200px; /* Changed from 50% to a more reasonable max size */
     margin: 48px auto;
     text-align: center;
+    padding: 0 16px; /* Added padding for mobile */
 }
 
 .permission-note {
@@ -22,7 +23,7 @@
     margin-top: 32px;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduced minmax from 300px to 250px */
     gap: 16px;
 }
 
@@ -91,11 +92,11 @@
 
 .freq-control input[type="range"] {
     width: 100%;
-    margin: 8px 0;
-    background: rgba(255, 255, 255, 0.1);
+    margin: 8px 0;    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     height: 6px;
     -webkit-appearance: none;
+    appearance: none;
 }
 
 .freq-control input[type="range"]::-webkit-slider-thumb {
@@ -149,45 +150,89 @@
 
 /* Microphone and Keyboard Side-by-Side Layout */
 .mic-keyboard-wrapper {
-    width: 90%;
+    width: 90%; /* Changed back to 90% for desktop */
     max-width: 1400px;
-    margin: 12px auto; /* Reduced from 24px to 12px (half again) */
+    margin: 12px auto;
     display: grid;
-    grid-template-columns: 1.3fr 1fr; /* Microphone on left, keyboard-mouse stack on right */
+    grid-template-columns: 1.3fr 1fr;
     gap: 24px;
     align-items: start;
+    box-sizing: border-box;
 }
 
 /* New container for stacking keyboard and mouse vertically */
 .keyboard-mouse-stack {
     display: grid;
-    grid-template-rows: auto auto; /* Stack keyboard and mouse vertically */
+    grid-template-rows: auto auto;
     gap: 16px;
+    width: 100%;
 }
 
-/* Adjust individual container styles for the new layout */
+/* Adjust individual container styles */
 .mic-keyboard-wrapper .microphone-container,
 .mic-keyboard-wrapper .keyboard-container,
 .mic-keyboard-wrapper .mouse-container {
     width: 100%;
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mouse-grid {
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.mouse-visualization {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+    height: 500px;
 }
 
 /* Responsive design for smaller screens */
 @media (max-width: 1200px) {
     .mic-keyboard-wrapper {
+        width: 95%; /* Slightly wider on medium screens */
         grid-template-columns: 1fr;
         gap: 16px;
     }
-    
-    .keyboard-mouse-stack {
-        gap: 12px;
+}
+
+/* Additional mobile optimizations */
+@media screen and (max-width: 768px) {
+    .mic-keyboard-wrapper {
+        width: 100%;
+        margin: 8px auto;
+        padding: 0 8px;
     }
-    
-    .mic-keyboard-wrapper .microphone-container,
-    .mic-keyboard-wrapper .keyboard-container,
-    .mic-keyboard-wrapper .mouse-container {
-        margin: 24px 0;
+
+    .mouse-grid {
+        padding: 12px;
+    }
+
+    .mouse-visualization {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .movement-graph,
+    .delta-display {
+        height: 300px;
+    }
+
+    /* Ensure all interactive elements are properly contained */
+    .mic-grid,
+    .keyboard-grid,
+    .mouse-grid {
+        max-width: 100%;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
     }
 }
 
@@ -627,4 +672,44 @@
 
 .touch-test-area:fullscreen:hover .fullscreen-btn {
     opacity: 1;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .camera-container {
+        width: 100%;
+        margin: 24px auto;
+        padding: 0 8px;
+    }
+
+    .camera-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 12px;
+    }
+
+    .mic-keyboard-wrapper {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .keyboard-mouse-stack {
+        width: 100%;
+    }
+
+    .keyboard-container,
+    .microphone-container,
+    .mouse-container,
+    .sound-container {
+        width: 100%;
+        margin: 24px auto;
+        padding: 0 8px;
+    }
+
+    .keyboard-grid,
+    .mic-grid,
+    .mouse-grid {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }

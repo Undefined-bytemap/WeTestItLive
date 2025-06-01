@@ -777,3 +777,70 @@ p {
 .answer-options button:hover {
     background-color: var(--strong-overlay); /* Darker overlay for hover */
 }
+
+/* ===============================================
+   RESPONSIVE DESIGN
+   =============================================== */
+@media screen and (max-width: 768px) {
+    /* Adjust font sizes for mobile */
+    :root {
+        --font-size-huge: 2rem;
+        --font-size-xxl: 1.8rem;
+        --font-size-xl: 1.4rem;
+        --font-size-large: 1.2rem;
+    }
+
+    /* General container adjustments */
+    .container {
+        width: 100%;
+        padding: 0 16px;
+        margin: 0 auto;
+    }
+
+    /* Header adjustments */
+    .header {
+        padding: 12px;
+    }
+
+    .title {
+        font-size: var(--font-size-xl);
+    }
+
+    /* General content adjustments */
+    img, video, canvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Prevent horizontal scrolling */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* Add touch-friendly tap targets */
+    button, 
+    .nav-btn,
+    input[type="button"],
+    input[type="submit"] {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px;
+    }
+}
+
+/* Utility classes for responsive design */
+.overflow-auto {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* End of responsive design section */
