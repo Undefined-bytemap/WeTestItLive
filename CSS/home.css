@@ -170,29 +170,18 @@
 
 /* Adjust individual container styles */
 .mic-keyboard-wrapper .microphone-container,
-.mic-keyboard-wrapper .keyboard-container,
-.mic-keyboard-wrapper .mouse-container {
+.mic-keyboard-wrapper .keyboard-container {
     width: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.mouse-grid {
+.spectrogram-canvas {
     width: 100%;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 24px;
-    box-sizing: border-box;
-}
-
-.mouse-visualization {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 16px;
-    height: 500px;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
 }
 
 /* Responsive design for smaller screens */
@@ -399,281 +388,6 @@
     border-radius: 8px;
 }
 
-.spectrogram-canvas {
-    width: 100%;
-    height: 200px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-}
-
-/* Mouse Testing Section */
-.mouse-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 48px auto;
-    text-align: center;
-}
-
-.mouse-grid {
-    display: none;
-    margin-top: 32px;
-    width: 100%;
-    max-width: 1000px; /* Increased from 800px for wider graphs */
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 24px 24px 16px 24px; /* Matched with mouse-test.css */
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    box-sizing: border-box;
-}
-
-.mouse-visualization {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 16px;
-    margin-bottom: -20px; /* Matched with mouse-test.css */
-    height: 500px; /* Increased from 300px for much larger graphs */
-}
-
-.movement-graph, .delta-display {
-    position: relative;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    height: 100%; /* Use full height of container */
-}
-
-#mouseGraph, #mouseDelta {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-}
-
-.click-test-section {
-    margin-top: -150px; /* Matched with mouse-test.css */
-}
-
-.click-counters {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.click-counter {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 8px 12px;
-    border-radius: 6px;
-    text-align: center;
-}
-
-.click-counter.left-click {
-    border: 2px solid rgba(52, 152, 219, 0.5);
-}
-
-.click-counter.right-click {
-    border: 2px solid rgba(231, 76, 60, 0.5);
-}
-
-.counter-label {
-    display: block;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.8rem;
-    margin-bottom: 2px;
-}
-
-.counter-value {
-    display: block;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.click-test-area {
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px dashed rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-}
-
-.click-test-area:hover {
-    background: rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.5);
-}
-
-.click-test-area:active {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(0.98);
-}
-
-.click-instruction {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    pointer-events: none;
-}
-
-/* Pixel Testing Section */
-.pixel-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 48px auto;
-    text-align: center;
-}
-
-.pixel-btn {
-    margin-top: 24px;
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    font-family: 'Montserrat', Arial, sans-serif;
-    background: #2a5298;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-.pixel-btn:hover {
-    background: #1e3c72;
-}
-
-.pixel-btn:active {
-    transform: scale(0.98);
-}
-
-.pixel-grid {
-    display: none;
-    margin-top: 32px;
-    width: 100%;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    box-sizing: border-box;
-}
-
-.pixel-test-area {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: red;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.15s linear;
-}
-
-.fullscreen-btn {
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.3s, background-color 0.2s;
-}
-
-/* Apply styles when in fullscreen */
-.pixel-test-area:fullscreen {
-    border-radius: 0;
-}
-
-.pixel-test-area:fullscreen .fullscreen-btn {
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.pixel-test-area:fullscreen:hover .fullscreen-btn {
-    opacity: 1;
-}
-
-/* Touch Testing Section */
-.touch-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 48px auto;
-    text-align: center;
-}
-
-.touch-btn {
-    margin-top: 24px;
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    font-family: 'Montserrat', Arial, sans-serif;
-    background: #2a5298;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-.touch-btn:hover {
-    background: #1e3c72;
-}
-
-.touch-btn:active {
-    transform: scale(0.98);
-}
-
-.touch-grid {
-    display: none;
-    margin-top: 32px;
-    width: 100%;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    box-sizing: border-box;
-}
-
-.touch-test-area {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.touch-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    touch-action: none;
-}
-
-.touch-test-area:fullscreen {
-    border-radius: 0;
-}
-
-.touch-test-area:fullscreen .fullscreen-btn {
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.touch-test-area:fullscreen:hover .fullscreen-btn {
-    opacity: 1;
-}
-
 /* Media query for mobile devices */
 @media screen and (max-width: 768px) {
     .camera-container {
@@ -698,7 +412,6 @@
 
     .keyboard-container,
     .microphone-container,
-    .mouse-container,
     .sound-container {
         width: 100%;
         margin: 24px auto;
@@ -706,10 +419,26 @@
     }
 
     .keyboard-grid,
-    .mic-grid,
-    .mouse-grid {
+    .mic-grid {
         max-width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
+}
+
+/* High-priority CSS for mouse test section */
+#mouseTestContainer {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.mouse-visualization, .click-test-section {
+    margin: 20px !important; /* Added margin */
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
 }

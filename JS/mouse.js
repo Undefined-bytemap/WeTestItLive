@@ -5,8 +5,10 @@ class MouseManager {
         // Canvas setup
         this.graphCanvas = document.getElementById('mouseGraph');
         this.deltaCanvas = document.getElementById('mouseDelta');
+        this.relativePositionCanvas = document.getElementById('mouseRelativePosition');
         this.graphCtx = this.graphCanvas.getContext('2d');
         this.deltaCtx = this.deltaCanvas.getContext('2d');
+        this.relativePositionCtx = this.relativePositionCanvas.getContext('2d');
         
         // Mouse tracking variables
         this.mouseX = 0;
@@ -17,7 +19,7 @@ class MouseManager {
         this.deltaY = 0;
           // Movement history for graph
         this.movementHistory = [];
-        this.maxHistoryPoints = 100;
+        this.maxHistoryPoints = 200;
         
         // Click counting
         this.leftClickCount = 0;
@@ -102,6 +104,7 @@ class MouseManager {
 
         updateSingleCanvas(this.graphCanvas);
         updateSingleCanvas(this.deltaCanvas);
+        updateSingleCanvas(this.relativePositionCanvas);
 
         // Set up graph center points
         this.graphCenterX = this.graphCanvas.width / 2;
@@ -136,20 +139,35 @@ class MouseManager {
             this.lastX = e.clientX;
             this.lastY = e.clientY;
         });
+        
+        window.addEventListener('mousemove', (e) => {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            const relativeX = e.clientX / screenWidth;
+            const relativeY = e.clientY / screenHeight;
+
+            this.renderRelativePosition(relativeX, relativeY);
+        });
     }    animate() {
-        // Clear both canvases
+        // Clear all canvases
         this.graphCtx.clearRect(0, 0, this.graphCanvas.width, this.graphCanvas.height);
         this.deltaCtx.clearRect(0, 0, this.deltaCanvas.width, this.deltaCanvas.height);
+        this.relativePositionCtx.clearRect(0, 0, this.relativePositionCanvas.width, this.relativePositionCanvas.height);
 
-        // Draw grid lines on both canvases
+        // Draw grid lines on all canvases
         this.drawGrid(this.graphCtx, this.graphCanvas);
         this.drawGrid(this.deltaCtx, this.deltaCanvas);
+        this.drawGrid(this.relativePositionCtx, this.relativePositionCanvas);
 
         // Draw movement graph
         this.drawMovementGraph();
 
         // Draw delta indicator
         this.drawDeltaIndicator();
+
+        // Draw relative position
+        this.drawRelativePosition();
 
         // Decay delta values
         this.deltaX *= 0.95;
@@ -262,6 +280,35 @@ class MouseManager {
         this.deltaCtx.beginPath();
         this.deltaCtx.arc(dotX, dotY, 5, 0, Math.PI * 2);
         this.deltaCtx.fill();
+    }
+
+    drawRelativePosition() {
+        const canvasWidth = this.relativePositionCanvas.width;
+        const canvasHeight = this.relativePositionCanvas.height;
+
+        const x = this.mouseX / window.innerWidth * canvasWidth;
+        const y = this.mouseY / window.innerHeight * canvasHeight;
+
+        this.relativePositionCtx.fillStyle = 'rgba(255, 0, 0, 1)';
+        this.relativePositionCtx.beginPath();
+        this.relativePositionCtx.arc(x, y, 5, 0, Math.PI * 2);
+        this.relativePositionCtx.fill();
+    }
+
+    renderRelativePosition(relativeX, relativeY) {
+        const ctx = this.relativePositionCtx;
+        const canvasWidth = this.relativePositionCanvas.width;
+        const canvasHeight = this.relativePositionCanvas.height;
+
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+        const x = relativeX * canvasWidth;
+        const y = relativeY * canvasHeight;
+
+        ctx.fillStyle = '#4a9eff'; /* Match color with other graphs */
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fill();
     }
 }
 

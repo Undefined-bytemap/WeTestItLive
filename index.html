@@ -93,30 +93,33 @@
             <div class="mouse-container">
                 <p class="explainer" style="display:none;">Test mouse movement, pointer tracking, and click functionality. This test visualizes mouse path, speed, smoothness, and tracks left/right click counts, helping to identify issues like erratic cursor behavior, lag, or problems with pointer precision and button responsiveness.</p>
                 <div id="mouseTestContainer" class="mouse-grid">
-                    <div class="mouse-visualization">
-                        <div class="movement-graph">
-                            <canvas id="mouseGraph"></canvas>
-                        </div>
-                        <div class="delta-display">
-                            <canvas id="mouseDelta"></canvas>
-                        </div>
-                    </div>
-                    <div class="click-test-section">
-                        <div class="click-counters">
-                            <div class="click-counter left-click">
-                                <span class="counter-label">Left Clicks:</span>
-                                <span class="counter-value" id="leftClickCount">0</span>
-                            </div>
-                            <div class="click-counter right-click">
-                                <span class="counter-label">Right Clicks:</span>
-                                <span class="counter-value" id="rightClickCount">0</span>
-                            </div>
-                        </div>
-                        <div class="click-test-area" id="clickTestArea">
-                            <div class="click-instruction">Click here to test mouse buttons</div>
-                        </div>
-                    </div>
-                </div>
+    <div class="mouse-visualization">
+        <div class="graph">
+            <canvas id="mouseGraph"></canvas>
+        </div>
+        <div class="graph">
+            <canvas id="mouseDelta"></canvas>
+        </div>
+        <div class="graph">
+            <canvas id="mouseRelativePosition"></canvas>
+        </div>
+    </div>
+    <div class="click-test-section">
+        <div class="click-counters">
+            <div class="click-counter left-click">
+                <span class="counter-label">Left Clicks:</span>
+                <span class="counter-value" id="leftClickCount">0</span>
+            </div>
+            <div class="click-counter right-click">
+                <span class="counter-label">Right Clicks:</span>
+                <span class="counter-value" id="rightClickCount">0</span>
+            </div>
+        </div>
+        <div class="click-test-area" id="clickTestArea">
+            <div class="click-instruction">Click here to test mouse buttons</div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </div>
