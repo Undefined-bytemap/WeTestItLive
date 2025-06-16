@@ -24,7 +24,7 @@
     <script src="JS/banner.js" defer></script>
     <script src="JS/sound.js" defer></script>
 </head>
-<body onload="document.getElementById('testSoundBtn').click()">
+<body>
     <div id="questionBanner" class="question-banner" style="display: none;">
         <button id="closeBannerButton" class="close-banner-button">&times;</button>
         <div id="questionText" class="question-text"></div>
@@ -59,12 +59,19 @@
 
 
     <div class="sound-container test-container">
-        <button id="testSoundBtn" class="sound-btn">Test Sound</button>
         <div id="soundTestContainer" class="sound-grid"></div>
     </div>
     <div class="explainer-container">
         <p class="explainer" style="display: block !important;">Use this free online Sound Test to check if your speakers or headphones are working correctly. This tool plays a sample sound, allowing you to verify audio output, assess sound quality (checking for issues like distortion or crackling), and test stereo channel separation (left and right channels). It's ideal for troubleshooting before watching movies, listening to music, or gaming.<br><br><strong>Common Speaker/Headphone Issues & Fixes:</strong><ul><li><strong>No Sound:</strong><ul><li><strong>Volume Levels:</strong> Check the volume on your device (OS volume, application volume) and on the speakers/headphones themselves if they have physical controls.</li><li><strong>Mute:</strong> Ensure your system or application isn't muted.</li><li><strong>Connections:</strong> Verify that speakers/headphones are properly plugged in (audio jack, USB, Bluetooth pairing). Try re-plugging or re-pairing.</li><li><strong>Correct Playback Device:</strong> Make sure the correct audio output device is selected in your operating system's sound settings.</li><li><strong>Drivers:</strong> Outdated or corrupted audio drivers are a common culprit. Update them from your computer or sound card manufacturer's website.</li></ul></li><li><strong>Distorted or Crackling Sound:</strong><ul><li><strong>Connections:</strong> Loose or damaged cables can cause poor sound quality. Check and try different cables if possible.</li><li><strong>Volume Too High:</strong> Excessively high volume levels can cause distortion, especially with lower-quality speakers.</li><li><strong>Driver Issues:</strong> Again, drivers can impact sound quality.</li><li><strong>Interference (Wireless):</strong> For Bluetooth headphones/speakers, interference from other devices can cause crackling.</li><li><strong>Hardware Damage:</strong> The speakers/headphones themselves might be damaged.</li></ul></li><li><strong>Sound Only From One Side (Stereo Issues):</strong><ul><li><strong>Balance Settings:</strong> Check the audio balance settings in your operating system.</li><li><strong>Cable/Connection:</strong> A partially inserted jack or a damaged cable can cause one channel to drop out.</li><li><strong>Headphone/Speaker Fault:</strong> Could indicate a fault in one of the earpieces or speakers.</li></ul></li></ul>This sound test helps you quickly identify if the problem lies with your audio hardware, connections, or software settings.</p>
     </div>
-
+    <script>
+      // Always show the sound test interface on page load
+      window.addEventListener('DOMContentLoaded', function() {
+        if (typeof SoundTest === 'function') {
+          var soundTest = new SoundTest();
+          soundTest.showSound();
+        }
+      });
+    </script>
 </body>
 </html>

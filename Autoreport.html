@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Report</title>
+    <script src="JS/autoreport.js" defer></script>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <form>
+        <label>
+            <input type="checkbox" id="cameraTest"> Camera Test
+        </label>
+        <label>
+            <input type="checkbox" id="microphoneTest"> Microphone Test
+        </label>
+        <label>
+            <input type="checkbox" id="batteryTest"> Battery Test
+        </label>
+        <label>
+            Battery Stress Level:
+            <select id="batteryStressLevel">
+                <option value="none">None</option>
+                <option value="cpu">CPU Stress</option>
+                <option value="cpu-gpu">CPU + GPU Stress</option>
+            </select>
+        </label>
+    </form>
+</body>
+</html>

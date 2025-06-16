@@ -1,0 +1,98 @@
+/* Styles specific to the report page */
+
+.styled-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.styled-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block;
+    box-sizing: border-box;
+}
+
+.styled-output {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Updated button colors to match other pages */
+.styled-btn {
+    background-color: #28a745; /* Green color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px auto;
+}
+
+.styled-btn:hover {
+    background-color: #218838; /* Darker green */
+}
+
+/* Moved header styles from HTML */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+}
+
+.title-container {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+}
+
+.title strong {
+    font-weight: bold;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+/* Removed redundant nav-btn styles to use master.css */
+/* Removed nav-btn styles */
+
+.hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Added styles for email container */
+.email-container {
+    background-color: #0056b3; /* Dark blue */
+    padding: 10px;
+    border-radius: 5px;
+    color: white; /* Ensure text is readable */
+    margin: 10px 0;
+}
+
+/* Updated email text color to white */
+.email-container .styled-output {
+    color: white;
+}

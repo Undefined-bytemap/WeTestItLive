@@ -1,157 +1,153 @@
-/* Keyboard Test CSS */
-/* Styles specific to keyboard testing functionality */
+/* Keyboard Test CSS - New Perfect Implementation */
+/* Dynamically scalable 60% keyboard for testing */
 
 :root {
-    /* Keyboard-specific CSS variables */
-    --key-base-width: min(3vw, 40px);
-    --key-base-padding: min(0.8vw, 12px);
-    --key-font-size: min(1.8vw, 0.9rem);
-    --key-gap: min(0.3vw, 4px);
-    --keyboard-padding: min(2vw, 24px);
+    /* Color palette */
+    --primary-blue: #1e3c72;
+    --secondary-blue: #2a5298;
+    --white: #ffffff;
+    --light-gray: #e0e0e0;
+    --medium-gray: #cccccc;
 }
 
 .keyboard-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 3px auto;
-    text-align: center;
-    min-height: 400px;
-}
-
-.keyboard-grid {
-    display: none; /* Initially hidden until JS loads */
-    margin-top: 32px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.1);
-    padding: var(--keyboard-padding);
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    width: fit-content;
-    min-width: 750px; /* Minimum width to prevent initial collapse */
-    max-width: 100%;
-    min-height: 350px; /* Minimum height to prevent collapse */
-    box-sizing: border-box;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.keyboard-grid[style*="display: block"] {
-    opacity: 1;
+.keyboard {
+    width: 100%;
+    aspect-ratio: 15 / 5; /* Maintains keyboard proportions */
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.2em;
+    padding: 0.5em;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: min(1.2vw, 16px); /* Responsive font size */
 }
 
-.keyboard-row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: var(--key-gap);
-    gap: var(--key-gap);
+.row {
+    display: grid;
+    gap: 0.2em;
+    align-items: stretch;
+}
+
+.row-1 {
+    grid-template-columns: repeat(14, 1fr);
+}
+
+.row-2 {
+    grid-template-columns: 1.5fr repeat(13, 1fr);
+}
+
+.row-3 {
+    grid-template-columns: 1.75fr repeat(11, 1fr) 2.25fr;
+}
+
+.row-4 {
+    grid-template-columns: 2.25fr repeat(10, 1fr) 2.75fr;
+}
+
+.row-5 {
+    grid-template-columns: 1.25fr 1.25fr 1.25fr 6.25fr 1.25fr 1.25fr 1.25fr 1.25fr;
 }
 
 .key {
-    position: relative;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 6px;
-    padding: var(--key-base-padding);
-    min-width: var(--key-base-width);
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: var(--key-font-size);
-    color: #1e3c72;
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    border: 1px solid #e0e0e0;
+    border-radius: 0.2em;
+    color: #333333;
+    font-weight: 500;
+    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.1s ease;
     text-align: center;
-    transition: transform 0.1s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.1s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 0;
+    position: relative;
+    user-select: none;
 }
 
-.key.pressed {
-    transform: translateY(2px);
-    background: #1e3c72;
-    color: white;
-    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+.key:hover {
+    background: linear-gradient(145deg, #f8f8f8, #eeeeee);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.key.released {
-    background: #8ca5d1;
-    color: white;
+.key:active {
+    background: linear-gradient(145deg, #eeeeee, #e0e0e0);
     transform: translateY(0);
-    transition: transform 0.1s ease, background-color 0.5s ease;
+}
+
+.key.modifier {
+    font-size: 0.6em;
 }
 
 .key.spacebar {
-    min-width: calc(var(--key-base-width) * 5);
+    font-size: 0.6em;
 }
 
-.key.wide {
-    min-width: calc(var(--key-base-width) * 1.5);
+/* Special key colors */
+.key.escape {
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    color: #d32f2f;
+    font-weight: 600;
 }
 
-.key.extra-wide {
-    min-width: calc(var(--key-base-width) * 2);
+.key.enter {
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    color: #1976d2;
+    font-weight: 600;
 }
 
-.key.arrow-key {
-    min-width: var(--key-base-width);
-    font-size: calc(var(--key-font-size) * 1.2);
+.key.shift,
+.key.ctrl,
+.key.alt,
+.key.tab,
+.key.caps {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    color: #555555;
+    font-weight: 600;
 }
 
-/* Keyboard responsive design */
-@media (max-width: 1200px) {
-    :root {
-        --key-base-width: min(2.8vw, 35px);
-        --key-base-padding: min(0.7vw, 10px);
-        --key-font-size: min(1.6vw, 0.85rem);
-    }
+/* Key testing states */
+.key.pressed {
+    background: linear-gradient(145deg, #1e3c72, #0d2142) !important;
+    color: #ffffff !important;
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 900px) {
-    :root {
-        --key-base-width: min(2.5vw, 30px);
-        --key-base-padding: min(0.6vw, 8px);
-        --key-font-size: min(1.4vw, 0.8rem);
-    }
+.key.tested {
+    background: linear-gradient(145deg, #64b5f6, #42a5f5) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 8px rgba(100, 181, 246, 0.3);
 }
 
+.key.tested:hover {
+    background: linear-gradient(145deg, #90caf9, #64b5f6) !important;
+}
+
+/* Responsive adjustments */
 @media (max-width: 600px) {
-    :root {
-        --key-base-width: min(2.2vw, 25px);
-        --key-base-padding: min(0.5vw, 6px);
-        --key-font-size: min(1.2vw, 0.75rem);
-        --key-gap: min(0.2vw, 3px);
+    .keyboard {
+        font-size: min(2vw, 12px);
     }
-
-    .keyboard-grid {
-        padding: calc(var(--keyboard-padding) * 0.5);
+    
+    .key {
+        font-size: 0.6em;
     }
-}
-
-@media (max-width: 400px) {
-    :root {
-        --key-base-width: min(2vw, 22px);
-        --key-base-padding: min(0.4vw, 5px);
-        --key-font-size: min(1.1vw, 0.7rem);
-        --key-gap: min(0.15vw, 2px);
-    }
-
-    .keyboard-grid {
-        padding: calc(var(--keyboard-padding) * 0.33);
-    }
-}
-
-/* Override for side-by-side layout */
-.mic-keyboard-wrapper .keyboard-container {
-    max-width: none;
-}
-
-.mic-keyboard-wrapper .keyboard-grid {
-    margin-top: 16px;
-}
-
-/* Adjust keyboard size for side-by-side layout */
-@media (min-width: 1200px) {
-    .mic-keyboard-wrapper .keyboard-grid {
-        --key-base-width: min(2.2vw, 28px); /* Slightly smaller than before */
-        --key-base-padding: min(0.5vw, 7px);
-        --key-font-size: min(1.2vw, 0.7rem);
-        --keyboard-padding: min(1.2vw, 16px);
+    
+    .key.modifier,
+    .key.spacebar {
+        font-size: 0.5em;
     }
 }

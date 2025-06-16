@@ -3,7 +3,6 @@
 <head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
     <title>404 - Page Not Found</title>    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/404-page.css"><script src="JS/analytics.js" defer></script>
@@ -37,5 +36,56 @@
         <p>Oops! The page you're looking for doesn't exist.</p>
         <a href="/" class="error-btn">Go Home</a>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const path = window.location.pathname;
+        const prefixes = ['/rj', '/rjf', '/rC', '/rCF'];
+
+        let reportInfo = null;
+
+        if (prefixes.some(prefix => path.startsWith(prefix))) {
+            // Extract report information and email
+            const match = path.match(/(.*)-([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,})/);
+            if (match) {
+                reportInfo = {
+                    parameters: match[1],
+                    email: match[2]
+                };
+                console.log('Report Info:', reportInfo);
+
+                // Assign reportInfo to the global scope
+                window.reportInfo = reportInfo;
+
+                // Strip email from the URL
+                const updatedPath = path.replace(/-[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}/, '');
+                history.replaceState({}, document.title, updatedPath);
+
+                // Load Auto Report content
+                fetch('/Autoreport.html')
+                    .then(response => response.text())
+                    .then(content => {
+                        const errorContainer = document.querySelector('.error-container');
+                        if (errorContainer) {
+                            errorContainer.innerHTML = content;
+
+                            // Dynamically load the Auto Report script
+                            const script = document.createElement('script');
+                            script.src = '/JS/autoreport.js';
+                            script.defer = true;
+                            document.body.appendChild(script);
+
+                            // Load adsense only if the page is an auto test report
+                            const adsenseScript = document.createElement('script');
+                            adsenseScript.async = true;
+                            adsenseScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164";
+                            adsenseScript.crossOrigin = "anonymous";
+                            document.body.appendChild(adsenseScript);
+                        }
+                    })
+                    .catch(err => console.error('Failed to load Auto Report content:', err));
+            }
+        }
+    });
+</script>
 </body>
 </html>

@@ -1,17 +1,16 @@
-class SoundTest {    constructor() {
+class SoundTest {
+    constructor() {
         this.audioContext = null;
         this.devices = [];
         this.selectedDevice = null;        
         this.lickProgress = 0;
         this.lastClickTime = 0;
         this.hasPlayedLick = false;
-        this.isShowingSound = false;
+        this.isShowingSound = true; // Always expanded
         this.activeOscillator = null;
         this.activeGainNode = null;
         this.soundGrid = document.getElementById('soundTestContainer');
-        this.testButton = document.getElementById('testSoundBtn');
-        this.testButton.addEventListener('click', () => this.toggleSound());
-        
+        // Remove button logic: don't look for or use testButton
         this.lickNotes = [
             { note: 'D4' }, // duh
             { note: 'E4' }, // na
@@ -29,23 +28,24 @@ class SoundTest {    constructor() {
             'G4': 392.00
         };
         this.animationFrame = null;
+        // Always show sound interface on load
+        this.showSound();
     }
 
     createSoundInterface() {
-        this.soundGrid.innerHTML = '';        // Create device select
+        this.soundGrid.innerHTML = '';
+        // Only create the device select dropdown ONCE, not in setupAudioDevices
         const deviceSelect = document.createElement('div');
         deviceSelect.className = 'device-select';
-        
         const label = document.createElement('label');
         label.htmlFor = 'audioDeviceSelect';
         label.textContent = 'Audio Output Device:';
-        
         this.deviceSelect = document.createElement('select');
         this.deviceSelect.id = 'audioDeviceSelect';
-        
+        this.deviceSelect.className = 'audio-device-select';
         deviceSelect.appendChild(label);
         deviceSelect.appendChild(this.deviceSelect);
-
+        this.soundGrid.appendChild(deviceSelect);
         // Create frequency control
         const freqControl = document.createElement('div');
         freqControl.className = 'freq-control';
@@ -101,14 +101,12 @@ class SoundTest {    constructor() {
     showSound() {
         this.createSoundInterface();
         this.soundGrid.style.display = 'block';
-        this.testButton.textContent = 'Stop Sound Test';
         this.isShowingSound = true;
     }
 
     hideSound() {
         this.soundGrid.innerHTML = '';
         this.soundGrid.style.display = 'none';
-        this.testButton.textContent = 'Test Sound';
         this.isShowingSound = false;
         this.stopSound();
     }
@@ -154,17 +152,8 @@ class SoundTest {    constructor() {
             const devices = await navigator.mediaDevices.enumerateDevices();
             const outputDevices = devices.filter(device => device.kind === 'audiooutput');
             
-            // Set up output device dropdown
-            const deviceSelect = document.createElement('div');
-            deviceSelect.className = 'device-select';
-            
-            const label = document.createElement('label');
-            label.htmlFor = 'audioDeviceSelect';
-            label.textContent = 'Audio Output Device:';
-            
-            this.deviceSelect = document.createElement('select');
-            this.deviceSelect.id = 'audioDeviceSelect';
-            this.deviceSelect.className = 'audio-device-select';
+            // Clear previous options
+            this.deviceSelect.innerHTML = '';
             
             // Add default device first
             const defaultOption = document.createElement('option');
@@ -195,17 +184,6 @@ class SoundTest {    constructor() {
                     }
                 }
             });
-            
-            deviceSelect.appendChild(label);
-            deviceSelect.appendChild(this.deviceSelect);
-            
-            // Insert the device select before the frequency control
-            const freqControl = this.soundGrid.querySelector('.freq-control');
-            if (freqControl) {
-                this.soundGrid.insertBefore(deviceSelect, freqControl);
-            } else {
-                this.soundGrid.appendChild(deviceSelect);
-            }
             
         } catch (error) {
             console.warn('Could not enumerate audio devices:', error);

@@ -86,20 +86,94 @@ class MicrophoneTest {
         this.waveformCanvas = document.createElement('canvas');
         this.waveformCanvas.className = 'waveform-canvas';
         this.waveformCtx = this.waveformCanvas.getContext('2d');
-        
-        // Spectrogram visualization
+          // Spectrogram visualization
         const spectrogramLabel = document.createElement('div');
         spectrogramLabel.className = 'visualization-label';
         spectrogramLabel.textContent = 'Spectrogram';
+          // Create a wrapper for the spectrogram to handle fullscreen
+        const spectrogramWrapper = document.createElement('div');
+        spectrogramWrapper.className = 'spectrogram-wrapper';
         
         this.spectrogramCanvas = document.createElement('canvas');
         this.spectrogramCanvas.className = 'spectrogram-canvas';
         this.spectrogramCtx = this.spectrogramCanvas.getContext('2d');
         
+        // Create frequency markers container
+        const frequencyMarkersContainer = document.createElement('div');
+        frequencyMarkersContainer.className = 'frequency-markers';
+        
+        // Define key frequency points to mark (in Hz)
+        const frequencyMarks = [
+            { freq: 20000, label: '20kHz' },
+            { freq: 10000, label: '10kHz' },
+            { freq: 5000, label: '5kHz' },
+            { freq: 2000, label: '2kHz' },
+            { freq: 1000, label: '1kHz' },
+            { freq: 500, label: '500Hz' },
+            { freq: 250, label: '250Hz' },
+            { freq: 60, label: '60Hz' }
+        ];
+        
+        // Create marker for each frequency
+        frequencyMarks.forEach(mark => {
+            const marker = document.createElement('div');
+            marker.className = 'frequency-marker';
+            marker.textContent = mark.label;
+            
+            // Position based on logarithmic scale
+            const logFreq = Math.log(1 + (mark.freq / 22050) * 20) / Math.log(21);
+            const position = (1 - logFreq) * 100;
+            marker.style.top = `${position}%`;
+            
+            frequencyMarkersContainer.appendChild(marker);
+        });
+        
+        // Create fullscreen button
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'spectrogram-fullscreen-btn';
+        
+        // SVG icons for fullscreen
+        const enterFullscreenSVG = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
+        const exitFullscreenSVG = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+        
+        fullscreenBtn.innerHTML = enterFullscreenSVG;
+        fullscreenBtn.title = 'Toggle fullscreen';
+        
+        // Update button on fullscreen change
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement === spectrogramWrapper) {
+                fullscreenBtn.innerHTML = exitFullscreenSVG;
+                fullscreenBtn.title = 'Exit fullscreen';
+            } else {
+                fullscreenBtn.innerHTML = enterFullscreenSVG;
+                fullscreenBtn.title = 'Enter fullscreen';
+            }
+        });
+        
+        // Toggle fullscreen on click
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                if (spectrogramWrapper.requestFullscreen) {
+                    spectrogramWrapper.requestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        });
+          // Add canvas, frequency markers, and button to wrapper
+        spectrogramWrapper.appendChild(this.spectrogramCanvas);
+        spectrogramWrapper.appendChild(frequencyMarkersContainer);
+        spectrogramWrapper.appendChild(fullscreenBtn);
+        // Move fullscreen button to bottom left
+        fullscreenBtn.style.right = 'auto';
+        fullscreenBtn.style.left = '8px';
+        
         vizContainer.appendChild(waveformLabel);
         vizContainer.appendChild(this.waveformCanvas);
         vizContainer.appendChild(spectrogramLabel);
-        vizContainer.appendChild(this.spectrogramCanvas);
+        vizContainer.appendChild(spectrogramWrapper);
         
         // Add to container
         this.micGrid.appendChild(controls);
@@ -120,13 +194,29 @@ class MicrophoneTest {
                 canvas.width = rect.width * window.devicePixelRatio;
                 canvas.height = rect.height * window.devicePixelRatio;
             });
-        };
-
-        // Listen for resize events
+        };        // Listen for resize events
         if (this.resizeObserver) {
             this.resizeObserver.disconnect();
         }
-        this.resizeObserver = new ResizeObserver(updateCanvasSize);
+        
+        // Enhanced resize observer that handles fullscreen changes
+        this.resizeObserver = new ResizeObserver(entries => {
+            // Call the standard canvas size update
+            updateCanvasSize();
+            
+            // Additional handling for fullscreen
+            entries.forEach(entry => {
+                if (entry.target === this.spectrogramCanvas && document.fullscreenElement) {
+                    // We're in fullscreen mode, optimize for full viewport
+                    this.staticSpectrogramImageData = null; // Force redraw
+                    if (this.analyser && !this.isPlayingBack) {
+                        // Redraw with higher resolution in fullscreen
+                        this.updateVisualization();
+                    }
+                }
+            });
+        });
+        
         this.resizeObserver.observe(this.waveformCanvas);
         this.resizeObserver.observe(this.spectrogramCanvas);
         
@@ -206,10 +296,9 @@ class MicrophoneTest {
 
         try {
             // Start new stream
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            this.analyser = this.audioContext.createAnalyser();
-            this.analyser.fftSize = 2048; // Optimized - reduced from 4096 for better performance
-            this.analyser.smoothingTimeConstant = 0.3;
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();            this.analyser = this.audioContext.createAnalyser();
+            this.analyser.fftSize = 4096; // Increased from 2048 for better vertical detail
+            this.analyser.smoothingTimeConstant = 0.2; // Reduced for more detailed response
 
             this.mediaStream = await navigator.mediaDevices.getUserMedia({
                 audio: {
@@ -354,10 +443,9 @@ class MicrophoneTest {
             if (this.audioContext.state === 'suspended') {
                 await this.audioContext.resume();
             }
-            
-            this.analyser = this.audioContext.createAnalyser();
-            this.analyser.fftSize = 2048; // Optimized - consistent with live visualization
-            this.analyser.smoothingTimeConstant = 0.3;
+              this.analyser = this.audioContext.createAnalyser();
+            this.analyser.fftSize = 4096; // Increased to match live visualization quality
+            this.analyser.smoothingTimeConstant = 0.2; // Reduced for more detailed response
 
             const source = this.audioContext.createMediaElementSource(this.playbackAudio);
             source.connect(this.analyser);
@@ -462,45 +550,72 @@ class MicrophoneTest {
 
     drawStaticSpectrogram() {
         if (!this.spectrogramHistory.length) return;
-
         const width = this.spectrogramCanvas.width;
         const height = this.spectrogramCanvas.height;
         const ctx = this.spectrogramCtx;
-
-        // Use cached image data if available
-        if (this.staticSpectrogramImageData && 
-            this.staticSpectrogramImageData.width === width && 
-            this.staticSpectrogramImageData.height === height) {
-            ctx.putImageData(this.staticSpectrogramImageData, 0, 0);
-            return;
-        }
-
-        // Clear spectrogram
         ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
         ctx.fillRect(0, 0, width, height);
-
-        // Draw the complete recorded spectrogram with optimized rendering
-        const frameWidth = Math.max(1, width / this.spectrogramHistory.length);
-        
-        // Optimized - reduced max bins for better performance
-        const maxBins = Math.min(256, this.spectrogramHistory[0]?.length || 256);
-        const binStep = Math.max(1, Math.floor((this.spectrogramHistory[0]?.length || 256) / maxBins));
-        
-        for (let frame = 0; frame < this.spectrogramHistory.length; frame++) {
+        // Use the same color/detail logic as drawSpectrogram for each frame
+        const drawWidth = width - (width * 0.08);
+        const totalFrames = this.spectrogramHistory.length;
+        let prevX = null;
+        for (let frame = 0; frame < totalFrames; frame++) {
             const data = this.spectrogramHistory[frame];
-            const x = frame * frameWidth;
-            
-            const binHeight = Math.max(1, height / maxBins);
-            
-            for (let i = 0; i < data.length; i += binStep) {
-                const value = data[i];
-                const hue = (1.0 - (value / 255.0)) * 240; // Blue (240) to red (0)
-                ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
-                const y = height * (1 - (i / data.length));
-                ctx.fillRect(x, y, frameWidth + 1, binHeight + 1);
+            const x = Math.floor(frame * (drawWidth / totalFrames));
+            const nextX = Math.floor((frame + 1) * (drawWidth / totalFrames));
+            const isFullscreen = document.fullscreenElement && document.fullscreenElement.contains(this.spectrogramCanvas);
+            const binStep = isFullscreen ? Math.max(1, Math.floor(data.length / 512)) : Math.max(1, Math.floor(data.length / 256));
+            const heightStep = height / Math.ceil(data.length / binStep);
+            let prevY = null;
+            for (let i = 0, bin = 0; i < data.length; i += binStep, bin++) {
+                let sum = 0;
+                const samplesPerBin = Math.min(binStep, 4);
+                for (let j = 0; j < samplesPerBin; j++) {
+                    const idx = Math.min(data.length - 1, i + j * (binStep / samplesPerBin));
+                    sum += data[idx];
+                }
+                const value = sum / samplesPerBin;
+                let hue, saturation, lightness;
+                if (value < 50) {
+                    hue = 240;
+                    saturation = 90;
+                    lightness = 15 + (value / 50) * 25;
+                } else if (value < 100) {
+                    hue = 240 - ((value - 50) / 50) * 60;
+                    saturation = 95;
+                    lightness = 40 + ((value - 50) / 50) * 10;
+                } else if (value < 150) {
+                    hue = 180 - ((value - 100) / 50) * 60;
+                    saturation = 100;
+                    lightness = 50;
+                } else if (value < 200) {
+                    hue = 120 - ((value - 150) / 50) * 60;
+                    saturation = 100;
+                    lightness = 50;
+                } else {
+                    hue = 60 - ((value - 200) / 55) * 60;
+                    saturation = 100;
+                    lightness = 50;
+                }
+                ctx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                const logFreq = Math.log(1 + (i / data.length) * 20) / Math.log(21);
+                const y = height * (1 - logFreq);
+                // Interpolate horizontally between x and nextX to fill gaps
+                for (let interpX = x; interpX < nextX; interpX++) {
+                    if (prevY !== null) {
+                        const yStart = Math.round(Math.min(prevY, y));
+                        const yEnd = Math.round(Math.max(prevY, y));
+                        for (let interpY = yStart; interpY <= yEnd; interpY++) {
+                            ctx.fillRect(interpX, interpY, 1, 1);
+                        }
+                    } else {
+                        ctx.fillRect(interpX, y, 1, heightStep + 0.5);
+                    }
+                }
+                prevY = y;
             }
+            prevX = x;
         }
-
         // Cache the static spectrogram for reuse
         this.staticSpectrogramImageData = ctx.getImageData(0, 0, width, height);
     }visualize() {
@@ -570,64 +685,45 @@ class MicrophoneTest {
         draw(0);
     }    drawPlaybackSpectrogram() {
         if (!this.spectrogramHistory.length || !this.playbackAudio) return;
-
         const width = this.spectrogramCanvas.width;
         const height = this.spectrogramCanvas.height;
         const ctx = this.spectrogramCtx;
-
         // Calculate current playback position using audio element's currentTime
         const audioDuration = this.playbackAudio.duration;
         const audioCurrentTime = this.playbackAudio.currentTime;
         const audioEnded = this.playbackAudio.ended;
         const audioPaused = this.playbackAudio.paused;
         const audioReadyState = this.playbackAudio.readyState;
-
-        // Use audio element's progress for accurate synchronization
         let progress = 0;
         if (audioDuration && audioDuration > 0 && !isNaN(audioDuration) && audioDuration !== Infinity) {
             progress = Math.min(audioCurrentTime / audioDuration, 1);
         } else if (this.spectrogramHistory.length > 0) {
-            // Use the recorded spectrogram frame count as timing reference
             const frameCount = this.spectrogramHistory.length;
             const estimatedDuration = frameCount * (this.animationInterval / 1000);
             if (estimatedDuration > 0) {
                 progress = Math.min(audioCurrentTime / estimatedDuration, 1);
             }
         }
-        
-        // Ensure progress is valid
-        if (isNaN(progress) || progress < 0) {
-            progress = 0;
-        }
-        
-        const progressX = Math.round(progress * width);
-
-        // Only draw when playback is active and audio element is ready
+        if (isNaN(progress) || progress < 0) progress = 0;
+        const drawWidth = width - (width * 0.08);
+        const progressX = Math.round(progress * drawWidth);
         const shouldDraw = this.isPlayingBack && !audioEnded && audioReadyState >= 2;
-        
-        if (!shouldDraw) {
-            return;
-        }
-
+        if (!shouldDraw) return;
         // Always redraw the static spectrogram for clean background
         this.drawStaticSpectrogram();
-
         // Draw red progress line with enhanced visibility
-        const visibleProgressX = Math.max(1, progressX);
-        
+        ctx.save();
         ctx.strokeStyle = '#ff0000';
         ctx.lineWidth = 3;
         ctx.shadowColor = '#ff0000';
         ctx.shadowBlur = 2;
         ctx.beginPath();
-        ctx.moveTo(visibleProgressX, 0);
-        ctx.lineTo(visibleProgressX, height);
+        ctx.moveTo(progressX, 0);
+        ctx.lineTo(progressX, height);
         ctx.stroke();
-        
-        // Reset shadow to avoid affecting other drawings
         ctx.shadowBlur = 0;
-        
-        this.lastProgressX = visibleProgressX;
+        ctx.restore();
+        this.lastProgressX = progressX;
     }
 
     drawWaveform(data) {
@@ -664,32 +760,101 @@ class MicrophoneTest {
         const width = this.spectrogramCanvas.width;
         const height = this.spectrogramCanvas.height;
         const ctx = this.spectrogramCtx;
-
+        
+        // Adjust drawing area to account for frequency markers (50px on right side)
+        const drawWidth = width - (width * 0.08); // Reserve 8% of width for markers
+        
         // More efficient scrolling - use image data manipulation
-        const imageData = ctx.getImageData(1, 0, width - 1, height);
+        const imageData = ctx.getImageData(1, 0, drawWidth - 1, height);
         ctx.putImageData(imageData, 0, 0);
 
-        // Draw new column with optimized frequency bins
-        const binStep = Math.max(1, Math.floor(data.length / 128)); // Reduced from 256 for better performance
+        // Enhanced spectrogram with improved vertical detail
+        const isFullscreen = document.fullscreenElement && 
+                            document.fullscreenElement.contains(this.spectrogramCanvas);
+                            
+        // Adjust bin step based on fullscreen state for better detail
+        const binStep = isFullscreen ? 
+                       Math.max(1, Math.floor(data.length / 512)) : // Much higher detail in fullscreen
+                       Math.max(1, Math.floor(data.length / 256));  // Increased from 128 for better detail
+        
+        // Calculate height step with fractional precision for smoother rendering
         const heightStep = height / Math.ceil(data.length / binStep);
         
-        for (let i = 0; i < data.length; i += binStep) {
-            const value = data[i];
-            const hue = (1.0 - (value / 255.0)) * 240; // Blue (240) to red (0)
-            ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
-            const y = height * (1 - (i / data.length));
-            ctx.fillRect(width - 1, y, 1, heightStep + 1);
-        }
-
-        // Draw recording indicator line
+        // Use Float32Array for higher precision calculations
+        const melValues = new Float32Array(Math.ceil(data.length / binStep));
+        
+        // Apply logarithmic frequency scaling (Mel scale approximation)
+        // for better representation of how humans perceive frequency
+        // Interpolated log-frequency rendering to fill gaps
+        let prevY = null, prevColor = null;
+        for (let i = 0, bin = 0; i < data.length; i += binStep, bin++) {
+            // Sample multiple points around the bin for smoother transitions
+            let sum = 0;
+            const samplesPerBin = Math.min(binStep, 4);
+            for (let j = 0; j < samplesPerBin; j++) {
+                const idx = Math.min(data.length - 1, i + j * (binStep / samplesPerBin));
+                sum += data[idx];
+            }
+            const value = sum / samplesPerBin;
+            const scaledValue = Math.pow(value / 255, 0.7) * 255;
+            let hue, saturation, lightness;
+            if (value < 50) {
+                hue = 240;
+                saturation = 90;
+                lightness = 15 + (value / 50) * 25;
+            } else if (value < 100) {
+                hue = 240 - ((value - 50) / 50) * 60;
+                saturation = 95;
+                lightness = 40 + ((value - 50) / 50) * 10;
+            } else if (value < 150) {
+                hue = 180 - ((value - 100) / 50) * 60;
+                saturation = 100;
+                lightness = 50;
+            } else if (value < 200) {
+                hue = 120 - ((value - 150) / 50) * 60;
+                saturation = 100;
+                lightness = 50;
+            } else {
+                hue = 60 - ((value - 200) / 55) * 60;
+                saturation = 100;
+                lightness = 50;
+            }
+            const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+            // Use logarithmic scaling for y-axis to better represent human hearing
+            const logFreq = Math.log(1 + (i / data.length) * 20) / Math.log(21);
+            const y = height * (1 - logFreq);
+            if (prevY !== null) {
+                // Interpolate between prevY and y, filling the vertical space
+                const yStart = Math.round(Math.min(prevY, y));
+                const yEnd = Math.round(Math.max(prevY, y));
+                for (let interpY = yStart; interpY <= yEnd; interpY++) {
+                    // Linear interpolation of color (optional: for now, use current color)
+                    ctx.fillStyle = color;
+                    ctx.fillRect(drawWidth - 1, interpY, 1, 1);
+                }
+            } else {
+                ctx.fillStyle = color;
+                ctx.fillRect(drawWidth - 1, y, 1, heightStep + 0.5);
+            }
+            prevY = y;
+            prevColor = color;
+        }        // Draw recording indicator line
         if (this.isRecording) {
             ctx.strokeStyle = '#ff0000';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(width - 1, 0);
-            ctx.lineTo(width - 1, height);
+            ctx.moveTo(drawWidth - 1, 0);
+            ctx.lineTo(drawWidth - 1, height);
             ctx.stroke();
         }
+        
+        // Draw a subtle separator line for frequency markers
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(drawWidth + 5, 0);
+        ctx.lineTo(drawWidth + 5, height);
+        ctx.stroke();
     }
 }
 
@@ -708,7 +873,10 @@ function initMicTestWhenReady() {
         }
     } else {
         console.log('[MicTest] Waiting for micTestContainer...');
-        setTimeout(initMicTestWhenReady, 50);
+        setTimeout(initMicTestWhenReady, 100);
     }
 }
-initMicTestWhenReady();
+
+document.addEventListener('DOMContentLoaded', () => {
+    initMicTestWhenReady();
+});

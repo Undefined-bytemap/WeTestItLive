@@ -1,51 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="Free online tool suite for testing computer hardware. Test your camera, keyboard, sound, microphone, mouse, display pixels, touch input, system stress, and network.">
+    <meta name="description" content="Free online audio and video testing tools. Test your device's microphones and cameras simultaneously, verify audio and video quality.">
     <link rel="icon" type="image/png" href="/favicon.png">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1939524044818164" crossorigin="anonymous"></script>
-    <title>we test it LIVE</title>    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="CSS/master.css">
+    <title>Audio & Video Tests - we test it LIVE</title>    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/home.css">
-    <link rel="stylesheet" href="CSS/camera-test.css">
+    <link rel="stylesheet" href="CSS/camera-test.css">    <link rel="stylesheet" href="CSS/microphone-test.css">    <link rel="stylesheet" href="CSS/mouse-test.css">
     <link rel="stylesheet" href="CSS/keyboard-test.css">
-    <link rel="stylesheet" href="CSS/sound-test.css">
-    <link rel="stylesheet" href="CSS/microphone-test.css">
-    <link rel="stylesheet" href="CSS/mouse-test.css">
-    <link rel="stylesheet" href="CSS/pixel-test.css">
-    <link rel="stylesheet" href="CSS/touch-test.css">
+    <link rel="stylesheet" href="CSS/touch-test.css">    <link rel="stylesheet" href="CSS/pixel-test.css">
     <link rel="stylesheet" href="CSS/stress-test.css">
     <link rel="stylesheet" href="CSS/network-test.css">
-    <noscript>
-        <style>
-            p.explainer { display: block !important; }
-            /* Ensure the main content area is visible if JS is off and explainers are shown */
-            body > .camera-container,
-            body > .keyboard-container,
-            body > .sound-container,
-            body > .microphone-container,
-            body > .mouse-container,
-            body > .pixel-container,
-            body > .touch-container,
-            body > .stress-container {
-                padding-top: 10px; /* Add some space if needed */
-            }
-        </style>
-    </noscript>    <script src="JS/analytics.js" defer></script>
-    <script src="JS/adsense.js" defer></script> <!-- Added new JS file for adsense logic -->
+    <link rel="stylesheet" href="CSS/feedback.css">
+    <script src="JS/analytics.js" defer></script>
+    <script src="JS/adsense.js" defer></script>
     <script src="JS/navigation.js" defer></script>
-    <script src="JS/cameras.js" defer></script><script src="JS/keyboard.js" defer></script>
-    <script src="JS/sound.js" defer></script>    <script src="JS/microphone.js" defer></script>
-    <script src="JS/mouse.js" defer></script>
-    <script src="JS/pixel.js" defer></script>
-    <script src="JS/touch.js" defer></script>
+    <script src="JS/cameras.js" defer></script>    <script src="JS/microphone.js" defer></script>    <script src="JS/sound.js" defer></script>
+    <script src="JS/keyboard.js" defer></script>
+    <script src="JS/touch.js" defer></script>    <script src="JS/pixel.js" defer></script>
     <script src="JS/stress.js" defer></script>
     <script src="JS/network.js" defer></script>
     <script src="JS/banner.js" defer></script>
 </head>
 <body>
     <div id="questionBanner" class="question-banner" style="display: none;">
-        <button id="closeBannerButton" class="close-banner-button">&times;</button> <!-- Added Close Button -->
+        <button id="closeBannerButton" class="close-banner-button">&times;</button>
         <div id="questionText" class="question-text"></div>
         <div id="answerOptions" class="answer-options"></div>
     </div>
@@ -53,98 +35,280 @@
         <div id="javascript-disabled-message" style="background-color: #ffdddd; border: 1px solid #ff0000; padding: 10px; text-align: center; margin-bottom: 15px;">
             JavaScript is currently disabled. By enabling JavaScript, you'll be able to use the following tools. Feel free to read below to see what tools are available.
         </div>
-    </noscript>    <div class="header">
+    </noscript>
+    <div class="header">
         <div class="title-container">
             <div class="title">we test it <strong>LIVE</strong></div>
         </div>
-        <div class="nav-container">            <div class="nav-links">
-                <a href="/" class="nav-btn active">Home</a>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="/" class="nav-btn">Home</a>
                 <a href="/about" class="nav-btn">About</a>
                 <a href="/faq" class="nav-btn">FAQ</a>
                 <a href="/how-to" class="nav-btn">How-to</a>
-            </div><button class="hamburger-btn" aria-label="Toggle navigation menu">
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
             </button>
         </div>
     </div>
     
-    <!-- Mobile navigation menu -->    <div class="nav-menu">
-        <a href="/" class="nav-btn active">Home</a>
+    <!-- Mobile navigation menu -->
+    <div class="nav-menu">
+        <a href="/" class="nav-btn">Home</a>
         <a href="/about" class="nav-btn">About</a>
         <a href="/faq" class="nav-btn">FAQ</a>
         <a href="/how-to" class="nav-btn">How-to</a>
     </div>
-      <!-- Overlay for mobile menu -->
-    <div class="nav-overlay"></div>    <div class="camera-container">
-        <p class="explainer" style="display:none;">Check your device's camera(s). This test will attempt to access all available cameras and display their video feeds simultaneously. This is useful for verifying camera functionality, detecting driver issues, or identifying hardware malfunctions such as a black or frozen image.</p>
-        <div class="permission-note">Note: Refresh page after granting permissions if some cameras don't appear</div>
-        <div id="cameraGrid" class="camera-grid"></div>
-    </div>    <div class="mic-keyboard-wrapper">
-        <div class="microphone-container">
-            <p class="explainer" style="display:none;">Check if your microphone is picking up sound. You should see a visual representation (waveform and spectrogram) of your voice or any ambient sound. Use the Record, Play, and Reset buttons to capture and playback audio for testing. During recording, a red line indicates the recording start, and during playback, the red line progresses through the recorded spectrogram. This helps diagnose issues like no audio input, low volume, or excessive background noise.</p>
-            <div id="micTestContainer" class="mic-grid"></div>
+    
+    <!-- Overlay for mobile menu -->    <div class="nav-overlay"></div>    <!-- Main container with tests -->
+    <div class="main-container" style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; max-width: 1600px; margin: 0 auto; padding-top: 20px;">
+        <!-- Microphone test container -->
+        <div class="mic-container" style="flex: 1; min-width: 300px; max-width: 600px; align-self: flex-start; margin-top: 0;">
+            <div id="micTestContainer" class="mic-grid">
+                <!-- Microphone test will be added here by JavaScript -->
+            </div>
+        </div>
+        <!-- Camera and sound test column -->
+        <div style="display: flex; flex-direction: column; flex: 1; min-width: 300px; max-width: 800px; gap: 20px; align-self: flex-start; margin-top: 0;">
+            <!-- Camera test container -->
+            <div class="camera-test-section" style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div id="cameraGrid" class="camera-grid" style="display: none; margin-top: 0;">
+                    <!-- Camera feeds will be added here by JavaScript -->
+                </div>
+            </div>
+            <!-- Sound test container (just under camera test) -->
+            <div class="sound-container test-container" style="width: 100%; min-width: 300px; max-width: 100%; align-self: stretch;">
+                <div id="soundTestContainer" class="sound-grid"></div>
+            </div>
         </div>
         
-        <div class="keyboard-mouse-stack">
-            <div class="keyboard-container">
-                <p class="explainer" style="display:none;">Verify all keys on your keyboard are functioning correctly. As you type, pressed keys will be highlighted on a virtual keyboard. This helps identify unresponsive keys, sticky keys, or incorrect key mappings.</p>
-                <div id="keyboardGrid" class="keyboard-grid"></div>
+    </div>
+    <!-- Mouse and Keyboard Test Section (side by side, responsive, aligned with main container) -->
+    <div style="max-width: 1600px; margin: 0 auto; padding-top: 0;">
+        <section class="mouse-keyboard-section" style="display: flex; justify-content: center; align-items: flex-start; gap: 32px; flex-wrap: wrap;">
+            <div class="mouse-container test-container" style="flex: 1 1 0; min-width: 320px; margin: 0;">
+                <div id="mouseTestContainer" class="mouse-grid" style="width: 100%; max-width: none; margin-top: 0; margin-bottom: 0;">
+                    <div class="mouse-visualization">
+                        <div class="graph">
+                            <canvas id="mouseGraph"></canvas>
+                        </div>
+                        <div class="graph">
+                            <canvas id="mouseDelta"></canvas>
+                        </div>
+                        <div class="graph">
+                            <canvas id="mouseRelativePosition"></canvas>
+                        </div>
+                    </div>
+                    <div class="click-test-section">
+                        <div class="click-counters">
+                            <div class="click-counter left-click">
+                                <span class="counter-label">Left Clicks:</span>
+                                <span class="counter-value" id="leftClickCount">0</span>
+                            </div>
+                            <div class="click-counter right-click">
+                                <span class="counter-label">Right Clicks:</span>
+                                <span class="counter-value" id="rightClickCount">0</span>
+                            </div>
+                        </div>
+                        <div class="click-test-area" id="clickTestArea">
+                            <div class="click-instruction">Click here to test mouse buttons</div>
+                        </div>
+                    </div>
+                </div>
+            </div>            <div class="keyboard-container" style="flex: 1 1 0; min-width: 320px; margin: 0;">
+                <div class="keyboard">
+                    <!-- Row 1: Number row -->
+                    <div class="row row-1">
+                        <div class="key escape">Esc</div>
+                        <div class="key">1</div>
+                        <div class="key">2</div>
+                        <div class="key">3</div>
+                        <div class="key">4</div>
+                        <div class="key">5</div>
+                        <div class="key">6</div>
+                        <div class="key">7</div>
+                        <div class="key">8</div>
+                        <div class="key">9</div>
+                        <div class="key">0</div>
+                        <div class="key">-</div>
+                        <div class="key">=</div>
+                        <div class="key modifier">Backspace</div>
+                    </div>
+
+                    <!-- Row 2: QWERTY row -->
+                    <div class="row row-2">
+                        <div class="key modifier tab">Tab</div>
+                        <div class="key">Q</div>
+                        <div class="key">W</div>
+                        <div class="key">E</div>
+                        <div class="key">R</div>
+                        <div class="key">T</div>
+                        <div class="key">Y</div>
+                        <div class="key">U</div>
+                        <div class="key">I</div>
+                        <div class="key">O</div>
+                        <div class="key">P</div>
+                        <div class="key">[</div>
+                        <div class="key">]</div>
+                        <div class="key modifier">\</div>
+                    </div>
+
+                    <!-- Row 3: ASDF row -->
+                    <div class="row row-3">
+                        <div class="key modifier caps">Caps Lock</div>
+                        <div class="key">A</div>
+                        <div class="key">S</div>
+                        <div class="key">D</div>
+                        <div class="key">F</div>
+                        <div class="key">G</div>
+                        <div class="key">H</div>
+                        <div class="key">J</div>
+                        <div class="key">K</div>
+                        <div class="key">L</div>
+                        <div class="key">;</div>
+                        <div class="key">'</div>
+                        <div class="key modifier enter">Enter</div>
+                    </div>
+
+                    <!-- Row 4: ZXCV row -->
+                    <div class="row row-4">
+                        <div class="key modifier shift">Shift</div>
+                        <div class="key">Z</div>
+                        <div class="key">X</div>
+                        <div class="key">C</div>
+                        <div class="key">V</div>
+                        <div class="key">B</div>
+                        <div class="key">N</div>
+                        <div class="key">M</div>
+                        <div class="key">,</div>
+                        <div class="key">.</div>
+                        <div class="key">/</div>
+                        <div class="key modifier shift">Shift</div>
+                    </div>
+
+                    <!-- Row 5: Bottom row -->
+                    <div class="row row-5">
+                        <div class="key modifier ctrl">Ctrl</div>
+                        <div class="key modifier">Win</div>
+                        <div class="key modifier alt">Alt</div>
+                        <div class="key spacebar">Space</div>
+                        <div class="key modifier alt">Alt</div>
+                        <div class="key modifier">Fn</div>
+                        <div class="key modifier">Menu</div>
+                        <div class="key modifier ctrl">Ctrl</div>
+                    </div>
+                </div>
+            </div>
+        </section>    </div>
+    <!-- End Mouse and Keyboard Test Section -->    <!-- Touch Screen Test Section -->
+    <div class="main-container" style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; max-width: 1600px; margin: 0 auto; padding-top: 20px;">
+        <div class="touch-container test-container" style="width: 100%; margin: 20px auto;">
+            <div id="touchTestContainer" class="touch-grid" style="display: block;">
+                <!-- Touch test interface will be created by JavaScript -->
+            </div>
+        </div>    </div>
+    <!-- End Touch Screen Test Section -->    <!-- Additional Test Buttons Section -->
+    <div class="main-container" style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; max-width: 1600px; margin: 0 auto; padding-top: 20px;">
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+            <div class="pixel-container" style="width: 100%; max-width: 600px;">
+                <button id="testPixelBtn" class="pixel-btn">Test Dead Pixels</button>
+                <div id="pixelTestContainer" class="pixel-grid"></div>
             </div>
             
-            <div class="mouse-container">
-                <p class="explainer" style="display:none;">Test mouse movement, pointer tracking, and click functionality. This test visualizes mouse path, speed, smoothness, and tracks left/right click counts, helping to identify issues like erratic cursor behavior, lag, or problems with pointer precision and button responsiveness.</p>
-                <div id="mouseTestContainer" class="mouse-grid">
-    <div class="mouse-visualization">
-        <div class="graph">
-            <canvas id="mouseGraph"></canvas>
-        </div>
-        <div class="graph">
-            <canvas id="mouseDelta"></canvas>
-        </div>
-        <div class="graph">
-            <canvas id="mouseRelativePosition"></canvas>
-        </div>
-    </div>
-    <div class="click-test-section">
-        <div class="click-counters">
-            <div class="click-counter left-click">
-                <span class="counter-label">Left Clicks:</span>
-                <span class="counter-value" id="leftClickCount">0</span>
+            <div class="stress-container" style="width: 100%; max-width: 600px;">
+                <button id="testStressBtn" class="stress-btn">Test Hardware</button>
+                <div id="stressTestContainer" class="stress-grid"></div>
             </div>
-            <div class="click-counter right-click">
-                <span class="counter-label">Right Clicks:</span>
-                <span class="counter-value" id="rightClickCount">0</span>
+            
+            <div class="network-container" style="width: 100%; max-width: 600px;">
+                <button id="testNetworkBtn" class="network-btn">Check Network & WiFi</button>
+                <div id="networkTestContainer" class="network-grid"></div>
             </div>
         </div>
-        <div class="click-test-area" id="clickTestArea">
-            <div class="click-instruction">Click here to test mouse buttons</div>
-        </div>
     </div>
-</div>
+    <!-- End Additional Test Buttons Section -->    <script src="JS/sound.js" defer></script>
+    <script src="JS/mouse.js" defer></script>
+
+    <!-- Floating Feedback Button -->
+    <div id="feedbackButton" class="feedback-float-btn">
+        <span>Feedback?</span>
+        <button class="feedback-close-btn" onclick="closeFeedbackButton()">&times;</button>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="feedback-modal" style="display: none;">
+        <div class="feedback-modal-content">
+            <div class="feedback-modal-header">
+                <h2>Feedback</h2>
+                <button class="feedback-modal-close" onclick="closeFeedbackModal()">&times;</button>
+            </div>
+            <div class="feedback-modal-body">
+                <p>Share suggestions to help improve this tool:</p>
+                <form id="feedback-form" onsubmit="sendFeedback(event)">
+                    <label for="suggestion">Your Suggestion:</label><br>
+                    <textarea id="suggestion" name="suggestion" rows="4" cols="50" required placeholder="Enter your feedback here..."></textarea><br><br>
+                    <button type="submit" class="feedback-btn">Submit</button>
+                </form>
+                <p id="thankyou" style="display: none; color: green;">Thanks for your feedback!</p>
             </div>
         </div>
     </div>
 
-<div class="sound-container">
-        <button id="testSoundBtn" class="sound-btn">Test Sound</button>
-        <p class="explainer" style="display:none;">Test your device\\\'s speakers or headphones by playing a sample sound. This test allows you to check for audio output, sound quality (e.g., distortion, crackling), and stereo channel separation if applicable.</p>
-        <div id="soundTestContainer" class="sound-grid"></div>    </div><div class="pixel-container">
-        <button id="testPixelBtn" class="pixel-btn">Test Dead Pixels</button>
-        <p class="explainer" style="display:none;">Identify dead, stuck, or lit pixels on your screen by displaying various solid colors full-screen. This makes it easier to spot individual pixels that are not displaying the correct color, which could indicate a permanent hardware defect.</p>
-        <div id="pixelTestContainer" class="pixel-grid"></div>
-    </div><div class="touch-container">
-        <button id="testTouchBtn" class="touch-btn">Test Touch Screen</button>
-        <p class="explainer" style="display:none;">Verify touch screen accuracy and responsiveness. For multi-touch capable screens, it can track multiple simultaneous touch points. This helps detect dead spots, ghost touches, or issues with multi-touch functionality.</p>
-        <div id="touchTestContainer" class="touch-grid"></div>
-    </div>
-    <div class="stress-container">
-        <button id="testStressBtn" class="stress-btn">Test Hardware</button>
-        <p class="explainer" style="display:none;">Perform a stress test to check your system\\\'s stability and CPU performance under heavy load. This test runs intensive calculations and monitors CPU utilization and the page\\\'s memory usage, which can help identify thermal throttling or crashes under pressure.</p>
-        <div id="stressTestContainer" class="stress-grid"></div>    </div>
+    <!-- Feedback Modal Overlay -->
+    <div id="feedbackOverlay" class="feedback-overlay" style="display: none;" onclick="closeFeedbackModal()"></div>
 
-    <div class="network-container">
-        <button id="testNetworkBtn" class="network-btn">Test Network & WiFi</button>
-        <p class="explainer" style="display:none;">Check your network connection information including connection type, effective network speed, round-trip time, and online/offline status. This test displays real-time network information from your browser's Network Information API.</p>
-        <div id="networkTestContainer" class="network-grid"></div>
-    </div>
+    <script>
+        function openFeedbackModal() {
+            document.getElementById('feedbackModal').style.display = 'block';
+            document.getElementById('feedbackOverlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFeedbackModal() {
+            document.getElementById('feedbackModal').style.display = 'none';
+            document.getElementById('feedbackOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeFeedbackButton() {
+            document.getElementById('feedbackButton').style.display = 'none';
+        }
+
+        function sendFeedback(event) {
+            event.preventDefault();
+            const suggestion = document.getElementById('suggestion').value;
+            
+            // Attempt to send
+            fetch('https://script.google.com/macros/s/AKfycbx-T3m88s2zMYh6SRfc9tkXORJFGz0M4nJSg6eqsqJ9hQA9GKLvm4Yqo6yFbP68qPxc/exec?suggestion=' + encodeURIComponent(suggestion))
+                .catch(() => {
+                    // Silent fail — GAS still got it, just CORS issue
+                })
+                .finally(() => {
+                    // Hide form and show thank you
+                    const form = document.getElementById('feedback-form');
+                    form.style.display = 'none';
+
+                    const thankyou = document.getElementById('thankyou');
+                    thankyou.style.display = 'block';
+                    
+                    // Auto-close modal after 3 seconds
+                    setTimeout(() => {
+                        closeFeedbackModal();
+                    }, 3000);
+                });
+        }
+
+        // Make feedback button clickable to open modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const feedbackBtn = document.getElementById('feedbackButton');
+            feedbackBtn.addEventListener('click', function(e) {
+                if (e.target.className !== 'feedback-close-btn') {
+                    openFeedbackModal();
+                }
+            });        });    </script>
+</body>
+</html>
+       
+ 
 </body>
 </html>

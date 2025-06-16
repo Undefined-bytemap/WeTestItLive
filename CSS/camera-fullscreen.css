@@ -1,0 +1,97 @@
+/* Camera Fullscreen Button Styles */
+
+/* Base styles for the fullscreen button */
+.camera-fullscreen-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.camera-fullscreen-btn:hover {
+    opacity: 1;
+}
+
+.camera-fullscreen-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Exit fullscreen button shown when in fullscreen mode */
+.exit-fullscreen-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.exit-fullscreen-btn:hover {
+    opacity: 1;
+}
+
+.exit-fullscreen-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Make sure camera wrapper has correct positioning for the button */
+.camera-wrapper {
+    position: relative;
+}
+
+/* Fullscreen styles to ensure video maintains proper appearance */
+.camera-wrapper:fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.camera-wrapper:fullscreen video {
+    max-height: 100vh;
+    max-width: 100vw;
+}
+
+.camera-wrapper:fullscreen .camera-label {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 480px) {
+    .camera-fullscreen-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .camera-fullscreen-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}

@@ -1,143 +1,133 @@
-class KeyboardManager {
-    constructor() {
-        this.keyboardGrid = document.getElementById('keyboardGrid');
-        this.keyElements = new Map();
-        
-        this.setupKeyboardEvents();
-        
-        // Auto-start keyboard on page load
-        setTimeout(() => this.showKeyboard(), 200);
-    }
+// Perfect Keyboard Testing Implementation
+// Dynamically scalable 60% keyboard with proper key mapping
 
-    showKeyboard() {
-        this.createKeyboardLayout();
-        this.keyboardGrid.style.display = 'block';
-    }
+// Key mapping for physical keyboard keys to visual keys
+const keyMap = {
+    'Escape': 'Esc',
+    'Digit1': '1', 'Digit2': '2', 'Digit3': '3', 'Digit4': '4', 'Digit5': '5',
+    'Digit6': '6', 'Digit7': '7', 'Digit8': '8', 'Digit9': '9', 'Digit0': '0',
+    'Minus': '-', 'Equal': '=', 'Backspace': 'Backspace',
+    'Tab': 'Tab',
+    'KeyQ': 'Q', 'KeyW': 'W', 'KeyE': 'E', 'KeyR': 'R', 'KeyT': 'T',
+    'KeyY': 'Y', 'KeyU': 'U', 'KeyI': 'I', 'KeyO': 'O', 'KeyP': 'P',
+    'BracketLeft': '[', 'BracketRight': ']', 'Backslash': '\\',
+    'CapsLock': 'Caps Lock',
+    'KeyA': 'A', 'KeyS': 'S', 'KeyD': 'D', 'KeyF': 'F', 'KeyG': 'G',
+    'KeyH': 'H', 'KeyJ': 'J', 'KeyK': 'K', 'KeyL': 'L',
+    'Semicolon': ';', 'Quote': "'", 'Enter': 'Enter',
+    'ShiftLeft': 'Shift', 'ShiftRight': 'Shift',
+    'KeyZ': 'Z', 'KeyX': 'X', 'KeyC': 'C', 'KeyV': 'V', 'KeyB': 'B',
+    'KeyN': 'N', 'KeyM': 'M', 'Comma': ',', 'Period': '.', 'Slash': '/',
+    'ControlLeft': 'Ctrl', 'ControlRight': 'Ctrl',
+    'MetaLeft': 'Win', 'MetaRight': 'Win',
+    'AltLeft': 'Alt', 'AltRight': 'Alt',
+    'Space': 'Space',
+    'ContextMenu': 'Menu'
+};
 
-    createKeyboardLayout() {
-        this.keyboardGrid.innerHTML = '';
-        const layouts = [
-            ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'],
-            ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\'],
-            ['Caps Lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'Enter'],
-            ['Left Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'Right Shift'],
-            ['Left Ctrl', 'Left Win', 'Left Alt', 'Space', 'Right Alt', 'Right Win', 'Right Ctrl'],
-            ['', '', '↑', '', '', '', '', ''],  // Arrow keys row
-            ['', '←', '↓', '→', '', '', '', '']  // Arrow keys row
-        ];
-
-        layouts.forEach(row => {
-            const rowDiv = document.createElement('div');
-            rowDiv.className = 'keyboard-row';
-
-            row.forEach(key => {
-                if (!key) return; // Skip empty spots in arrow key rows
-                
-                const keyElement = document.createElement('div');
-                keyElement.className = 'key';
-                
-                // Special class handling
-                if (key === 'Space') keyElement.className += ' spacebar';
-                else if (['Backspace', 'Enter', 'Left Shift', 'Right Shift', 'Caps Lock'].includes(key)) 
-                    keyElement.className += ' extra-wide';
-                else if (['Tab', 'Left Ctrl', 'Right Ctrl', 'Left Alt', 'Right Alt', 'Left Win', 'Right Win'].includes(key)) 
-                    keyElement.className += ' wide';
-                else if (['↑', '↓', '←', '→'].includes(key))
-                    keyElement.className += ' arrow-key';
-                
-                keyElement.textContent = key === 'Space' ? '' : key;
-                
-                // Handle arrow keys mapping
-                let dataKey = key.toLowerCase();
-                if (key === '↑') dataKey = 'arrowup';
-                if (key === '↓') dataKey = 'arrowdown';
-                if (key === '←') dataKey = 'arrowleft';
-                if (key === '→') dataKey = 'arrowright';
-                
-                keyElement.dataset.key = dataKey;
-                this.keyElements.set(dataKey, keyElement);
-                rowDiv.appendChild(keyElement);
-            });
-
-            this.keyboardGrid.appendChild(rowDiv);
-        });
-    }    setupKeyboardEvents() {
-        document.addEventListener('keydown', (e) => {
-            const keyName = this.normalizeKeyName(e.code);
-            const element = this.keyElements.get(keyName);
-            
-            if (element) {
-                // Remove the released class if it exists
-                element.classList.remove('released');
-                // Add pressed class for the dark blue color and movement
-                element.classList.add('pressed');
-            }
-            e.preventDefault();
-        });
-
-        document.addEventListener('keyup', (e) => {
-            const keyName = this.normalizeKeyName(e.code);
-            const element = this.keyElements.get(keyName);
-            
-            if (element) {
-                // Remove pressed class
-                element.classList.remove('pressed');
-                // Add released class for the light blue color
-                element.classList.add('released');
-            }
-            e.preventDefault();
-        });
-    }
-
-    normalizeKeyName(code) {
-        // Handle number keys
-        if (code.match(/Digit\d/)) {
-            return code.replace('Digit', '');
+// Function to find key element by text content
+function findKeyElement(keyText) {
+    const keys = document.querySelectorAll('.key');
+    for (let key of keys) {
+        if (key.textContent.trim() === keyText) {
+            return key;
         }
-        
-        // Handle special characters
-        const specialChars = {
-            'Minus': '-',
-            'Equal': '=',
-            'BracketLeft': '[',
-            'BracketRight': ']',
-            'Backslash': '\\',
-            'Semicolon': ';',
-            'Quote': "'",
-            'Comma': ',',
-            'Period': '.',
-            'Slash': '/',
-            'Backquote': '`',
-            'ArrowUp': 'arrowup',
-            'ArrowDown': 'arrowdown',
-            'ArrowLeft': 'arrowleft',
-            'ArrowRight': 'arrowright'
-        };
+    }
+    return null;
+}
 
-        if (specialChars[code]) {
-            return specialChars[code];
-        }
-
-        switch (code) {
-            case 'Space': return 'space';
-            case 'Backspace': return 'backspace';
-            case 'CapsLock': return 'caps lock';
-            case 'ShiftLeft': return 'left shift';
-            case 'ShiftRight': return 'right shift';
-            case 'ControlLeft': return 'left ctrl';
-            case 'ControlRight': return 'right ctrl';
-            case 'AltLeft': return 'left alt';
-            case 'AltRight': return 'right alt';
-            case 'MetaLeft': return 'left win';
-            case 'MetaRight': return 'right win';
-            case 'Enter': return 'enter';
-            case 'Tab': return 'tab';
-            default: return code.replace('Key', '').toLowerCase();
+// Handle key press (down)
+function handleKeyDown(event) {
+    // Check if feedback modal is open or if focus is on an input/textarea
+    const feedbackModal = document.getElementById('feedbackModal');
+    const isModalOpen = feedbackModal && feedbackModal.style.display !== 'none';
+    const isInputFocused = document.activeElement && 
+        (document.activeElement.tagName === 'INPUT' || 
+         document.activeElement.tagName === 'TEXTAREA' || 
+         document.activeElement.contentEditable === 'true');
+    
+    // Don't capture keyboard events if modal is open or input is focused
+    if (isModalOpen || isInputFocused) {
+        return;
+    }
+    
+    event.preventDefault(); // Prevent default browser behavior
+    
+    const keyCode = event.code;
+    const mappedKey = keyMap[keyCode];
+    
+    if (mappedKey) {
+        const keyElement = findKeyElement(mappedKey);
+        if (keyElement && !keyElement.classList.contains('pressed')) {
+            keyElement.classList.add('pressed');
+            keyElement.classList.remove('tested'); // Remove tested state while pressed
         }
     }
 }
 
-// Initialize the keyboard manager when the document is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new KeyboardManager();
+// Handle key release (up)
+function handleKeyUp(event) {
+    // Check if feedback modal is open or if focus is on an input/textarea
+    const feedbackModal = document.getElementById('feedbackModal');
+    const isModalOpen = feedbackModal && feedbackModal.style.display !== 'none';
+    const isInputFocused = document.activeElement && 
+        (document.activeElement.tagName === 'INPUT' || 
+         document.activeElement.tagName === 'TEXTAREA' || 
+         document.activeElement.contentEditable === 'true');
+    
+    // Don't capture keyboard events if modal is open or input is focused
+    if (isModalOpen || isInputFocused) {
+        return;
+    }
+    
+    const keyCode = event.code;
+    const mappedKey = keyMap[keyCode];
+    
+    if (mappedKey) {
+        const keyElement = findKeyElement(mappedKey);
+        if (keyElement) {
+            keyElement.classList.remove('pressed');
+            keyElement.classList.add('tested'); // Mark as tested after release
+        }
+    }
+}
+
+// Reset all keys to untested state
+function resetKeyboard() {
+    document.querySelectorAll('.key').forEach(key => {
+        key.classList.remove('pressed', 'tested');
+    });
+}
+
+// Initialize keyboard functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Add keyboard event listeners
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
+    
+    // Add focus to the document to ensure key events are captured
+    document.body.focus();
+    document.body.setAttribute('tabindex', '0');
+      // Prevent page scrolling with arrow keys and spacebar (but only when not in input fields)
+    document.addEventListener('keydown', function(event) {
+        // Check if feedback modal is open or if focus is on an input/textarea
+        const feedbackModal = document.getElementById('feedbackModal');
+        const isModalOpen = feedbackModal && feedbackModal.style.display !== 'none';
+        const isInputFocused = document.activeElement && 
+            (document.activeElement.tagName === 'INPUT' || 
+             document.activeElement.tagName === 'TEXTAREA' || 
+             document.activeElement.contentEditable === 'true');
+        
+        // Don't prevent default if modal is open or input is focused
+        if (isModalOpen || isInputFocused) {
+            return;
+        }
+        
+        if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(event.code) > -1) {
+            event.preventDefault();
+        }
+    }, false);
+    
+    // Make reset function globally available
+    window.resetKeyboard = resetKeyboard;
 });

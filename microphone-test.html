@@ -56,10 +56,14 @@
     </div>
     <div class="nav-overlay"></div>
 
-    <div class="microphone-container test-container">
-        <div id="micTestContainer" class="mic-grid"></div>
+    <div class="main-container" style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; max-width: 1600px; margin: 0 auto; padding-top: 20px;">
+        <!-- Microphone test container -->
+        <div class="mic-container" style="flex: 1; min-width: 300px; max-width: 600px; align-self: flex-start; margin-top: 0;">
+            <div id="micTestContainer" class="mic-grid">
+                <!-- Microphone test will be added here by JavaScript -->
+            </div>
+        </div>
     </div>
-
     <div class="explainer-container">
         <p class="explainer" style="display: block !important;">
             This online Microphone Test helps you verify if your microphone is working correctly. You can see real-time audio visualization through waveforms and spectrograms, record and play back audio, and test different microphone inputs if you have multiple devices connected.

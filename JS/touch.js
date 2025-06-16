@@ -14,10 +14,16 @@ class TouchTest {
         this.boundAnimate = this.animate.bind(this);
         this.boundSetupCanvas = this.setupCanvas.bind(this);
         
-        // Initialize touch interface immediately but keep it hidden
+        // Initialize touch interface immediately
         this.createTouchInterface();
         
-        this.testButton.addEventListener('click', () => this.toggleTouch());
+        // If there's a button, add event listener, otherwise auto-start
+        if (this.testButton) {
+            this.testButton.addEventListener('click', () => this.toggleTouch());
+        } else {
+            // Auto-start the touch test when no button is present
+            setTimeout(() => this.showTouch(), 100);
+        }
         
         // Handle window resize events to adjust canvas
         window.addEventListener('resize', () => {
@@ -33,12 +39,12 @@ class TouchTest {
         } else {
             this.showTouch();
         }
-    }
-
-    showTouch() {
+    }    showTouch() {
         this.touchGrid.style.display = 'block';
-        this.testButton.textContent = 'Stop Touch Test';
-        this.testButton.style.background = '#1e3c72';
+        if (this.testButton) {
+            this.testButton.textContent = 'Stop Touch Test';
+            this.testButton.style.background = '#1e3c72';
+        }
         this.isShowingTouch = true;
         
         // Make sure canvas is properly sized
@@ -48,17 +54,17 @@ class TouchTest {
         if (!this.animationFrame) {
             this.animate();
         }
-    }
-
-    hideTouch() {
+    }    hideTouch() {
         if (this.animationFrame) {
             cancelAnimationFrame(this.animationFrame);
             this.animationFrame = null;
         }
         
         this.touchGrid.style.display = 'none';
-        this.testButton.textContent = 'Test Touch Screen';
-        this.testButton.style.background = '#2a5298';
+        if (this.testButton) {
+            this.testButton.textContent = 'Test Touch Screen';
+            this.testButton.style.background = '#2a5298';
+        }
         this.isShowingTouch = false;
         
         // Clear touches and trails
