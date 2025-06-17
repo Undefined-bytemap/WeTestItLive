@@ -29,10 +29,12 @@
 
 .camera-grid video {
     width: 100%;
+    height: auto;
     border-radius: 8px;
     background: rgba(0,0,0,0.1);
     /* aspect-ratio: 16/6.75; Removed to allow natural aspect ratio */
     object-fit: contain; /* Changed from cover to contain */
+    /* Ensure video displays at its native resolution when possible */
 }
 
 .camera-wrapper {
@@ -99,6 +101,10 @@
 .camera-wrapper:fullscreen video {
     max-height: 100vh;
     max-width: 100vw;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* Maintain aspect ratio and show full resolution */
 }
 
 .camera-wrapper:fullscreen .camera-label {

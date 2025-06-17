@@ -73,24 +73,81 @@ class CameraManager {
         }
     }    async addCameraStream(device) {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: { deviceId: device.deviceId }
-            });
+            let stream;
+            
+            try {
+                // First, get a basic stream to access capabilities
+                const tempStream = await navigator.mediaDevices.getUserMedia({
+                    video: { deviceId: device.deviceId }
+                });
+                
+                // Get the video track to check capabilities
+                const videoTrack = tempStream.getVideoTracks()[0];
+                const capabilities = videoTrack.getCapabilities();
+                
+                // Stop the temporary stream
+                tempStream.getTracks().forEach(track => track.stop());
+                
+                // Extract maximum native resolution from capabilities
+                const maxWidth = capabilities.width ? capabilities.width.max : 1920;
+                const maxHeight = capabilities.height ? capabilities.height.max : 1080;
+                const maxFrameRate = capabilities.frameRate ? capabilities.frameRate.max : 30;
+                
+                console.log(`Camera ${device.label || 'Unknown'} max capabilities: ${maxWidth}x${maxHeight} @ ${maxFrameRate}fps`);
+                
+                // Now request the stream with maximum native resolution
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { 
+                        deviceId: device.deviceId,
+                        width: { exact: maxWidth },
+                        height: { exact: maxHeight },
+                        frameRate: { ideal: Math.min(maxFrameRate, 60), min: 15 }
+                    }
+                });
+                
+            } catch (capabilitiesError) {
+                console.log('Could not get camera capabilities, using fallback approach:', capabilitiesError);
+                // Fallback to the previous cascading approach if capabilities check fails
+                try {
+                    stream = await navigator.mediaDevices.getUserMedia({
+                        video: { 
+                            deviceId: device.deviceId,
+                            width: { ideal: 4096, min: 640 },
+                            height: { ideal: 2160, min: 480 },
+                            frameRate: { ideal: 60, min: 15 }
+                        }
+                    });
+                } catch (fallbackError) {
+                    stream = await navigator.mediaDevices.getUserMedia({
+                        video: { deviceId: device.deviceId }
+                    });
+                }
+            }
 
             // Only add to DOM if we have a container
             if (this.cameraGrid) {
                 const wrapper = document.createElement('div');
                 wrapper.className = 'camera-wrapper';
-                wrapper.setAttribute('data-device-id', device.deviceId);
-
-                const video = document.createElement('video');
+                wrapper.setAttribute('data-device-id', device.deviceId);                const video = document.createElement('video');
                 video.autoplay = true;
                 video.playsInline = true;
                 video.srcObject = stream;
                 
+                // Get the actual resolution being used
+                video.addEventListener('loadedmetadata', () => {
+                    const actualWidth = video.videoWidth;
+                    const actualHeight = video.videoHeight;
+                    console.log(`Camera ${device.label || 'Unknown'} resolution: ${actualWidth}x${actualHeight}`);
+                    
+                    // Update label to show resolution
+                    if (actualWidth && actualHeight) {
+                        label.textContent = `${device.label || `Camera ${this.activeStreams.size + 1}`} (${actualWidth}x${actualHeight})`;
+                    }
+                });
+                
                 const label = document.createElement('div');
                 label.className = 'camera-label';
-                label.textContent = device.label || `Camera ${this.activeStreams.size + 1}`;                // Create fullscreen button
+                label.textContent = device.label || `Camera ${this.activeStreams.size + 1}`;// Create fullscreen button
                 const fullscreenBtn = document.createElement('button');
                 fullscreenBtn.className = 'camera-fullscreen-btn';
                 

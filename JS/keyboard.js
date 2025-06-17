@@ -1,39 +1,102 @@
 // Perfect Keyboard Testing Implementation
-// Dynamically scalable 60% keyboard with proper key mapping
+// Dynamically scalable full keyboard with proper key mapping
 
 // Key mapping for physical keyboard keys to visual keys
 const keyMap = {
-    'Escape': 'Esc',
+    // Function keys
+    'Escape': 'ESC',
+    'F1': 'F1', 'F2': 'F2', 'F3': 'F3', 'F4': 'F4', 'F5': 'F5', 'F6': 'F6',
+    'F7': 'F7', 'F8': 'F8', 'F9': 'F9', 'F10': 'F10', 'F11': 'F11', 'F12': 'F12',
+    
+    // Number row
+    'Backquote': '`',
     'Digit1': '1', 'Digit2': '2', 'Digit3': '3', 'Digit4': '4', 'Digit5': '5',
     'Digit6': '6', 'Digit7': '7', 'Digit8': '8', 'Digit9': '9', 'Digit0': '0',
-    'Minus': '-', 'Equal': '=', 'Backspace': 'Backspace',
-    'Tab': 'Tab',
+    'Minus': '-', 'Equal': '=', 'Backspace': 'BACKSPACE',
+    
+    // QWERTY row
+    'Tab': 'TAB',
     'KeyQ': 'Q', 'KeyW': 'W', 'KeyE': 'E', 'KeyR': 'R', 'KeyT': 'T',
     'KeyY': 'Y', 'KeyU': 'U', 'KeyI': 'I', 'KeyO': 'O', 'KeyP': 'P',
     'BracketLeft': '[', 'BracketRight': ']', 'Backslash': '\\',
-    'CapsLock': 'Caps Lock',
+    
+    // ASDF row
+    'CapsLock': 'CAPS LOCK',
     'KeyA': 'A', 'KeyS': 'S', 'KeyD': 'D', 'KeyF': 'F', 'KeyG': 'G',
     'KeyH': 'H', 'KeyJ': 'J', 'KeyK': 'K', 'KeyL': 'L',
-    'Semicolon': ';', 'Quote': "'", 'Enter': 'Enter',
-    'ShiftLeft': 'Shift', 'ShiftRight': 'Shift',
+    'Semicolon': ';', 'Quote': "'", 'Enter': 'ENTER',
+    
+    // ZXCV row
+    'ShiftLeft': 'SHIFT', 'ShiftRight': 'SHIFT',
     'KeyZ': 'Z', 'KeyX': 'X', 'KeyC': 'C', 'KeyV': 'V', 'KeyB': 'B',
     'KeyN': 'N', 'KeyM': 'M', 'Comma': ',', 'Period': '.', 'Slash': '/',
-    'ControlLeft': 'Ctrl', 'ControlRight': 'Ctrl',
-    'MetaLeft': 'Win', 'MetaRight': 'Win',
-    'AltLeft': 'Alt', 'AltRight': 'Alt',
-    'Space': 'Space',
-    'ContextMenu': 'Menu'
+    
+    // Space row
+    'ControlLeft': 'CTRL', 'ControlRight': 'CTRL',
+    'MetaLeft': 'WIN',
+    'AltLeft': 'ALT', 'AltRight': 'ALT',
+    'Space': 'SPACE',
+    'ContextMenu': 'MENU',
+    
+    // Arrow keys
+    'ArrowUp': '↑',
+    'ArrowLeft': '←',
+    'ArrowDown': '↓',
+    'ArrowRight': '→'
 };
 
-// Function to find key element by text content
-function findKeyElement(keyText) {
+// Debug function to log unmapped keys
+function logUnmappedKey(keyCode) {
+    console.log(`Unmapped key pressed: ${keyCode}`);
+}
+
+// Function to find key element by text content and position
+function findKeyElement(keyText, isRightSide = false) {
     const keys = document.querySelectorAll('.key');
+    const matchingKeys = [];
+    
     for (let key of keys) {
-        if (key.textContent.trim() === keyText) {
-            return key;
+        // Handle keys with line breaks (like number row keys with symbols)
+        const keyContent = key.textContent.trim();
+        const keyHTML = key.innerHTML.trim();
+        
+        // Check for exact match first
+        if (keyContent === keyText) {
+            matchingKeys.push(key);
+            continue;
+        }
+        
+        // Check if this is a symbol key with <br> tags
+        if (keyHTML.includes('<br>')) {
+            // Extract the first part (main key) and second part (shift key)
+            const parts = keyHTML.split('<br>');
+            const mainKey = parts[0].trim().replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+            const shiftKey = parts[1] ? parts[1].trim().replace(/&lt;/g, '<').replace(/&gt;/g, '>') : '';
+            
+            if (mainKey === keyText || shiftKey === keyText) {
+                matchingKeys.push(key);
+                continue;
+            }
+        }
+        
+        // Check if the first line matches (for multi-line keys)
+        const firstLine = keyContent.split('\n')[0].trim();
+        if (firstLine === keyText) {
+            matchingKeys.push(key);
         }
     }
-    return null;
+    
+    // If we have multiple matches (like left/right Alt or Ctrl), determine which one based on position
+    if (matchingKeys.length > 1) {
+        // For keys that appear twice (Alt, Ctrl, Shift), the second occurrence is typically on the right
+        if (isRightSide) {
+            return matchingKeys[matchingKeys.length - 1]; // Return the last (rightmost) match
+        } else {
+            return matchingKeys[0]; // Return the first (leftmost) match
+        }
+    }
+    
+    return matchingKeys[0] || null;
 }
 
 // Handle key press (down)
@@ -57,11 +120,17 @@ function handleKeyDown(event) {
     const mappedKey = keyMap[keyCode];
     
     if (mappedKey) {
-        const keyElement = findKeyElement(mappedKey);
+        // Determine if this is a right-side key
+        const isRightSide = keyCode.includes('Right');
+        const keyElement = findKeyElement(mappedKey, isRightSide);
+        
         if (keyElement && !keyElement.classList.contains('pressed')) {
             keyElement.classList.add('pressed');
             keyElement.classList.remove('tested'); // Remove tested state while pressed
         }
+    } else {
+        // Log unmapped keys for debugging
+        logUnmappedKey(keyCode);
     }
 }
 
@@ -84,7 +153,10 @@ function handleKeyUp(event) {
     const mappedKey = keyMap[keyCode];
     
     if (mappedKey) {
-        const keyElement = findKeyElement(mappedKey);
+        // Determine if this is a right-side key
+        const isRightSide = keyCode.includes('Right');
+        const keyElement = findKeyElement(mappedKey, isRightSide);
+        
         if (keyElement) {
             keyElement.classList.remove('pressed');
             keyElement.classList.add('tested'); // Mark as tested after release
@@ -122,8 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isModalOpen || isInputFocused) {
             return;
         }
-        
-        if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(event.code) > -1) {
+          if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'].indexOf(event.code) > -1) {
             event.preventDefault();
         }
     }, false);

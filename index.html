@@ -117,27 +117,44 @@
                 </div>
             </div>            <div class="keyboard-container" style="flex: 1 1 0; min-width: 320px; margin: 0;">
                 <div class="keyboard">
-                    <!-- Row 1: Number row -->
-                    <div class="row row-1">
-                        <div class="key escape">Esc</div>
-                        <div class="key">1</div>
-                        <div class="key">2</div>
-                        <div class="key">3</div>
-                        <div class="key">4</div>
-                        <div class="key">5</div>
-                        <div class="key">6</div>
-                        <div class="key">7</div>
-                        <div class="key">8</div>
-                        <div class="key">9</div>
-                        <div class="key">0</div>
-                        <div class="key">-</div>
-                        <div class="key">=</div>
-                        <div class="key modifier">Backspace</div>
+                    <!-- Function Keys Row -->
+                    <div class="keyboard-row function-row">
+                        <div class="key function">ESC</div>
+                        <div class="key function">F1</div>
+                        <div class="key function">F2</div>
+                        <div class="key function">F3</div>
+                        <div class="key function">F4</div>
+                        <div class="key function">F5</div>
+                        <div class="key function">F6</div>
+                        <div class="key function">F7</div>
+                        <div class="key function">F8</div>
+                        <div class="key function">F9</div>
+                        <div class="key function">F10</div>
+                        <div class="key function">F11</div>
+                        <div class="key function">F12</div>
                     </div>
 
-                    <!-- Row 2: QWERTY row -->
-                    <div class="row row-2">
-                        <div class="key modifier tab">Tab</div>
+                    <!-- Number Row -->
+                    <div class="keyboard-row number-row">
+                        <div class="key">`<br>~</div>
+                        <div class="key">1<br>!</div>
+                        <div class="key">2<br>@</div>
+                        <div class="key">3<br>#</div>
+                        <div class="key">4<br>$</div>
+                        <div class="key">5<br>%</div>
+                        <div class="key">6<br>^</div>
+                        <div class="key">7<br>&</div>
+                        <div class="key">8<br>*</div>
+                        <div class="key">9<br>(</div>
+                        <div class="key">0<br>)</div>
+                        <div class="key">-<br>_</div>
+                        <div class="key">=<br>+</div>
+                        <div class="key modifier">BACKSPACE</div>
+                    </div>
+
+                    <!-- QWERTY Row -->
+                    <div class="keyboard-row qwerty-row">
+                        <div class="key modifier">TAB</div>
                         <div class="key">Q</div>
                         <div class="key">W</div>
                         <div class="key">E</div>
@@ -148,14 +165,14 @@
                         <div class="key">I</div>
                         <div class="key">O</div>
                         <div class="key">P</div>
-                        <div class="key">[</div>
-                        <div class="key">]</div>
-                        <div class="key modifier">\</div>
+                        <div class="key">[<br>{</div>
+                        <div class="key">]<br>}</div>
+                        <div class="key modifier">\<br>|</div>
                     </div>
 
-                    <!-- Row 3: ASDF row -->
-                    <div class="row row-3">
-                        <div class="key modifier caps">Caps Lock</div>
+                    <!-- ASDF Row -->
+                    <div class="keyboard-row asdf-row">
+                        <div class="key modifier">CAPS LOCK</div>
                         <div class="key">A</div>
                         <div class="key">S</div>
                         <div class="key">D</div>
@@ -165,14 +182,14 @@
                         <div class="key">J</div>
                         <div class="key">K</div>
                         <div class="key">L</div>
-                        <div class="key">;</div>
-                        <div class="key">'</div>
-                        <div class="key modifier enter">Enter</div>
+                        <div class="key">;<br>:</div>
+                        <div class="key">'<br>"</div>
+                        <div class="key modifier">ENTER</div>
                     </div>
 
-                    <!-- Row 4: ZXCV row -->
-                    <div class="row row-4">
-                        <div class="key modifier shift">Shift</div>
+                    <!-- ZXCV Row -->
+                    <div class="keyboard-row zxcv-row">
+                        <div class="key modifier">SHIFT</div>
                         <div class="key">Z</div>
                         <div class="key">X</div>
                         <div class="key">C</div>
@@ -180,22 +197,30 @@
                         <div class="key">B</div>
                         <div class="key">N</div>
                         <div class="key">M</div>
-                        <div class="key">,</div>
-                        <div class="key">.</div>
-                        <div class="key">/</div>
-                        <div class="key modifier shift">Shift</div>
+                        <div class="key">,<br>&lt;</div>
+                        <div class="key">.<br>&gt;</div>
+                        <div class="key">/<br>?</div>
+                        <div class="key modifier">SHIFT</div>
                     </div>
 
-                    <!-- Row 5: Bottom row -->
-                    <div class="row row-5">
-                        <div class="key modifier ctrl">Ctrl</div>
-                        <div class="key modifier">Win</div>
-                        <div class="key modifier alt">Alt</div>
-                        <div class="key spacebar">Space</div>
-                        <div class="key modifier alt">Alt</div>
-                        <div class="key modifier">Fn</div>
-                        <div class="key modifier">Menu</div>
-                        <div class="key modifier ctrl">Ctrl</div>
+                    <!-- Space Row -->
+                    <div class="keyboard-row space-row">
+                        <div class="key modifier">CTRL</div>
+                        <div class="key modifier">WIN</div>
+                        <div class="key modifier">ALT</div>
+                        <div class="key space">SPACE</div>
+                        <div class="key modifier">ALT</div>
+                        <div class="key modifier">WIN</div>
+                        <div class="key modifier">MENU</div>
+                        <div class="key modifier">CTRL</div>
+                        <div class="space-arrow-cluster">
+                            <div></div>
+                            <div class="key arrow arrow-up">↑</div>
+                            <div></div>
+                            <div class="key arrow arrow-left">←</div>
+                            <div class="key arrow arrow-down">↓</div>
+                            <div class="key arrow arrow-right">→</div>
+                        </div>
                     </div>
                 </div>
             </div>

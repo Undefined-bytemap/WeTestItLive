@@ -1,5 +1,5 @@
 /* Keyboard Test CSS - New Perfect Implementation */
-/* Dynamically scalable 60% keyboard for testing */
+/* Dynamically scalable full keyboard for testing */
 
 :root {
     /* Color palette */
@@ -12,72 +12,55 @@
 
 .keyboard-container {
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+    padding: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .keyboard {
-    width: 100%;
-    aspect-ratio: 15 / 5; /* Maintains keyboard proportions */
     display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    gap: 0.2em;
+    grid-template-rows: repeat(6, 1fr) auto;
+    gap: 1px; 
+    width: 100%;
+    aspect-ratio: 19/7;
+    font-size: clamp(8px, 1.2vw, 16px);
     padding: 0.5em;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
-    font-size: min(1.2vw, 16px); /* Responsive font size */
 }
 
-.row {
+.keyboard-row {
     display: grid;
-    gap: 0.2em;
+    gap: 4px;
     align-items: stretch;
-}
-
-.row-1 {
-    grid-template-columns: repeat(14, 1fr);
-}
-
-.row-2 {
-    grid-template-columns: 1.5fr repeat(13, 1fr);
-}
-
-.row-3 {
-    grid-template-columns: 1.75fr repeat(11, 1fr) 2.25fr;
-}
-
-.row-4 {
-    grid-template-columns: 2.25fr repeat(10, 1fr) 2.75fr;
-}
-
-.row-5 {
-    grid-template-columns: 1.25fr 1.25fr 1.25fr 6.25fr 1.25fr 1.25fr 1.25fr 1.25fr;
 }
 
 .key {
     background: linear-gradient(145deg, #ffffff, #f5f5f5);
     border: 1px solid #e0e0e0;
-    border-radius: 0.2em;
+    border-radius: 6px;
     color: #333333;
-    font-weight: 500;
-    font-size: 0.7em;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    font-weight: 500;
     transition: all 0.1s ease;
-    text-align: center;
-    min-height: 0;
-    position: relative;
     user-select: none;
+    min-height: 0;
+    max-height: 75%;
+
+    overflow: hidden;
+    text-align: center;
+    font-size: inherit;
 }
 
 .key:hover {
     background: linear-gradient(145deg, #f8f8f8, #eeeeee);
+    border-color: #d0d0d0;
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -87,35 +70,89 @@
     transform: translateY(0);
 }
 
+/* Function Keys Row */
+.function-row {
+    grid-template-columns: repeat(12, 1fr) 1.5fr;
+}
+
+/* Number Row */
+.number-row {
+    grid-template-columns: repeat(13, 1fr) 2fr;
+}
+
+/* QWERTY Row */
+.qwerty-row {
+    grid-template-columns: 1.5fr repeat(12, 1fr) 1.5fr;
+}
+
+/* ASDF Row */
+.asdf-row {
+    grid-template-columns: 1.75fr repeat(11, 1fr) 2.25fr;
+}
+
+/* ZXCV Row */
+.zxcv-row {
+    grid-template-columns: 2.25fr repeat(10, 1fr) 2.75fr;
+}
+
+/* Space Row */
+.space-row {
+    grid-template-columns: 1.25fr 1.25fr 1.25fr 6.25fr 1.25fr 1.25fr 1.25fr 1.25fr 1fr 1fr 1fr;
+}
+
+.space-arrow-cluster {
+    grid-column: 9 / 12;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 6px;
+}
+
+.arrow-up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.arrow-left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.arrow-down {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.arrow-right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+/* Special key styles */
+.key.function {
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    color: #666666;
+    font-size: 0.8em;
+}
+
 .key.modifier {
-    font-size: 0.6em;
-}
-
-.key.spacebar {
-    font-size: 0.6em;
-}
-
-/* Special key colors */
-.key.escape {
-    background: linear-gradient(145deg, #ffffff, #f5f5f5);
-    color: #d32f2f;
-    font-weight: 600;
-}
-
-.key.enter {
-    background: linear-gradient(145deg, #ffffff, #f5f5f5);
-    color: #1976d2;
-    font-weight: 600;
-}
-
-.key.shift,
-.key.ctrl,
-.key.alt,
-.key.tab,
-.key.caps {
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
     color: #555555;
     font-weight: 600;
+    font-size: 0.85em;
+}
+
+.key.space {
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    color: #555555;
+    font-weight: 600;
+}
+
+.key.arrow {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    color: #555555;
+    font-weight: 600;
+    font-size: 0.7em;
 }
 
 /* Key testing states */
@@ -136,18 +173,29 @@
     background: linear-gradient(145deg, #90caf9, #64b5f6) !important;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
+/* Responsive text sizing */
+@media (max-width: 800px) {
     .keyboard {
-        font-size: min(2vw, 12px);
+        font-size: clamp(6px, 2vw, 12px);
     }
     
     .key {
-        font-size: 0.6em;
+        height: 32px;
+        max-height: 32px;
+    }
+}
+
+@media (max-width: 500px) {
+    .keyboard {
+        font-size: clamp(4px, 2.5vw, 10px);
     }
     
-    .key.modifier,
-    .key.spacebar {
-        font-size: 0.5em;
+    .keyboard-container {
+        padding: 10px;
+    }
+    
+    .key {
+        height: 28px;
+        max-height: 28px;
     }
 }
